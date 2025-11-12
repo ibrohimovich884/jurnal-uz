@@ -9,7 +9,7 @@ export default function ClassPage() {
 	const [selectedLessonIndex, setSelectedLessonIndex] = useState(null); // faqat bitta ochiladi
 
 	if (!schedule) {
-		return <h2 className="not-found">Bu sinf uchun jadval topilmadi.</h2>;
+		return <h2 className="not-found">Bu qism tayyor emas...</h2>;
 	}
 
 	// Aniq soatlarni saqlaymiz (foydalanuvchi bergan jadvalga mos)
@@ -56,7 +56,7 @@ export default function ClassPage() {
 										{isOpen && (
 											<div className="lesson-details">
 												<p><b>Ustoz:</b> {lesson.teacher}</p>
-												<p><b>Vaqt:</b> {getLessonTime(i)}</p>
+												<p><b>Dars vaqti:</b> {getLessonTime(i)}</p>
 											</div>
 										)}
 									</li>

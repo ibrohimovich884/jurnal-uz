@@ -102,6 +102,13 @@
   color: #333;
 }
 
+.not-found {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 1.3rem;
+  color: #888;
+}
+
 @keyframes expand {
   from {
     opacity: 0;
