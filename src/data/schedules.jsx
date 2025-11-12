@@ -1,33 +1,14 @@
 export default {
-  "5a": [
+  "9b": [
     {
       day: "Dushanba",
       subjects: [
-        { name: "Matematika", room: 12, teacher: "Aziza opa" },
-        { name: "Ona tili", room: 8, teacher: "Gulbahor opa" },
-        { name: "Tarix", room: 15, teacher: "Bekzod aka" },
-        { name: "Texnologiya", room: 20, teacher: "Ilyos aka" },
-      ],
-    },
-    {
-      day: "Seshanba",
-      subjects: [
-        { name: "Ingliz tili", room: 7, teacher: "Dilshoda opa" },
-        { name: "Biologiya", room: 11, teacher: "Malika opa" },
-        { name: "Jismoniy tarbiya", room: "Sport zal", teacher: "Sardor aka" },
-        { name: "Rasm", room: 5, teacher: "Munisa opa" },
-      ],
-    },
-  ],
-
-  "5b": [
-    {
-      day: "Dushanba",
-      subjects: [
-        { name: "O‘qish", room: 9, teacher: "Dildora opa" },
-        { name: "Matematika", room: 12, teacher: "Aziza opa" },
-        { name: "Tarix", room: 15, teacher: "Bekzod aka" },
-        { name: "Rus tili", room: 14, teacher: "Elena Ivanovna" },
+        { name: "Kelajak soat", room: "3/13", teacher: "Toirova O.R." },
+        { name: "Jismoniy tarbiya", room: "1/25", teacher: "Axmedov O.A." },
+        { name: "Fizika", room: "2/16", teacher: "Aminova T.E." },
+        { name: "Informatika", room: "2/25", teacher: "Razzakov N.D." },
+        { name: "Ona tili", room: "3/13", teacher: "Qarshiboyeva M." },
+        { name: "Biologiya", room: "3/7", teacher: "Ergasheva K.A." },
       ],
     },
   ],
