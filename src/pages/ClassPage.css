@@ -10,6 +10,7 @@
   margin-top: 2rem;
   font-size: 1.1rem;
   color: #888;
+  backdrop-filter: blur(3px);
   position: fixed;
   right: 20px;
   bottom: 20px;
