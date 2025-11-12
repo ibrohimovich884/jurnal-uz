@@ -65,6 +65,7 @@ export default function ClassPage() {
 						</ul>
 					</div>
 				))}
+				<p className="beta">Bata versiya 1.0v</p>
 			</div>
 		</div>
 	);
