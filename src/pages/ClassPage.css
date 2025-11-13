@@ -82,11 +82,13 @@
   flex: 1;
   margin-left: 10px;
   color: #111;
+  z-index: 5;
 }
 
 .lesson-room {
   font-size: 0.9rem;
   color: #666;
+  z-index: 3;
 }
 
 .lesson-details {
