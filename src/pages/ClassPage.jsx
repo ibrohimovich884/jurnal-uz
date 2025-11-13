@@ -65,7 +65,7 @@ export default function ClassPage() {
 						</ul>
 					</div>
 				))}
-				<p className="beta">Beta versiya 1.0v</p>
+				<p className="beta"><span>Update: 2025.11.13 - 15:47</span></p>
 			</div>
 		</div>
 	);
