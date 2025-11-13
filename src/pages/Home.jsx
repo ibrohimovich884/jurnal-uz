@@ -41,7 +41,7 @@ export default function Home() {
           </div>
 
           <p className="note">
-            Agar siz admin yoki o‘qituvchi bo‘lsangiz, jadvalni tahrirlash imkoniyatini qo‘shmoqchi bo‘lsangiz — <a href="https://T.me/ibrohimovich_o1">menga</a>, murojat qiling.
+            Agar sizda foidalanishda qandyadir xatolik bo‘lsa — <a href="https://T.me/ibrohimovich_o1">Yaratuvchiga</a>, murojat qilishingiz mumkin
           </p>
         </div>
       </section>
