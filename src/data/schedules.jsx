@@ -72,71 +72,64 @@ export default {
     {
       day: "Dushanba",
       subjects: [
-        { name: "Kelajak soat", room: "3/8", teacher: "Qarshiyeva S.A." },
-        { name: "Rus tili", room: "2/18 - 3/4", teacher: "Kimsanova G.T." },
-        { name: "Texnologiya", room: "1/19 - 1/29", teacher: "Maxamedova D.S." },
-        { name: "Texnologiya", room: "1/19 - 1/29", teacher: "Maxamedova D.S." },
-        { name: "Musiqa", room: "3/9", teacher: "Karimova Z.A." },
-        { name: "Kimyo", room: "1/11", teacher: "Amanova M.N." },
+        { name: "Kelajak soat", room: "2/11", teacher: "Ulashov S.M." },
+        { name: "Ingliz tili", room: "3/9 - 3/3", teacher: "Elmurodova G.S." },
+        { name: "Informatika", room: "2/25", teacher: "Razzakov N.D." },
+        { name: "Tabiiy fan", room: "2/1", teacher: "Jo'rayeva F.M." },
+        { name: "Matematika", room: "1/1", teacher: "Jovliyeva M.S." },
+        { name: "Ona tili", room: "2/11", teacher: "Ulashov S.M." },
       ],
     },
     {
-      // day: "Seshanba",
+      day: "Seshanba",
       subjects: [
-        // { name: "Ingliz tili", room: "3/9 - 3/3", teacher: "Elmurodova G.S." },
-        // { name: "Matematika", room: "1/1", teacher: "Jovliyeva M.S." },
-        // { name: "Biologiya", room: "3/7", teacher: "Ergasheva K.A" },
-        // { name: "Fizika", room: "2/16", teacher: "Aminova T.E." },
-        // { name: "Jismoniy tarbiya", room: "1/25", teacher: "Axmedov O.A." },
-        // { name: "Informatika", room: "2/25", teacher: "Razzakov N.D." },
-        { name: "Bu qism endi tayyorlanadi..." },
+        { name: "Jismoniy tarbiya", room: "1/25", teacher: "Axmedov O.A." },
+        { name: "Tarixdan hikoyalar", room: "2/12", teacher: "Yesenbayeva J.T..." },
+        { name: "Ingliz tili", room: "3/3", teacher: "Sattarova N.S." },
+        { name: "Matematika", room: "3/14", teacher: "Talipova G.N." },
+        { name: "Texnologiya", room: "1/19 - 1/29", teacher: "Maxamedova D.S." },
+        { name: "Texnologiya", room: "1/19 - 1/29", teacher: "Maxamedova D.S." },
       ],
     },
-    // {
-    //   day: "Charshanba",
-    //   subjects: [
-    //     { name: "Tarbiya", room: "3/8", teacher: "Qarshiyeva S.A." },
-    //     { name: "Jismoniy tarbiya", room: "1/25", teacher: "Axmedov O.A." },
-    //     { name: "Matematika", room: "1/1", teacher: "Jovliyeva M.S." },
-    //     { name: "Tasviriy san'at", room: "3/7", teacher: "Kamilova G.R." },
-    //     { name: "Ona tili", room: "3/1", teacher: "Eraliyeva A.V." },
-    //     { name: "Ingliz tili", room: "3/9 - 3/3", teacher: "Elmurodova G.S." },
-    //   ],
-    // },
-    // {
-    //   day: "Payshanba",
-    //   subjects: [
-    //     { name: "Ona tili", room: "3/1", teacher: "Eraliyeva A.V." },
-    //     { name: "Adabiyot", room: "3/1", teacher: "Eraliyeva A.V." },
-    //     { name: "Geografiya", room: "2/1", teacher: "Jo'rayeva F.M." },
-    //     { name: "Rus tili", room: "2/18 - 3/4", teacher: "Kimsanova G.T." },
-    //     { name: "O'zbekiston tarixi", room: "3/13", teacher: "Babayev D.M." },
-    //     { name: "Kimyo", room: "1/11", teacher: "Amanova M.N." },
-    //   ],
-    // },
-    // {
-    //   day: "Juma",
-    //   subjects: [
-    //     { name: "Jahon tarixi", room: "2/13", teacher: "Babayev D.M." },
-    //     { name: "Geografiya", room: "2/1", teacher: "Jo'rayeva F.M." },
-    //     { name: "Matematika", room: "1/1", teacher: "Jovliyeva M.S." },
-    //     { name: "Biologiya", room: "3/7", teacher: "Ergasheva K.A" },
-    //     { name: "Matematika", room: "1/1", teacher: "Jovliyeva M.S." },
-    //     { name: "Ona tili", room: "3/1", teacher: "Eraliyeva A.V." },
-    //   ],
-    // },
-    // {
-    //   day: "Shanba",
-    //   subjects: [
-    //     { name: "Fizika", room: "2/16", teacher: "Aminova T.E." },
-    //     { name: "Ingliz tili", room: "3/9 - 3/3", teacher: "Elmurodova G.S." },
-    //     { name: "Adabiyot", room: "3/1", teacher: "Eraliyeva A.V." },
-    //     { name: "O'zbekiston tarixi", room: "3/13", teacher: "Babayev D.M." },
-    //     { name: "Ingliz tili", room: "3/9 - 3/3", teacher: "Elmurodova G.S." },
-    //     { name: "Matematika", room: "1/1", teacher: "Jovliyeva M.S." },
-
-    //   ],
-    // },
+    {
+      day: "Charshanba",
+      subjects: [
+        { name: "Matematika", room: "3/14", teacher: "Talipova G.N." },
+        { name: "Tasviriy san'at", room: "2/16", teacher: "Kamilova G.R." },
+        { name: "Ona tili", room: "2/11", teacher: "Ulashov S.M." },
+        { name: "Rus tili", room: "3/4", teacher: "Komilova S.U." },
+        { name: "Ingliz tili", room: "3/3", teacher: "Sattarova N.S." },
+      ],
+    },
+    {
+      day: "Payshanba",
+      subjects: [
+        { name: "Ona tili", room: "2/11", teacher: "Ulashov S.M." },
+        { name: "Ingliz tili", room: "3/3", teacher: "Sattarova N.S." },
+        { name: "Musiqa", room: "3/15", teacher: "Karimova Z.A." },
+        { name: "Tarixdan hikoyalar", room: "2/12", teacher: "Yesenbayeva J.T..." },
+        { name: "Adabiyot", room: "2/11", teacher: "Ulashov S.M." },
+      ],
+    },
+    {
+      day: "Juma",
+      subjects: [
+        { name: "Matematika", room: "3/14", teacher: "Talipova G.N." },
+        { name: "Jismoniy tarbiya", room: "1/25", teacher: "Axmedov O.A." },
+        { name: "Ona tili", room: "2/11", teacher: "Ulashov S.M." },
+        { name: "Tabiiy fan", room: "2/1", teacher: "Jo'rayeva F.M." },
+      ],
+    },
+    {
+      day: "Shanba",
+      subjects: [
+        { name: "Tarbiya", room: "3/8", teacher: "Qarshiyeva S.A." },
+        { name: "Tabiiy fan", room: "2/1", teacher: "Jo'rayeva F.M." },
+        { name: "Rus tili", room: "3/4", teacher: "Komilova S.U." },
+        { name: "Matematika", room: "3/14", teacher: "Talipova G.N." },
+        { name: "Adabiyot", room: "2/11", teacher: "Ulashov S.M." },
+      ],
+    },
   ],
   "7a": [
     {
