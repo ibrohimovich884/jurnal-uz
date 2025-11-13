@@ -65,7 +65,7 @@ export default function ClassPage() {
 						</ul>
 					</div>
 				))}
-				<p className="beta"><span>Update: 2025.11.13 - 19:59</span></p>
+				<p className="beta"><span>Update: 2025.11.13 - 20:20</span></p>
 			</div>
 		</div>
 	);
