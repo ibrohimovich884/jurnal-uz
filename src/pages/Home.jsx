@@ -15,7 +15,7 @@ export default function Home() {
           </p>
 
           <div className="hero-cta">
-            <Link to="/class/5a" className="btn primary">5A jadvalini ko‘rish</Link>
+            <Link to="/class/6a" className="btn primary">6A jadvalini ko‘rish</Link>
             <Link to="/class/9b" className="btn outline">9B jadvalini ko‘rish</Link>
           </div>
 

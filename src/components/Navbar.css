@@ -72,6 +72,7 @@
         opacity: 0;
         transform: translateX(-50%) translateY(-5px);
     }
+
     to {
         opacity: 1;
         transform: translateX(-50%) translateY(0);
@@ -176,6 +177,7 @@
 
 /* === MOBILE RESPONSIVE DESIGN === */
 @media (max-width: 768px) {
+
     /* Hozirgi sinfni ko'rsatish */
     .current-class-mobile {
         display: block;
@@ -190,7 +192,8 @@
         width: 60%;
         max-width: 260px;
         height: calc(100vh - var(--navbar-height));
-        height: calc(100dvh - var(--navbar-height)); /* Dynamic viewport height */
+        height: calc(100dvh - var(--navbar-height));
+        /* Dynamic viewport height */
         padding: 2rem 1.5rem;
         gap: 1rem;
         box-shadow: -2px 0 10px var(--shadow);

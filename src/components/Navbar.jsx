@@ -3,7 +3,6 @@ import { NavLink, useLocation } from "react-router";
 import "./Navbar.css";
 
 const CLASSES = [
-  "5a", "5b",
   "6a", "6b",
   "7a", "7b",
   "8a", "8b",
