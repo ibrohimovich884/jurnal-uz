@@ -1,11 +1,27 @@
+/* === CSS VARIABLES === */
+:root {
+    --primary-color: #0077ff;
+    --text-color: #333;
+    --text-secondary: #444;
+    --white: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --overlay: rgba(0, 0, 0, 0.2);
+    --navbar-height: 64px;
+}
+
 /* === GLOBAL NAVBAR STYLE === */
 .navbar {
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: var(--white);
+    box-shadow: 0 2px 8px var(--shadow);
     position: sticky;
     top: 0;
     z-index: 1000;
     width: 100%;
+    transition: box-shadow 0.3s ease;
+}
+
+.navbar.scrolled {
+    box-shadow: 0 4px 12px var(--shadow);
 }
 
 /* Navbar container */
@@ -16,6 +32,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
 }
 
 /* Logo styling */
@@ -25,19 +42,40 @@
     justify-content: center;
     font-size: 1.3rem;
     font-weight: 700;
-    color: #333;
+    color: var(--text-color);
     text-decoration: none;
     transition: color 0.3s ease;
-}
-
-.logo img {
-    width: 24px;
-    height: 24px;
-    margin-right: 0.5rem;
+    z-index: 10;
 }
 
 .logo:hover {
-    color: #0077ff;
+    color: var(--primary-color);
+}
+
+/* Hozirgi sinf ko'rsatish (faqat mobile) */
+.current-class-mobile {
+    display: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    background: rgba(0, 119, 255, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 8px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 /* Navigation links (desktop view) */
@@ -48,15 +86,16 @@
 
 .nav-link {
     text-decoration: none;
-    color: #444;
+    color: var(--text-secondary);
     font-weight: 500;
     font-size: 1rem;
     position: relative;
     transition: color 0.3s ease;
 }
 
-.nav-link:hover {
-    color: #0077ff;
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color);
 }
 
 .nav-link::after {
@@ -66,14 +105,14 @@
     left: 0;
     width: 0%;
     height: 2px;
-    background: #0077ff;
+    background: var(--primary-color);
     transition: width 0.3s ease;
 }
 
-.nav-link:hover::after {
+.nav-link:hover::after,
+.nav-link.active::after {
     width: 100%;
 }
-
 
 /* === HAMBURGER MENU (mobile) === */
 .menu-toggle {
@@ -86,48 +125,21 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 2000;
+    z-index: 1100;
 }
 
 .menu-toggle span {
-    background: #333;
+    background: var(--text-color);
     height: 3px;
     width: 100%;
     border-radius: 2px;
     margin-bottom: 4px;
-    transition: 0.3s ease;
+    transition: all 0.3s ease;
 }
 
-/* === ACTIVE NAVIGATION LINK === */
-.nav-link.active {
-    color: #0077ff;
+.menu-toggle span:last-child {
+    margin-bottom: 0;
 }
-
-.nav-link.active::after {
-    width: 100%;
-    background: #0077ff;
-}
-
-/* === BLUR OVERLAY (when menu opens) === */
-.blur-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(4px);
-    background: rgba(0, 0, 0, 0.2);
-    z-index: 20;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-.blur-overlay.active {
-    opacity: 1;
-    pointer-events: all;
-}
-
 
 /* Animation for active state */
 .menu-toggle.active span:nth-child(1) {
@@ -142,30 +154,77 @@
     transform: translateY(-7px) rotate(-45deg);
 }
 
+/* === BLUR OVERLAY (when menu opens) === */
+.blur-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(4px);
+    background: var(--overlay);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.blur-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
 /* === MOBILE RESPONSIVE DESIGN === */
 @media (max-width: 768px) {
+    /* Hozirgi sinfni ko'rsatish */
+    .current-class-mobile {
+        display: block;
+    }
+
     .nav-links {
         position: fixed;
-        top: 64px;
+        top: var(--navbar-height);
         right: -100%;
         flex-direction: column;
-        background: #fff;
+        background: var(--white);
         width: 60%;
         max-width: 260px;
-        height: calc(100vh - 64px);
+        height: calc(100vh - var(--navbar-height));
+        height: calc(100dvh - var(--navbar-height)); /* Dynamic viewport height */
         padding: 2rem 1.5rem;
         gap: 1rem;
-        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+        box-shadow: -2px 0 10px var(--shadow);
         transition: right 0.3s ease;
+        overflow-y: auto;
     }
 
     .nav-links.open {
         right: 0;
-        z-index: 9999999999;
+        z-index: 1050;
     }
 
     .menu-toggle {
         display: flex;
+    }
+
+    /* Mobile'da nav-link styling */
+    .nav-link {
+        padding: 0.5rem 0;
+        font-size: 1.05rem;
+    }
+
+    .nav-link::after {
+        bottom: 0;
+        left: -1.5rem;
+        width: 3px;
+        height: 0;
+        transition: height 0.3s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        width: 3px;
+        height: 100%;
     }
 }
 
@@ -178,4 +237,23 @@
     .nav-links {
         width: 70%;
     }
+
+    .current-class-mobile {
+        font-size: 1rem;
+        padding: 0.25rem 0.7rem;
+    }
+}
+
+/* Focus states for accessibility */
+.nav-link:focus-visible,
+.menu-toggle:focus-visible,
+.logo:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
 }
