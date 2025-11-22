@@ -4,6 +4,25 @@
 	min-height: 100vh;
 }
 
+/* ClassPage.css faylining oxiriga yoki .day-card stylaridan keyin qo'shing */
+
+/* Bugungi kun uchun maxsus stil */
+.day-card.today-highlight {
+    border: 2px solid #79b7f9; 
+    box-shadow:  0 2px 8px  rgba(0, 123, 255, 0.349);
+}
+.day-card.today-highlight:hover {
+    box-shadow:  0 4px 14px  rgba(0, 123, 255, 0.733);
+}
+
+/* Ixtiyoriy: Agar bugungi kun kartasi biroz ajralib turishini istasangiz,
+   orqa fonini sal havorang qilishingiz mumkin */
+/*
+.day-card.today-highlight {
+   background-color: #f4f8ff;
+}
+*/
+
 /* beta version note */
 .beta {
 	text-align: center;
