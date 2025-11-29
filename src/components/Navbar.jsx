@@ -12,104 +12,76 @@ const CLASSES = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
   const location = useLocation();
 
-  // Scroll holatini kuzatish
+  /* ----------- LOCALSTORAGE: DARK MODE HOLATINI YOQLASH ----------- */
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+    const saved = localStorage.getItem("darkMode") === "true";
+    setDarkMode(saved);
 
+    if (saved) {
+      document.body.classList.add("dark");
+    }
+  }, []);
+
+  const toggleDarkMode = () => {
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+
+    document.body.classList.toggle("dark", newMode);
+    localStorage.setItem("darkMode", newMode);
+  };
+
+  /* ----------- SCROLL EFFECT ----------- */
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Menu ochiq bo'lganda body scroll'ni o'chirish
+  /* ----------- MENU OCHILGANDA SCROLL OCHIRISH ----------- */
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-    }
-
-    return () => {
-      document.body.style.overflow = "unset";
-    };
+    document.body.style.overflow = menuOpen ? "hidden" : "unset";
+    return () => (document.body.style.overflow = "unset");
   }, [menuOpen]);
 
-  // Escape tugmasi bilan menuni yopish
+  /* ----------- ESC YOPISH ----------- */
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === "Escape" && menuOpen) {
-        setMenuOpen(false);
-      }
+      if (e.key === "Escape" && menuOpen) setMenuOpen(false);
     };
-
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
   }, [menuOpen]);
 
-  // Route o'zgarganda menuni yopish
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location]);
+  /* ----------- ROUTE O‘ZGARSA MENUNI YOPISH ----------- */
+  useEffect(() => setMenuOpen(false), [location]);
 
-  // Hozirgi sinfni aniqlash
-  const getCurrentClass = () => {
-    const match = location.pathname.match(/\/class\/(\w+)/);
-    return match ? match[1].toUpperCase() : null;
-  };
-
-  const currentClass = getCurrentClass();
+  const currentClass = location.pathname.match(/\/class\/(\w+)/)?.[1]?.toUpperCase();
 
   return (
     <>
-      <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
+      <header className={`navbar ${scrolled ? "scrolled" : ""} ${darkMode ? "dark-nav" : ""}`}>
         <div className="nav-container">
 
-          {/* LOGO */}
-          <NavLink
-            to="/"
-            className="logo"
-            aria-label="Bosh sahifa"
-          >
-            Jurnal uz
-          </NavLink>
+          <NavLink to="/" className="logo">Jurnal uz</NavLink>
 
-          {/* MOBILE: Hozirgi sinf ko'rsatish */}
-          {currentClass && (
-            <div className="current-class-mobile">
-              {currentClass}-sinf
-            </div>
-          )}
+          {currentClass && <div className="current-class-mobile">{currentClass}-sinf</div>}
 
-          {/* HAMBURGER BUTTON */}
           <button
             className={`menu-toggle ${menuOpen ? "active" : ""}`}
             onClick={() => setMenuOpen(!menuOpen)}
-            aria-label={menuOpen ? "Menyuni yopish" : "Menyuni ochish"}
-            aria-expanded={menuOpen}
-            aria-controls="nav-menu"
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
           </button>
 
-          {/* NAV LINKS */}
-          <nav
-            id="nav-menu"
-            className={`nav-links ${menuOpen ? "open" : ""}`}
-            role="navigation"
-            aria-label="Asosiy navigatsiya"
-          >
+          <nav className={`nav-links ${menuOpen ? "open" : ""}`}>
             {CLASSES.map((cls) => (
               <NavLink
                 key={cls}
                 to={`/class/${cls}`}
-                className={({ isActive }) =>
-                  "nav-link" + (isActive ? " active" : "")
-                }
+                className={({ isActive }) => "nav-link" + (isActive ? " active" : "")}
               >
                 {cls.toUpperCase()}
               </NavLink>
@@ -118,12 +90,16 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* BLUR OVERLAY */}
-      <div
-        className={`blur-overlay ${menuOpen ? "active" : ""}`}
-        onClick={() => setMenuOpen(false)}
-        aria-hidden="true"
-      ></div>
+      <div className={`blur-overlay ${menuOpen ? "active" : ""}`} onClick={() => setMenuOpen(false)} />
+
+      {/* DARK MODE BUTTON */}
+      <button
+        onClick={toggleDarkMode}
+        className="dark-toggle-btn"
+        aria-label="Dark mode"
+      >
+        {darkMode ? "☀️" : "🌙"}
+      </button>
     </>
   );
 }

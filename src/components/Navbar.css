@@ -260,3 +260,48 @@
 html {
     scroll-behavior: smooth;
 }
+
+/* NAVBAR DARK MODE --------------------------------------------------- */
+
+.dark-nav {
+    background: #1d1f21 !important;
+    border-bottom: 1px solid #2a2d2f;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.dark-nav .logo {
+    color: #f0f0f0 !important;
+}
+
+.dark-nav .nav-link {
+    color: #ccc !important;
+}
+
+.dark-nav .nav-link.active {
+    color: #4a90ff !important;
+}
+
+.dark-nav .menu-toggle span {
+    background: #e5e5e5;
+}
+
+.dark-nav .current-class-mobile {
+    color: #ddd;
+}
+
+/* Dark Mode Button (fixed) */
+.dark-toggle-btn {
+    position: fixed;
+    top: 120px;
+    right: 5px;
+    padding: 14px 14px;
+    border: 1px solid #007bff;
+    border-radius: 12px;
+    background: #007bff38;
+    backdrop-filter: blur(5px);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 3000;
+    transition: background 0.2s;
+}

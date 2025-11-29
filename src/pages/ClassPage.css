@@ -8,11 +8,12 @@
 
 /* Bugungi kun uchun maxsus stil */
 .day-card.today-highlight {
-    border: 2px solid #79b7f9; 
-    box-shadow:  0 2px 8px  rgba(0, 123, 255, 0.349);
+	border: 2px solid #79b7f9;
+	box-shadow: 0 2px 8px rgba(0, 123, 255, 0.349);
 }
+
 .day-card.today-highlight:hover {
-    box-shadow:  0 4px 14px  rgba(0, 123, 255, 0.733);
+	box-shadow: 0 4px 14px rgba(0, 123, 255, 0.733);
 }
 
 /* Ixtiyoriy: Agar bugungi kun kartasi biroz ajralib turishini istasangiz,
@@ -148,4 +149,69 @@
 .lesson-item.expanded {
 	background: #e0e7ff;
 	border: 1px solid #bfc9ff;
+}
+
+
+/* DARK MODE (Yorqin, ko‘zni charchatmaydigan uslub) ------------------------- */
+.dark {
+    background: #181a1b !important;
+    color: #e6e6e6 !important;
+}
+
+/* Sahifa fonini biroz ochroq va yumshoq qilamiz */
+.dark .class-page {
+    background: #181a1b;
+}
+
+/* Kartalar (day-card) – ochroq, ko‘rinishi aniq bo‘ladi */
+.dark .day-card {
+    background: #222426;
+    border: 1px solid #2e3235;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+}
+
+/* Bugungi kunni ajratish */
+.dark .day-card.today-highlight {
+    border: 1px solid #4a90ff;
+    box-shadow: 0 3px 10px rgba(70,130,255,0.4);
+}
+
+/* Kun nomi */
+.dark .day-name {
+    color: #4a90ff;
+    border-bottom-color: #4a90ff30;
+}
+
+/* Dars itemlari */
+.dark .lesson-item {
+    background: #26282b;
+}
+
+/* Dars ochilganda */
+.dark .lesson-item.expanded {
+    background: #2d3033;
+    border-color: #4a90ff40;
+}
+
+/* Dars detali */
+.dark .lesson-details {
+    background: #2d3036;
+    border-top: 1px solid #4a90ff30;
+}
+
+/* Matnlar */
+.dark .lesson-name,
+.dark .lesson-hour,
+.dark .lesson-room {
+    color: #e8e8e8;
+}
+
+/* Beta yozuvi */
+.dark .beta {
+    color: #aaa;
+}
+
+/* Title */
+.dark .title {
+    color: #f2f2f2;
 }
