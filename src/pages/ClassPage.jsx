@@ -8,8 +8,7 @@ export default function ClassPage() {
     const schedule = schedules[className];
     const [selectedLessonIndex, setSelectedLessonIndex] = useState(null);
 
-    // --- YANGI QO'SHILGAN QISM BOSHLANDI ---
-    // 1. Bugungi kunni aniqlash uchun massiv (JS da Yakshanba = 0, Shanba = 6)
+    // --- YANGI QO‘SHILGAN QISM BOSHLANDI ---
     const uzbekDays = [
         "Yakshanba", // 0
         "Dushanba",  // 1
@@ -19,11 +18,25 @@ export default function ClassPage() {
         "Juma",      // 5
         "Shanba"     // 6
     ];
-    // Hozirgi vaqtni olamiz va kun indeksini topamiz
-    const currentDayIndex = new Date().getDay();
-    // Bugungi kun nomini olamiz (masalan: "Shanba")
-    const todayName = uzbekDays[currentDayIndex];
-    // --- YANGI QO'SHILGAN QISM TUGADI ---
+
+    const now = new Date();
+    let currentIndex = now.getDay(); // 0–6
+
+    const hours = now.getHours();
+    const minutes = now.getMinutes();
+
+    // Kun 14:00 da yangilanadi (har kuni)
+    if (hours > 14 || (hours === 14 && minutes >= 0)) {
+        currentIndex = currentIndex + 1;
+
+        // Agar Shanbadan keyin bo'lsa → Dushanbaga o'tkazamiz
+        if (currentIndex === 7) {
+            currentIndex = 1; // 1 = Dushanba
+        }
+    }
+
+    const todayName = uzbekDays[currentIndex];
+    // --- YANGI QO‘SHILGAN QISM TUGADI ---
 
 
     if (!schedule) {
@@ -51,14 +64,10 @@ export default function ClassPage() {
 
             <div className="schedule-container">
                 {schedule.map((day, idx) => {
-                    // --- YANGI QO'SHILGAN TEKSHIRUV ---
-                    // Jadvaldagi kun nomi bugungi kunga tengmi?
-                    // Eslatma: data/schedules faylida kun nomlari (Dushanba, Shanba...)
-                    // yuqoridagi 'uzbekDays' massividagi kabi yozilgan bo'lishi shart.
+                    
                     const isToday = day.day === todayName;
 
                     return (
-                        // Agar bugun bo'lsa, 'today-highlight' klassini qo'shamiz
                         <div className={`day-card ${isToday ? "today-highlight" : ""}`} key={idx}>
                             <h2 className="day-name">{day.day}</h2>
 
@@ -72,7 +81,6 @@ export default function ClassPage() {
                                             className={`lesson-item ${isOpen ? "expanded" : ""}`}
                                             onClick={() => setSelectedLessonIndex(isOpen ? null : id)}
                                         >
-                                           {/* ... (dars itemlari ichki qismi o'zgarishsiz qoladi) ... */}
                                             <div className="lesson-main">
                                                 <span className="lesson-hour">{i + 1}.</span>
                                                 <span className="lesson-name">{lesson.name}</span>
