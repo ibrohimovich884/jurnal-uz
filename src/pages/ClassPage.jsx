@@ -58,13 +58,36 @@ export default function ClassPage() {
         return `${t.start} - ${t.end}`;
     };
 
+    const getTimeLeft = (startTime) => {
+        const now = new Date();
+        const [h, m] = startTime.split(":").map(Number);
+
+        const lessonStart = new Date();
+        lessonStart.setHours(h, m, 0, 0);
+
+        const diff = lessonStart - now; // ms
+
+        if (diff <= 0) return "Dars boshlangan";
+
+        const minutes = Math.floor(diff / 60000);
+        const hrs = Math.floor(minutes / 60);
+        const mins = minutes % 60;
+
+        if (hrs > 0) {
+            return `${hrs} soat ${mins} daqiqa qoldi`;
+        } else {
+            return `${mins} daqiqa qoldi`;
+        }
+    };
+
+
     return (
         <div className="class-page">
             <h1 className="title">{className.toUpperCase()} sinf jadvali</h1>
 
             <div className="schedule-container">
                 {schedule.map((day, idx) => {
-                    
+
                     const isToday = day.day === todayName;
 
                     return (
@@ -91,6 +114,7 @@ export default function ClassPage() {
                                                 <div className="lesson-details">
                                                     <p><b>Ustoz:</b> {lesson.teacher}</p>
                                                     <p><b>Dars vaqti:</b> {getLessonTime(i)}</p>
+                                                    <p><b>Boshlanishiga:</b> {getTimeLeft(LESSON_TIMES[i].start)}</p>
                                                 </div>
                                             )}
                                         </li>
@@ -100,7 +124,7 @@ export default function ClassPage() {
                         </div>
                     )
                 })}
-                <p className="beta"><span>Update: 2025.11.29 - 17:00</span></p>
+                <p className="beta"><span>Update: 2025.11.29 - 22:50</span></p>
             </div>
         </div>
     );

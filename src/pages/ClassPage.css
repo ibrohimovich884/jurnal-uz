@@ -156,6 +156,7 @@
 .dark {
     background: #181a1b !important;
     color: #e6e6e6 !important;
+	color-scheme: dark !important;
 }
 
 /* Sahifa fonini biroz ochroq va yumshoq qilamiz */
