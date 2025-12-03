@@ -124,7 +124,7 @@ export default function ClassPage() {
                         </div>
                     )
                 })}
-                <p className="beta"><span>Update: 2025.11.29 - 22:50</span></p>
+                <p className="beta"><span>Update: 2025.12.03 - 11:15</span></p>
             </div>
         </div>
     );

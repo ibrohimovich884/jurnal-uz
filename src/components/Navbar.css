@@ -305,3 +305,58 @@ html {
     z-index: 3000;
     transition: background 0.2s;
 }
+
+/* ===== NAVBAR FULL DARK MODE FIX ===== */
+
+.dark-nav {
+    background: #1e2023 !important;
+    border-bottom: 1px solid #2e3235;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.55);
+}
+
+.dark-nav .logo {
+    color: #f3f3f3 !important;
+}
+
+.dark-nav .nav-link {
+    color: #d1d1d1 !important;
+}
+
+.dark-nav .nav-link.active {
+    color: #4a90ff !important;
+}
+
+/* Hover/Active underline */
+.dark-nav .nav-link::after {
+    background: #4a90ff !important;
+}
+
+/* Mobile Menu Panel */
+@media (max-width: 768px) {
+    .dark-nav .nav-links {
+        background: #24262a !important;
+        box-shadow: -2px 0 12px rgba(0, 0, 0, 0.6);
+    }
+
+    .dark-nav .nav-link.active::after,
+    .dark-nav .nav-link:hover::after {
+        background: #4a90ff !important;
+    }
+}
+
+/* Hamburger icon lines */
+.dark-nav .menu-toggle span {
+    background: #ffffff !important;
+}
+
+/* Blur overlay fix */
+.dark .blur-overlay {
+    background: rgba(0, 0, 0, 0.55) !important;
+}
+
+/* Dark toggle button */
+.dark .dark-toggle-btn {
+    border-color: #4a90ff;
+    background: #4a90ff33;
+    color: #e6f0ff;
+}
