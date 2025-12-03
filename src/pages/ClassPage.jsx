@@ -58,28 +58,40 @@ export default function ClassPage() {
         return `${t.start} - ${t.end}`;
     };
 
-    const getTimeLeft = (startTime) => {
+    const getTimeLeft = (index) => {
         const now = new Date();
-        const [h, m] = startTime.split(":").map(Number);
+        const { start, end } = LESSON_TIMES[index];
+
+        const [sh, sm] = start.split(":").map(Number);
+        const [eh, em] = end.split(":").map(Number);
 
         const lessonStart = new Date();
-        lessonStart.setHours(h, m, 0, 0);
+        lessonStart.setHours(sh, sm, 0, 0);
 
-        const diff = lessonStart - now; // ms
+        const lessonEnd = new Date();
+        lessonEnd.setHours(eh, em, 0, 0);
 
-        if (diff <= 0) return "Dars boshlangan";
-
-        const minutes = Math.floor(diff / 60000);
-        const hrs = Math.floor(minutes / 60);
-        const mins = minutes % 60;
-
-        if (hrs > 0) {
-            return `${hrs} soat ${mins} daqiqa qoldi`;
-        } else {
-            return `${mins} daqiqa qoldi`;
+        if (now < lessonStart) {
+            // Hali boshlanmagan → boshlanishiga qancha qoldi
+            const diff = lessonStart - now;
+            const minutes = Math.floor(diff / 60000);
+            const hrs = Math.floor(minutes / 60);
+            const mins = minutes % 60;
+            return hrs > 0 ? `${hrs} soat ${mins} daqiqa qoldi` : `${mins} daqiqa qoldi`;
         }
-    };
 
+        if (now >= lessonStart && now < lessonEnd) {
+            // Dars davomida → tugashiga qancha qoldi
+            const diff = lessonEnd - now;
+            const minutes = Math.floor(diff / 60000);
+            const hrs = Math.floor(minutes / 60);
+            const mins = minutes % 60;
+            return hrs > 0 ? `${hrs} soat ${mins} daqiqa qoldi` : `${mins} daqiqa qoldi`;
+        }
+
+        // Dars tugagan
+        return "Dars tugadi";
+    };
 
     return (
         <div className="class-page">
@@ -114,7 +126,7 @@ export default function ClassPage() {
                                                 <div className="lesson-details">
                                                     <p><b>Ustoz:</b> {lesson.teacher}</p>
                                                     <p><b>Dars vaqti:</b> {getLessonTime(i)}</p>
-                                                    <p><b>Boshlanishiga:</b> {getTimeLeft(LESSON_TIMES[i].start)}</p>
+                                                    <p><b>Boshlanishiga:</b> {getTimeLeft(i)}</p>
                                                 </div>
                                             )}
                                         </li>
