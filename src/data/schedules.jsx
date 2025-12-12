@@ -21,7 +21,7 @@ export default {
 			],
 		},
 		{
-			day: "Charshanba",
+			day: "Chorshanba",
 			subjects: [
 				{ name: "Tasviriy san'at", room: "3/7", teacher: "Kamilova G.R." },
 				{ name: "Tarbiya", room: "3/8", teacher: "Qarshiyeva S.A." },
@@ -86,7 +86,7 @@ export default {
 			],
 		},
 		{
-			day: "Charshanba",
+			day: "Chorshanba",
 			subjects: [
 				{ name: "Matematika", room: "3/14", teacher: "Talipova G.N." },
 				{ name: "Tasviriy san'at", room: "2/16", teacher: "Kamilova G.R." },
@@ -149,7 +149,7 @@ export default {
 			],
 		},
 		{
-			day: "Charshanba",
+			day: "Chorshanba",
 			subjects: [
 				{ name: "Tarbiya", room: "3/8", teacher: "Qarshiyeva S.A." },
 				{ name: "Jismoniy tarbiya", room: "1/25", teacher: "Axmedov O.A." },
@@ -218,7 +218,7 @@ export default {
 			],
 		},
 		{
-			day: "Charshanba",
+			day: "Chorshanba",
 			subjects: [
 				{ name: "Matematika", room: "2/1", teacher: "Abdukarimov B.T." },
 				{ name: "Ingliz tili", room: "3/9 - 3/3", teacher: "Elmurodova G.S." },
@@ -286,7 +286,7 @@ export default {
 			],
 		},
 		{
-			day: "Charshanba",
+			day: "Chorshanba",
 			subjects: [
 				{ name: "Informatika", room: "2/25", teacher: "Razzakov N.D." },
 				{ name: "Algebra", room: "1/1", teacher: "Abdukarimov B.T." },
@@ -352,7 +352,7 @@ export default {
 			],
 		},
 		{
-			day: "Charshanba",
+			day: "Chorshanba",
 			subjects: [
 				{ name: "Ona tili", room: "3/1", teacher: "Qarshiboyeva M." },
 				{ name: "O'zbekiston tarixi", room: "3/13", teacher: "Toirova O.R." },
@@ -417,7 +417,7 @@ export default {
 			],
 		},
 		{
-			day: "Charshanba",
+			day: "Chorshanba",
 			subjects: [
 				{ name: "Rus tili", room: "2/18 - 3/4", teacher: "Kimsanova G.T." },
 				{ name: "Jahon tarixi", room: "Xona yo'q", teacher: "Tairova O.R." },
@@ -484,7 +484,7 @@ export default {
 			],
 		},
 		{
-			day: "Charshanba",
+			day: "Chorshanba",
 			subjects: [
 				{ name: "Ingliz tili", room: "3/9 - 3/3", teacher: "Elmurodova G.S." },
 				{ name: "Rus tili", room: "2/18 - 3/4", teacher: "Kimsanova G.T." },

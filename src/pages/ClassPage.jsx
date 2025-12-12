@@ -105,7 +105,7 @@ export default function ClassPage() {
                     return (
                         <div className={`day-card ${isToday ? "today-highlight" : ""}`} key={idx}>
                             <h2 className="day-name">{day.day}</h2>
-
+                            {console.log(day.day)}
                             <ul className="lessons-list">
                                 {day.subjects.map((lesson, i) => {
                                     const id = `${idx}-${i}`;
