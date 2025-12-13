@@ -94,7 +94,7 @@ export default function ClassPage() {
         return "Dars tugadi";
     };
 
-    const beta = "2025.12.13 — 15:58";
+    const beta = "2025.12.13 — 16:18";
     return (
         <div className="class-page">
             <h1 className="title">{className.toUpperCase()} sinf jadvali</h1>
@@ -148,6 +148,7 @@ export default function ClassPage() {
                                 <p>--- 📌 9a, 9b va 9d - sinflar dars jadvali o'zgartirildi!</p>
                                 <p>--- 📌 Oxirgi yangilanish haqida ma'lumot beruvchi alert qo'shildi ✅</p>
                                 <p>--- 📌 Yangilangan dizayn ✅</p>
+                                <p>--- 📌 Online bo'lganda automatik yangilash ✅</p>
                             </p>
 
                             <div className="update-footer">
