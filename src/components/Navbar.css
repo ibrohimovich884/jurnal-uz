@@ -14,9 +14,10 @@
     box-shadow: 0 2px 8px var(--shadow);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 200;
     width: 100%;
-    background-color: rgba(0, 0, 255, 0.188);
+    border-bottom: 2px solid #007bff18;
+    background-color: #007bff38;
     backdrop-filter: blur(10px);
     transition: box-shadow 0.3s ease;
 }
@@ -127,7 +128,7 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    z-index: 1100;
+    z-index: 200;
 }
 
 .menu-toggle span {
@@ -165,7 +166,7 @@
     height: 100%;
     backdrop-filter: blur(4px);
     background: var(--overlay);
-    z-index: 999;
+    z-index: 100;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
@@ -204,7 +205,7 @@
 
     .nav-links.open {
         right: 0;
-        z-index: 1050;
+        z-index: 190;
     }
 
     .menu-toggle {
@@ -303,7 +304,7 @@ html {
     color: #fff;
     font-size: 20px;
     cursor: pointer;
-    z-index: 3000;
+    z-index: 200;
     transition: background 0.2s;
 }
 

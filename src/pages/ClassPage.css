@@ -116,7 +116,7 @@
 	position: fixed;
 	right: 20px;
 	bottom: 20px;
-	z-index: 1000;
+	z-index: 250;
 	background: rgba(0, 0, 0, 0.05);
 	padding: 6px 14px;
 	border-radius: 6px;
@@ -241,7 +241,7 @@
 .update-description {
 	position: fixed;
 	inset: 0;
-	z-index: 1000;
+	z-index: 250;
 	background: rgba(0, 0, 60, 0.45);
 	backdrop-filter: blur(4px);
 
