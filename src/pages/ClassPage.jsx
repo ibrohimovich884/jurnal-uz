@@ -6,6 +6,7 @@ import "./ClassPage.css";
 export default function ClassPage() {
     const { className } = useParams();
     const schedule = schedules[className];
+    const [showUpdate, setShowUpdate] = useState(false);
     const [selectedLessonIndex, setSelectedLessonIndex] = useState(null);
 
     // --- YANGI QO‘SHILGAN QISM BOSHLANDI ---
@@ -93,6 +94,7 @@ export default function ClassPage() {
         return "Dars tugadi";
     };
 
+    const beta = "2025.12.13 — 15:24"
     return (
         <div className="class-page">
             <h1 className="title">{className.toUpperCase()} sinf jadvali</h1>
@@ -136,7 +138,31 @@ export default function ClassPage() {
                         </div>
                     )
                 })}
-                <p className="beta"><span>Update: 2025.12.12 - 21:15</span></p>
+                {showUpdate && (
+                    <div className="update-description" onClick={() => setShowUpdate(false)}>
+                        <div className="update-box" onClick={e => e.stopPropagation()}>
+                            <h3>🔔 So‘nggi yangilanish</h3>
+
+                            <p>
+                                <b>Update:</b> {beta}
+                                <p>--- 📌 9a, 9b va 9d - sinflar dars jadvali o'zgartirildi!</p>
+                                <p>--- 📌 Oxirgi yangilanish haqida ma'lumot beruvchi alert qo'shildi ✅</p>
+                            </p>
+
+                            <div className="update-footer">
+                                <span className="update-time">
+                                    📅 {beta}
+                                </span>
+                                <button className="update-close" onClick={() => setShowUpdate(false)}>
+                                    Yopish
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                <p className="beta" onClick={() => setShowUpdate(true)}>
+                    <span>Update: {beta}</span>
+                </p>
             </div>
         </div>
     );

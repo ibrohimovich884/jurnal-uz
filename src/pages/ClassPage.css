@@ -25,16 +25,102 @@
 */
 
 /* beta version note */
+
+
+/* Modal box */
+.update-box {
+	background: #fff;
+	width: 90%;
+	max-width: 420px;
+	padding: 22px 26px;
+	border-radius: 14px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
+	animation: scaleIn .25s ease;
+}
+
+/* Sarlavha */
+.update-box h3 {
+	margin: 0 0 10px;
+	font-size: 20px;
+	color: #222;
+}
+
+/* Matn */
+.update-box p {
+	font-size: 16px;
+	color: #555;
+	line-height: 1.5;
+}
+
+/* Pastki qism */
+.update-footer {
+	margin-top: 18px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+/* Sana */
+.update-time {
+	font-size: 15px;
+	color: #888;
+}
+
+/* Yopish tugmasi */
+.update-close {
+	border: 1px solid #1e40ff;
+	background: #1e40ff;
+	color: #fff;
+	padding: 8px 14px;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: .2s;
+}
+
+.update-close:hover {
+	background: #2b00ff11;
+	color: #000;
+}
+
+/* Animatsiyalar */
+@keyframes scaleIn {
+	from {
+		transform: scale(.9);
+		opacity: 0;
+	}
+
+	to {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+
+
 .beta {
 	text-align: center;
 	margin-top: 2rem;
 	font-size: 1.1rem;
-	color: #888;
+	color: #6c6c6c;
 	backdrop-filter: blur(3px);
 	position: fixed;
 	right: 20px;
 	bottom: 20px;
 	z-index: 1000;
+	background: rgba(0, 0, 0, 0.05);
+	padding: 6px 14px;
+	border-radius: 6px;
+	cursor: pointer;
 }
 
 .title {
@@ -151,6 +237,19 @@
 	border: 1px solid #bfc9ff;
 }
 
+/* Orqa fon (overlay) */
+.update-description {
+	position: fixed;
+	inset: 0;
+	z-index: 1000;
+	background: rgba(0, 0, 60, 0.45);
+	backdrop-filter: blur(4px);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	animation: fadeIn 0.25s ease;
+}
 
 /* DARK MODE (Yorqin, ko‘zni charchatmaydigan uslub) ------------------------- */
 .dark {
