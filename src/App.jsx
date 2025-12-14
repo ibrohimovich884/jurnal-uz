@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import ClassPage from "./pages/ClassPage.jsx";
 import NotFound from "./pages/NotFound.jsx";
-import OnlineWatcher from "./online/OnlineWatcher.jsx";
+import OnlineWatcher from "./components/online/OnlineWatcher.jsx";
 
 export default function App() {
 	return (

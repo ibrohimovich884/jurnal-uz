@@ -114,10 +114,10 @@
 	color: #6c6c6c;
 	backdrop-filter: blur(3px);
 	position: fixed;
-	right: 20px;
-	bottom: 20px;
+	right: 10px;
+	bottom: 0px;
 	z-index: 250;
-	background: rgba(0, 0, 0, 0.05);
+	background: rgba(0, 0, 255, 0.03);
 	padding: 6px 14px;
 	border-radius: 6px;
 	cursor: pointer;
