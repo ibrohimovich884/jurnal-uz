@@ -1,390 +1,168 @@
-.class-page {
-	padding: 1.5rem;
-	background: #f8f9fa;
-	min-height: 100vh;
+:root {
+  --bg-color: #f4f7fe;
+  --card-bg: #ffffff;
+  --text-main: #1b2559;
+  --text-muted: #a3aed0;
+  --accent-blue: #422afb; /* Rasmdagi kabi yorqin ko'k */
+  --light-blue: #e0e7ff;
+  --border-radius: 20px;
+  --card-shadow: 0px 18px 40px rgba(112, 144, 176, 0.12);
 }
 
-/* ClassPage.css faylining oxiriga yoki .day-card stylaridan keyin qo'shing */
-
-/* Bugungi kun uchun maxsus stil */
-.day-card.today-highlight {
-	border: 2px solid #79b7f9;
-	box-shadow: 0 2px 8px rgba(0, 123, 255, 0.349);
+.dark {
+  --bg-color: #0b1437;
+  --card-bg: #111c44;
+  --text-main: #ffffff;
+  --text-muted: #a3aed0;
+  --accent-blue: #7551ff;
+  --card-shadow: 0px 18px 40px rgba(0, 0, 0, 0.3);
 }
 
-.day-card.today-highlight:hover {
-	box-shadow: 0 4px 14px rgba(0, 123, 255, 0.733);
+.class-page-wrapper {
+  background-color: var(--bg-color);
+  min-height: 100vh;
+  padding: 20px 15px;
+  font-family: 'DM Sans', sans-serif;
 }
 
-/* Ixtiyoriy: Agar bugungi kun kartasi biroz ajralib turishini istasangiz,
-   orqa fonini sal havorang qilishingiz mumkin */
-/*
-.day-card.today-highlight {
-   background-color: #f4f8ff;
-}
-*/
-
-/* beta version note */
-
-
-/* Modal box */
-.update-box {
-	background: #fff;
-	width: 90%;
-	max-width: 420px;
-	padding: 22px 26px;
-	border-radius: 14px;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
-	animation: scaleIn .25s ease;
+.premium-header {
+  margin-bottom: 30px;
+  text-align: center;
 }
 
-/* Sarlavha */
-.update-box h3 {
-	margin: 0 0 10px;
-	font-size: 20px;
-	color: #222;
+.sinf-badge {
+  background: var(--light-blue);
+  color: var(--accent-blue);
+  padding: 6px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.85rem;
 }
 
-/* Matn */
-.update-box p {
-	font-size: 16px;
-	color: #555;
-	line-height: 1.5;
+.main-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 15px 0 5px;
 }
 
-/* Pastki qism */
-.update-footer {
-	margin-top: 18px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+.live-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
 }
 
-/* Sana */
-.update-time {
-	font-size: 15px;
-	color: #888;
+.pulse-dot {
+  width: 8px; height: 8px;
+  background: #01b574;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(1, 181, 116, 0.5);
 }
 
-/* Yopish tugmasi */
-.update-close {
-	border: 1px solid #1e40ff;
-	background: #1e40ff;
-	color: #fff;
-	padding: 8px 14px;
-	border-radius: 8px;
-	cursor: pointer;
-	transition: .2s;
+.bento-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-.update-close:hover {
-	background: #2b00ff11;
-	color: #000;
+.day-section {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: var(--card-shadow);
+  border: 2px solid transparent;
+  transition: 0.3s ease;
 }
 
-/* Animatsiyalar */
-@keyframes scaleIn {
-	from {
-		transform: scale(.9);
-		opacity: 0;
-	}
-
-	to {
-		transform: scale(1);
-		opacity: 1;
-	}
+/* Bugungi kun uchun active holat */
+.day-section.is-active {
+  border-color: var(--accent-blue);
+  transform: translateY(-5px);
 }
 
-@keyframes fadeIn {
-	from {
-		opacity: 0;
-	}
-
-	to {
-		opacity: 1;
-	}
+.day-header {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-
-
-.beta {
-	text-align: center;
-	margin-top: 2rem;
-	font-size: 1.1rem;
-	color: #6c6c6c;
-	backdrop-filter: blur(3px);
-	position: fixed;
-	right: 10px;
-	bottom: 0px;
-	z-index: 250;
-	background: rgba(0, 0, 255, 0.03);
-	padding: 6px 14px;
-	border-radius: 6px;
-	cursor: pointer;
+.day-info h2 {
+  color: var(--accent-blue);
+  font-weight: 800;
+  font-size: 1.4rem;
+  margin: 0;
 }
 
-.title {
-	text-align: center;
-	margin-bottom: 2rem;
-	color: #222;
-	font-size: 2rem;
-	font-weight: 700;
+.lesson-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
 
-.schedule-container {
-	margin: 0 auto;
-	display: grid;
-	max-width: 1110px;
-	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-	gap: 1.5rem;
+.status-label {
+  background: var(--accent-blue);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 700;
 }
 
-.day-card {
-	background: #fff;
-	border-radius: 12px;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-	padding: 1rem 1.5rem;
-	transition: transform 0.2s ease, box-shadow 0.2s ease;
+.lessons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.day-card:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+/* LessonItem komponenti uchun */
+.lesson-box {
+  background: var(--bg-color);
+  border-radius: 15px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Bu xona raqamini o'ngga suradi */
+  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 8px;
+  border: 1px solid transparent;
 }
 
-.day-name {
-	color: #007bff;
-	font-size: 1.3rem;
-	margin-bottom: 1rem;
-	border-bottom: 2px solid #007bff20;
-	padding-bottom: 0.4rem;
+.lesson-box:hover {
+  background: var(--light-blue);
+  transform: translateX(5px); /* Premium effekt: o'ngga siljish */
+  border-color: rgba(66, 42, 251, 0.1);
 }
 
-.lessons-list {
-	list-style: none;
-	padding: 0;
-	margin: 0;
+/* Chap tomondagi guruh (Raqam + Nom) */
+.lesson-main-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
 }
 
-.lesson-item {
-	background: #f0f4ff;
-	border-radius: 8px;
-	margin-bottom: 0.6rem;
-	cursor: pointer;
-	overflow: hidden;
-	transition: all 0.3s ease;
-}
-
-.lesson-main {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0.8rem 1rem;
-}
-
-.lesson-hour {
-	font-weight: bold;
-	color: #333;
+.lesson-number {
+  font-weight: 800;
+  color: var(--text-main);
+  min-width: 25px; /* Raqamlar bir tekis turishi uchun */
 }
 
 .lesson-name {
-	flex: 1;
-	margin-left: 10px;
-	color: #111;
-	z-index: 5;
+  font-weight: 600;
+  color: var(--text-main);
+  font-size: 1rem;
 }
 
+/* O'ng tomondagi xona raqami */
 .lesson-room {
-	font-size: 0.9rem;
-	color: #666;
-	z-index: 3;
-}
-
-.lesson-details {
-	background: #e8edff;
-	padding: 0.8rem 1rem 1rem;
-	border-top: 1px solid #d0d8ff;
-	animation: expand 0.25s ease;
-}
-
-.lesson-details p {
-	margin: 4px 0;
-	font-size: 0.95rem;
-	color: #333;
-}
-
-.not-found {
-	text-align: center;
-	margin-top: 2rem;
-	font-size: 1.3rem;
-	color: #888;
-}
-
-@keyframes expand {
-	from {
-		opacity: 0;
-		transform: scaleY(0.9);
-	}
-
-	to {
-		opacity: 1;
-		transform: scaleY(1);
-	}
-}
-
-.lesson-item.expanded {
-	background: #e0e7ff;
-	border: 1px solid #bfc9ff;
-}
-
-/* Orqa fon (overlay) */
-.update-description {
-	position: fixed;
-	inset: 0;
-	z-index: 250;
-	background: rgba(0, 0, 60, 0.45);
-	backdrop-filter: blur(4px);
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	animation: fadeIn 0.25s ease;
-}
-
-/* DARK MODE (Yorqin, ko‘zni charchatmaydigan uslub) ------------------------- */
-.dark {
-	background: #181a1b !important;
-	color: #e6e6e6 !important;
-	color-scheme: dark !important;
-}
-
-/* Sahifa fonini biroz ochroq va yumshoq qilamiz */
-.dark .class-page {
-	background: #181a1b;
-}
-
-/* Kartalar (day-card) – ochroq, ko‘rinishi aniq bo‘ladi */
-.dark .day-card {
-	background: #222426;
-	border: 1px solid #2e3235;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-}
-
-/* Bugungi kunni ajratish */
-.dark .day-card.today-highlight {
-	border: 1px solid #4a90ff;
-	box-shadow: 0 3px 10px rgba(70, 130, 255, 0.4);
-}
-
-/* Kun nomi */
-.dark .day-name {
-	color: #4a90ff;
-	border-bottom-color: #4a90ff30;
-}
-
-/* Dars itemlari */
-.dark .lesson-item {
-	background: #26282b;
-}
-
-/* Dars ochilganda */
-.dark .lesson-item.expanded {
-	background: #2d3033;
-	border-color: #4a90ff40;
-}
-
-/* Dars detali */
-.dark .lesson-details {
-	color: #fff;
-	background: #2d3036;
-	border-top: 1px solid #4a90ff30;
-}
-
-/* Matnlar */
-.dark .lesson-name,
-.dark .lesson-hour,
-.dark .lesson-room {
-	color: #e8e8e8;
-}
-
-/* Beta yozuvi */
-.dark .beta {
-	color: #aaa;
-}
-
-/* Title */
-.dark .title {
-	color: #f2f2f2;
-}
-
-
-/* DARK MODE FIXED ------------------------------------- */
-
-.dark {
-	background: #181a1b !important;
-	color-scheme: dark !important;
-}
-
-.dark .class-page {
-	background: #181a1b;
-	color: #e6e6e6;
-}
-
-/* Day card */
-.dark .day-card {
-	background: #222426;
-	border: 1px solid #2f3336;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-}
-
-.dark .day-card:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-/* Today highlight */
-.dark .day-card.today-highlight {
-	border: 2px solid #4a90ff;
-	box-shadow: 0 3px 10px rgba(70, 130, 255, 0.35);
-}
-
-/* Lesson items */
-.dark .lesson-item {
-	background: #26282b;
-}
-
-.dark .lesson-item.expanded {
-	background: #2d3033;
-	border-color: #4a90ff55;
-}
-
-/* Lesson details */
-.dark .lesson-details {
-	background: #2e3135;
-	border-top: 1px solid #4a90ff33;
-}
-
-.dark .lesson-details p,
-.dark .lesson-details b {
-	color: #ffffff !important;
-}
-
-/* Texts */
-.dark .lesson-name,
-.dark .lesson-hour,
-.dark .lesson-room {
-	color: #e8e8e8;
-}
-
-/* Title */
-.dark .title {
-	color: #f2f2f2;
-}
-
-/* Beta label */
-.dark .beta {
-	color: #ddd;
-	background: rgba(255, 255, 255, 0.05);
-	padding: 6px 14px;
-	border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: rgba(163, 174, 208, 0.1); /* Raqam atrofida yengil fon */
+  padding: 4px 10px;
+  border-radius: 8px;
+  white-space: nowrap; /* Raqam pastga tushib ketmasligi uchun */
 }

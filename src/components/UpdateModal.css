@@ -1,0 +1,134 @@
+:root {
+  /* Light Mode */
+  --modal-bg: rgba(255, 255, 255, 0.85);
+  --modal-border: rgba(0, 0, 0, 0.1);
+  --modal-text: #1a1a1b;
+  --modal-desc: #4b5563;
+  --accent-color: #4f46e5;
+  --badge-bg: rgba(79, 70, 229, 0.1);
+}
+
+.dark {
+  /* Dark Mode */
+  --modal-bg: rgba(24, 24, 27, 0.85);
+  --modal-border: rgba(255, 255, 255, 0.1);
+  --modal-text: #f8fafc;
+  --modal-desc: #94a3b8;
+  --accent-color: #818cf8;
+  --badge-bg: rgba(129, 140, 248, 0.15);
+}
+
+.update-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.2); /* Juda to'q bo'lmagan soya */
+  backdrop-filter: blur(15px) saturate(180%); /* Premium loyqalash */
+  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: modalFadeIn 0.3s ease;
+}
+
+.update-modal-card {
+  background: var(--modal-bg);
+  border: 1px solid var(--modal-border);
+  color: var(--modal-text);
+  width: 100%;
+  max-width: 400px;
+  border-radius: 32px;
+  padding: 30px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.pulse-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  animation: pulse 2s infinite;
+}
+
+.update-status {
+  display: flex;
+  flex-direction: column; /* Mobil uchun ustun shakli */
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.status-badge {
+  background: var(--badge-bg);
+  color: var(--accent-color);
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.update-features {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 24px;
+}
+
+.update-features li {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 0.95rem; /* 360px ekran uchun qulay o'lcham */
+  color: var(--modal-desc);
+  line-height: 1.4;
+}
+
+.modal-close-btn {
+  width: 100%;
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s active;
+}
+
+.modal-close-btn:active {
+  transform: scale(0.96); /* Bosilganda sezilarli bo'ladi */
+}
+
+/* Animatsiyalar */
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 360px) {
+  .update-modal-card {
+    padding: 20px;
+    border-radius: 24px;
+  }
+  
+  .update-features li {
+    font-size: 0.85rem;
+    gap: 8px;
+  }
+  
+  .pulse-icon {
+    font-size: 2rem;
+  }
+}

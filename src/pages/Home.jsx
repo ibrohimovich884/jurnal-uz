@@ -1,180 +1,76 @@
 import { Link } from "react-router";
+import { useState, useEffect } from "react";
 import "./Home.css";
 
 const CLASSES = ["6a", "6b", "7a", "7b", "8a", "8b", "9a", "9b", "9d"];
 
 export default function Home() {
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <main className="home">
-      <header className="hero">
-        <div className="hero-inner">
-          <h1 className="hero-title">Maktab dars jadvali — tez va oson</h1>
-          <p className="hero-sub">
-            Sinfni tanlang, dars tartibini ko‘ring va kim dars o‘tayotganini oson biling.
-            Jadval mobilga mos va oddiy boshqaruvga ega.
-          </p>
+    <main className="home-container">
+      {/* Dynamic Background Elements */}
+      <div className="blob-blur"></div>
+      
+      <header className="home-header">
+        <div className="header-badge">2025-2026 O'quv yili</div>
+        <h1 className="main-title">
+          Raqamli Jurnal <span className="text-gradient">Aqlli Jadval</span>
+        </h1>
+        <p className="description">
+          Maktab hayotini boshqarish endi osonroq. Darslar, o'qituvchilar va 
+          xona ma'lumotlari yagona interaktiv platformada.
+        </p>
 
-          <div className="hero-cta">
-            <Link to="/class/6a" className="btn primary">6A jadvalini ko‘rish</Link>
-            <Link to="/class/9b" className="btn outline">9B jadvalini ko‘rish</Link>
+        <div className="quick-stats">
+          <div className="stat-card">
+            <span className="stat-time">{currentTime.toLocaleTimeString('uz-UZ', { hour: '2-digit', minute: '2-digit' })}</span>
+            <span className="stat-label">Hozirgi vaqt</span>
           </div>
-
-          <ul className="benefits">
-            <li>⏰ Avtomatik dars soatlari</li>
-            <li>📍 Xona raqamlari va o‘qituvchi ma'lumotlari</li>
-            <li>🔎 Tez qidiruv — sinfni bosing va batafsilni ko‘ring</li>
-          </ul>
+          <div className="stat-card">
+            <span className="stat-count">{CLASSES.length}</span>
+            <span className="stat-label">Sinf jadvallari</span>
+          </div>
         </div>
       </header>
 
-      <section className="classes-section" aria-labelledby="classes-heading">
-        <div className="section-inner">
-          <h2 id="classes-heading" className="section-title">Sinfni tanlang</h2>
+      <section className="selection-area">
+        <div className="section-header">
+          <h2 className="section-title">O'z sinfingizni tanlang</h2>
+          <div className="search-placeholder">Sinfni qidirish...</div>
+        </div>
 
-          <div className="classes-grid">
-            {CLASSES.map((cls) => (
-              <Link key={cls} to={`/class/${cls}`} className="class-card">
-                <div className="class-name">{cls.toUpperCase()}</div>
-                <div className="class-meta">Jadvalni ko‘rish &rarr;</div>
-              </Link>
-            ))}
-          </div>
-
-          <p className="note">
-            Agar sizda foidalanishda qandyadir xatolik bo‘lsa — <a href="https://T.me/ibrohimovich_o1">Yaratuvchiga</a>, murojat qilishingiz mumkin
-          </p>
+        <div className="bento-grid">
+          {CLASSES.map((cls) => (
+            <Link key={cls} to={`/class/${cls}`} className="bento-card">
+              <div className="card-glass"></div>
+              <div className="card-content">
+                <span className="class-label">Sinf</span>
+                <h3 className="class-id">{cls.toUpperCase()}</h3>
+                <div className="card-footer">
+                  <span>Kirish</span>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
+
+      <footer className="home-footer">
+        <div className="footer-line"></div>
+        <p className="support-text">
+          Tizim bo'yicha savollaringiz bormi? 
+          <a href="https://T.me/ibrohimovich_o1" className="dev-link"> Dasturchi bilan aloqa</a>
+        </p>
+      </footer>
     </main>
   );
 }
-
-
-// import { Link } from "react-router";
-// import { useEffect } from "react";
-// import "./Home.css";
-
-// // Barcha sinflar ro'yxati - bir joyda
-// const CLASSES = ["5a", "5b", "6a", "6b", "7a", "7b", "8a", "8b", "9a", "9b", "9d"];
-
-// // Statistika ma'lumotlari
-// const STATS = [
-//   { value: "11", label: "Sinflar" },
-//   { value: "500+", label: "O'quvchilar" },
-//   { value: "24/7", label: "Mavjud" }
-// ];
-
-// export default function Home() {
-//   // SEO uchun title o'rnatish
-//   useEffect(() => {
-//     document.title = "Maktab dars jadvali — tez va oson";
-    
-//     // Meta description
-//     let metaDescription = document.querySelector('meta[name="description"]');
-//     if (!metaDescription) {
-//       metaDescription = document.createElement('meta');
-//       metaDescription.name = "description";
-//       document.head.appendChild(metaDescription);
-//     }
-//     metaDescription.content = "Maktab dars jadvalini ko'ring. Barcha sinflar uchun dars vaqtlari, xona raqamlari va o'qituvchi ma'lumotlari.";
-//   }, []);
-
-//   return (
-//     <main className="home">
-//       {/* Skip to content link - accessibility uchun */}
-//       <a href="#main-content" className="skip-link">
-//         Asosiy kontentga o'tish
-//       </a>
-
-//       <header className="hero">
-//         <div className="hero-inner">
-//           {/* Hero visual element */}
-//           <div className="hero-icon" aria-hidden="true">
-//             📚
-//           </div>
-
-//           <h1 className="hero-title">Maktab dars jadvali — tez va oson</h1>
-//           <p className="hero-sub">
-//             Sinfni tanlang, dars tartibini ko'ring va kim dars o'tayotganini oson bilib oling.
-//             Jadval mobilga mos va oddiy boshqaruvga ega.
-//           </p>
-
-//           <div className="hero-cta">
-//             <Link to="/class/5a" className="btn primary">
-//               5A jadvalini ko'rish
-//             </Link>
-//             <Link to="/class/9b" className="btn outline">
-//               9B jadvalini ko'rish
-//             </Link>
-//           </div>
-
-//           <ul className="benefits">
-//             <li>⏰ Avtomatik dars soatlari</li>
-//             <li>📍 Xona raqamlari va o'qituvchi ma'lumotlari</li>
-//             <li>🔎 Tez qidiruv — sinfni bosing va batafsil ko'ring</li>
-//           </ul>
-
-//           {/* Statistika */}
-//           <div className="stats">
-//             {STATS.map((stat, index) => (
-//               <div key={index} className="stat-item">
-//                 <div className="stat-value">{stat.value}</div>
-//                 <div className="stat-label">{stat.label}</div>
-//               </div>
-//             ))}
-//           </div>
-//         </div>
-//       </header>
-
-//       <section id="main-content" className="classes-section" aria-labelledby="classes-heading">
-//         <div className="section-inner">
-//           <h2 id="classes-heading" className="section-title">Barcha sinflar</h2>
-//           <p className="section-desc">O'z sinfingizni tanlang va jadvalga o'ting</p>
-
-//           <div className="classes-grid">
-//             {CLASSES.map((cls) => (
-//               <Link 
-//                 key={cls} 
-//                 to={`/class/${cls}`} 
-//                 className="class-card"
-//                 aria-label={`${cls.toUpperCase()}-sinf dars jadvaliga o'tish`}
-//               >
-//                 <div className="class-name">{cls.toUpperCase()}-sinf</div>
-//                 <div className="class-meta">Jadvalga o'tish &rarr;</div>
-//               </Link>
-//             ))}
-//           </div>
-
-//           <div className="help-section">
-//             <p className="note">
-//               Agar sizda foydalanishda qandaydir xatolik bo'lsa — <a href="https://t.me/ibrohimovich_o1" target="_blank" rel="noopener noreferrer">yaratuvchiga murojaat qiling</a>
-//             </p>
-//           </div>
-//         </div>
-//       </section>
-
-//       {/* Footer */}
-//       <footer className="footer">
-//         <div className="footer-inner">
-//           <div className="footer-content">
-//             <div className="footer-brand">
-//               <h3>Jurnal.uz</h3>
-//               <p>Maktab dars jadvali tizimi</p>
-//             </div>
-            
-//             <div className="footer-links">
-//               <h4>Bog'lanish</h4>
-//               <a href="https://t.me/ibrohimovich_o1" target="_blank" rel="noopener noreferrer">
-//                 Telegram
-//               </a>
-//             </div>
-//           </div>
-          
-//           <div className="footer-bottom">
-//             <p>&copy; {new Date().getFullYear()} Jurnal.uz. Barcha huquqlar himoyalangan.</p>
-//           </div>
-//         </div>
-//       </footer>
-//     </main>
-//   );
-// }

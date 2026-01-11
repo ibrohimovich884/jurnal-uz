@@ -1,173 +1,86 @@
 import { useParams } from "react-router";
-import schedules from "../data/schedules";
 import { useState } from "react";
+import schedules from "../data/schedules";
+import UpdateModal from "../components/UpdateModal";
+import LessonItem from "../components/LessonItem";
 import "./ClassPage.css";
 
 export default function ClassPage() {
-    const { className } = useParams();
-    const schedule = schedules[className];
-    const [showUpdate, setShowUpdate] = useState(false);
-    const [selectedLessonIndex, setSelectedLessonIndex] = useState(null);
+  const { className } = useParams();
+  const schedule = schedules[className];
+  const [showUpdate, setShowUpdate] = useState(false);
 
-    // --- YANGI QO‘SHILGAN QISM BOSHLANDI ---
-    const uzbekDays = [
-        "Yakshanba", // 0
-        "Dushanba",  // 1
-        "Seshanba",  // 2
-        "Chorshanba",// 3
-        "Payshanba", // 4
-        "Juma",      // 5
-        "Shanba"     // 6
-    ];
+  const uzbekDays = ["Yakshanba", "Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba"];
+  const now = new Date();
+  const currentDayName = uzbekDays[now.getDay()];
+  
+  // 14:00 dan keyin ertangi kunni "Hozir" deb ko'rsatish mantiqi
+  let targetIndex = now.getDay();
+  if (now.getHours() >= 14) {
+    targetIndex = targetIndex === 6 ? 1 : targetIndex + 1;
+  }
+  const activeDayName = uzbekDays[targetIndex];
+  const beta = "2026.01.11 — 20:44";
 
-    const now = new Date();
-    let currentIndex = now.getDay(); // 0–6
+  if (!schedule) return (
+    <div className="not-found-container">
+      <div className="error-card">
+        <span>⚠️</span>
+        <h2>Ma'lumot topilmadi</h2>
+        <p>{className} sinf jadvali hali yuklanmagan.</p>
+      </div>
+    </div>
+  );
 
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-
-    // Kun 14:00 da yangilanadi (har kuni)
-    if (hours > 14 || (hours === 14 && minutes >= 0)) {
-        currentIndex = currentIndex + 1;
-
-        // Agar Shanbadan keyin bo'lsa → Dushanbaga o'tkazamiz
-        if (currentIndex === 7) {
-            currentIndex = 1; // 1 = Dushanba
-        }
-    }
-
-    const todayName = uzbekDays[currentIndex];
-    // --- YANGI QO‘SHILGAN QISM TUGADI ---
-
-
-    if (!schedule) {
-        return <h2 className="not-found">Bu qism tayyor emas...</h2>;
-    }
-
-    const LESSON_TIMES = [
-        { start: "08:00", end: "08:45" },
-        { start: "08:50", end: "09:35" },
-        { start: "09:40", end: "10:25" },
-        { start: "10:30", end: "11:20" },
-        { start: "11:25", end: "12:10" },
-        { start: "12:15", end: "13:00" }
-    ];
-
-    const getLessonTime = (index) => {
-        const t = LESSON_TIMES[index];
-        if (!t) return "";
-        return `${t.start} - ${t.end}`;
-    };
-
-    const getTimeLeft = (index) => {
-        const now = new Date();
-        const { start, end } = LESSON_TIMES[index];
-
-        const [sh, sm] = start.split(":").map(Number);
-        const [eh, em] = end.split(":").map(Number);
-
-        const lessonStart = new Date();
-        lessonStart.setHours(sh, sm, 0, 0);
-
-        const lessonEnd = new Date();
-        lessonEnd.setHours(eh, em, 0, 0);
-
-        if (now < lessonStart) {
-            // Hali boshlanmagan → boshlanishiga qancha qoldi
-            const diff = lessonStart - now;
-            const minutes = Math.floor(diff / 60000);
-            const hrs = Math.floor(minutes / 60);
-            const mins = minutes % 60;
-            return hrs > 0 ? `${hrs} soat ${mins} daqiqa qoldi` : `${mins} daqiqa qoldi`;
-        }
-
-        if (now >= lessonStart && now < lessonEnd) {
-            // Dars davomida → tugashiga qancha qoldi
-            const diff = lessonEnd - now;
-            const minutes = Math.floor(diff / 60000);
-            const hrs = Math.floor(minutes / 60);
-            const mins = minutes % 60;
-            return hrs > 0 ? `${hrs} soat ${mins} daqiqa qoldi` : `${mins} daqiqa qoldi`;
-        }
-
-        // Dars tugagan
-        return "Dars tugadi";
-    };
-
-    const beta = "2025.12.13 — 16:52";
-
-    return (
-        <div className="class-page">
-            <h1 className="title">{className.toUpperCase()} sinf jadvali</h1>
-
-            <div className="schedule-container">
-                {schedule.map((day, idx) => {
-
-                    const isToday = day.day === todayName;
-
-                    return (
-                        <div className={`day-card ${isToday ? "today-highlight" : ""}`} key={idx}>
-                            <h2 className="day-name">{day.day}</h2>
-                            {console.log(day.day)}
-                            <ul className="lessons-list">
-                                {day.subjects.map((lesson, i) => {
-                                    const id = `${idx}-${i}`;
-                                    const isOpen = selectedLessonIndex === id;
-                                    return (
-                                        <li
-                                            key={i}
-                                            className={`lesson-item ${isOpen ? "expanded" : ""}`}
-                                            onClick={() => setSelectedLessonIndex(isOpen ? null : id)}
-                                        >
-                                            <div className="lesson-main">
-                                                <span className="lesson-hour">{i + 1}.</span>
-                                                <span className="lesson-name">{lesson.name}</span>
-                                                <span className="lesson-room">( {lesson.room} )</span>
-                                            </div>
-
-                                            {isOpen && (
-                                                <div className="lesson-details">
-                                                    <p><b>Ustoz:</b> {lesson.teacher}</p>
-                                                    <p><b>Dars vaqti:</b> {getLessonTime(i)}</p>
-                                                    <p><b>Boshlanishiga:</b> {getTimeLeft(i)}</p>
-                                                </div>
-                                            )}
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-                        </div>
-                    )
-                })}
-                {showUpdate && (
-                    <div className="update-description" onClick={() => setShowUpdate(false)}>
-                        <div className="update-box" onClick={e => e.stopPropagation()}>
-                            <h3>🔔 So‘nggi yangilanish</h3>
-
-                            <p>
-                                <b>Update:</b> {beta}
-                                <p>--- 📌 9a, 9b va 9d - sinflar dars jadvali o'zgartirildi!</p>
-                                <p>--- 📌 Oxirgi yangilanish haqida ma'lumot beruvchi alert qo'shildi ✅</p>
-                                <p>--- 📌 Yangilangan dizayn ✅</p>
-                                <p>--- 📌 Online bo'lganda automatik yangilash ✅</p>
-                                <p>--- 📌 Hamburger menu fixed ✅</p>
-                            </p>
-
-                            <div className="update-footer">
-                                <span className="update-time">
-                                    📅 {beta}
-                                </span>
-                                <button className="update-close" onClick={() => setShowUpdate(false)}>
-                                    Yopish
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                )}
-                <p className="beta" onClick={() => setShowUpdate(true)}>
-                    <span>Update: {beta}</span>
-                </p>
-            </div>
+  return (
+    <div className="class-page-wrapper">
+      <header className="premium-header">
+        <div className="header-content">
+          <h1 className="main-title">Dars Jadvali</h1>
+          <div className="live-status">
+            <div className="pulse-dot"></div>
+            <span>Bugun: <b>{currentDayName}</b></span>
+          </div>
         </div>
-    );
+      </header>
+
+      <main className="schedule-container">
+        <div className="bento-grid">
+          {schedule.map((day, idx) => (
+            <section 
+              key={idx} 
+              className={`day-section ${day.day === activeDayName ? "is-active" : ""}`}
+            >
+              <div className="day-header">
+                <div className="day-info">
+                  <h2>{day.day}</h2>
+                  <span className="lesson-count">{day.subjects.length} ta dars</span>
+                </div>
+                {day.day === activeDayName && <div className="status-label">Ayni vaqtda</div>}
+              </div>
+
+              <div className="lessons-container">
+                {day.subjects.map((lesson, i) => (
+                  <LessonItem key={i} lesson={lesson} index={i} />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      </main>
+
+      <footer className="page-footer">
+        <button className="glass-update-btn" onClick={() => setShowUpdate(true)}>
+          <span className="btn-icon">🚀</span>
+          <span className="btn-text">v{beta.split(' — ')[0]}</span>
+        </button>
+      </footer>
+
+      <UpdateModal 
+        isOpen={showUpdate} 
+        onClose={() => setShowUpdate(false)} 
+        betaVersion={beta} 
+      />
+    </div>
+  );
 }
