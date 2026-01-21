@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./online.css";
+import "./Online.css";
 
 export default function OnlineWatcher() {
     const [isOnline, setIsOnline] = useState(navigator.onLine);
