@@ -166,3 +166,16 @@
   border-radius: 8px;
   white-space: nowrap; /* Raqam pastga tushib ketmasligi uchun */
 }
+
+.glass-update-btn{
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: var(--text-main);
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  backdrop-filter: blur(10px);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
