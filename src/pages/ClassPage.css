@@ -131,8 +131,8 @@
 }
 
 .lesson-box:hover {
-  background: var(--light-blue);
-  transform: translateX(5px); /* Premium effekt: o'ngga siljish */
+  /* background: var(--light-blue); */
+  /* transform: translateX(5px); Premium effekt: o'ngga siljish */
   border-color: rgba(66, 42, 251, 0.1);
 }
 
