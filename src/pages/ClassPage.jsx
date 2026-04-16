@@ -20,7 +20,7 @@ export default function ClassPage() {
     targetIndex = targetIndex === 6 ? 1 : targetIndex + 1;
   }
   const activeDayName = uzbekDays[targetIndex];
-  const beta = "2026.04.05 — 09:25";
+  const beta = "2026.04.16 — 23:23";
 
   if (!schedule) return (
     <div className="not-found-container">

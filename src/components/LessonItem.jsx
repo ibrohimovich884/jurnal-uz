@@ -1,9 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import "./LessonItem.css";
 
 export default function LessonItem({ lesson, index }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString("uz-UZ", { hour: '2-digit', minute: '2-digit' }));
 
-  // Dars vaqtlari (Buni keyinchalik props orqali ham berish mumkin)
+  // Har daqiqada vaqtni yangilab turish
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date().toLocaleTimeString("uz-UZ", { hour: '2-digit', minute: '2-digit' }));
+    }, 60000); // 60 soniyada bir yangilanadi
+
+    return () => clearInterval(timer); // Komponent o'chganda taymerni to'xtatish
+  }, []);
+
   const lessonTimes = [
     "08:00 - 08:45", "08:50 - 09:35", "09:40 - 10:25", 
     "10:30 - 11:15", "11:20 - 12:05", "12:10 - 12:55"
@@ -24,11 +34,16 @@ export default function LessonItem({ lesson, index }) {
         <div className="lesson-details-panel">
           <div className="detail-item">
             <span className="icon">👤</span> 
-            <p>Ustoz: <span>{lesson.teacher}</span></p>
+            <p>Ustoz: <span>{lesson.teacher || "Kimsanova G.T."}</span></p>
           </div>
           <div className="detail-item">
             <span className="icon">🕒</span> 
-            <p>Vaqt: <span>{lessonTimes[index] || "Noma'lum"}</span></p>
+            <p>Dars vaqti: <span>{lessonTimes[index] || "Noma'lum"}</span></p>
+          </div>
+          {/* Hozirgi soat qo'shildi */}
+          <div className="detail-item current-time-item">
+            <span className="icon">⏰</span> 
+            <p>Hozirgi soat: <span>{currentTime}</span></p>
           </div>
         </div>
       )}

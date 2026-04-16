@@ -3,7 +3,7 @@
   --card-bg: #ffffff;
   --text-main: #1b2559;
   --text-muted: #a3aed0;
-  --accent-blue: #422afb; /* Rasmdagi kabi yorqin ko'k */
+  --accent-blue: #422afb; 
   --light-blue: #e0e7ff;
   --border-radius: 20px;
   --card-shadow: 0px 18px 40px rgba(112, 144, 176, 0.12);
@@ -56,7 +56,8 @@
 }
 
 .pulse-dot {
-  width: 8px; height: 8px;
+  width: 8px; 
+  height: 8px;
   background: #01b574;
   border-radius: 50%;
   box-shadow: 0 0 10px rgba(1, 181, 116, 0.5);
@@ -117,57 +118,7 @@
   gap: 12px;
 }
 
-/* LessonItem komponenti uchun */
-.lesson-box {
-  background: var(--bg-color);
-  border-radius: 15px;
-  padding: 14px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Bu xona raqamini o'ngga suradi */
-  transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-bottom: 8px;
-  border: 1px solid transparent;
-}
-
-.lesson-box:hover {
-  /* background: var(--light-blue); */
-  /* transform: translateX(5px); Premium effekt: o'ngga siljish */
-  border-color: rgba(66, 42, 251, 0.1);
-}
-
-/* Chap tomondagi guruh (Raqam + Nom) */
-.lesson-main-info {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-}
-
-.lesson-number {
-  font-weight: 800;
-  color: var(--text-main);
-  min-width: 25px; /* Raqamlar bir tekis turishi uchun */
-}
-
-.lesson-name {
-  font-weight: 600;
-  color: var(--text-main);
-  font-size: 1rem;
-}
-
-/* O'ng tomondagi xona raqami */
-.lesson-room {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  font-weight: 600;
-  background: rgba(163, 174, 208, 0.1); /* Raqam atrofida yengil fon */
-  padding: 4px 10px;
-  border-radius: 8px;
-  white-space: nowrap; /* Raqam pastga tushib ketmasligi uchun */
-}
-
-.glass-update-btn{
+.glass-update-btn {
   margin-top: 20px;
   background: rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.3);

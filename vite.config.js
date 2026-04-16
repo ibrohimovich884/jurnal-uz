@@ -22,16 +22,25 @@ export default defineConfig({
         display: "standalone",
         background_color: "#000000",
         theme_color: "#ffffff",
+        // vite.config.js ichida
         icons: [
           {
             src: '/logo.svg',
             sizes: '192x192',
-            type: 'image/svg+xml'
+            type: 'image/svg+xml',
+            purpose: 'any' // Standart ko'rinish uchun
+          },
+          {
+            src: '/logo.svg',
+            sizes: '192x192',
+            type: 'image/svg+xml',
+            purpose: 'maskable' // Orqa fonni to'ldirishga ruxsat berish uchun
           },
           {
             src: '/logo.svg',
             sizes: '512x512',
-            type: 'image/svg+xml'
+            type: 'image/svg+xml',
+            purpose: 'any maskable'
           }
         ]
       },

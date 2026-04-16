@@ -10,18 +10,18 @@ export default function UpdateModal({ isOpen, onClose, betaVersion }) {
           <div className="pulse-icon">🔔</div>
           <h3>So‘nggi yangilanish</h3>
         </div>
-        
+
         <div className="modal-body">
           <div className="update-status">
-            <span className="status-badge">v2026.0.3</span>
+            <span className="status-badge">v2026.0.4</span>
             <span className="update-date">{betaVersion}</span>
           </div>
           <ul className="update-features">
-            <li><span>✅</span> Online avtomatik yangilash tizimi</li>
-            <li><span>✅</span> Raspisaniya 2026 o'quv yiliga moslandi</li>
-            <li><span>✅</span> Glassmorphism UI/UX dizayn</li>
-            <li><span>✅</span> 9a va 9b sinfi uchun yangi jadval</li>
-            <li><span>✅</span> Dark/Light mode optimizatsiyasi</li>
+            <li><span>✅</span> Real-time Clock & Live Interval Integration</li>
+            <li><span>✅</span> Dynamic Expandable Premium Card System</li>
+            <li><span>✅</span> Horizon UI Professional Color Palette</li>
+            <li><span>✅</span> Advanced PWA & Maskable Icon Optimization</li>
+            <li><span>✅</span> Deep Dark/Light Mode & Contrast Refinement</li>
           </ul>
         </div>
 

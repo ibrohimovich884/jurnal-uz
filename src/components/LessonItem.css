@@ -1,28 +1,61 @@
+/* --- HORIZON UI PREMIUM CONFIGURATION --- */
+
+:root {
+  --bg-color: #f4f7fe;
+  --card-bg: #ffffff;
+  --text-main: #1b2559;
+  --text-muted: #a3aed0;
+  --accent-blue: #422afb; 
+  --light-blue: #e0e7ff;
+  --border-radius: 20px;
+  --card-shadow: 0px 18px 40px rgba(112, 144, 176, 0.12);
+}
+
+.dark {
+  --bg-color: #0b1437;
+  --card-bg: #111c44;
+  --text-main: #ffffff;
+  --text-muted: #a3aed0;
+  --accent-blue: #7551ff;
+  --card-shadow: 0px 18px 40px rgba(0, 0, 0, 0.3);
+}
+
 /* --- LESSON ITEM PREMIUM STYLES --- */
 
+.lessons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 10px 0;
+}
+
 .lesson-box {
-  background: var(--item-bg, rgba(125, 125, 125, 0.05));
+  background: var(--card-bg);
   border: 1px solid transparent;
-  margin-bottom: 0.8rem;
-  border-radius: 20px;
-  padding: 1rem 1.2rem;
+  margin-bottom: 0.5rem;
+  border-radius: var(--border-radius);
+  padding: 8px 10px;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--card-shadow);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Hover effekti */
-.lesson-box:hover {
-  background: var(--item-hover, rgba(125, 125, 125, 0.1));
-  transform: translateX(5px);
-}
+/* .lesson-box:hover { */
+  /* background: var(--card-bg); */
+  /* box-shadow: 0px 20px 45px rgba(112, 144, 176, 0.2); */
+  /* transform: translateY(-4px) translateX(4px); */
+/* } */
 
 /* Yoyilgan holati (Expanded) */
 .lesson-box.expanded {
-  background: var(--glass-bg, rgba(255, 255, 255, 0.7));
-  border-color: #6366f1;
-  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.15);
+  background: var(--card-bg);
+  border-color: var(--accent-blue);
+  box-shadow: 0 10px 25px -5px rgba(66, 42, 241, 0.15);
   transform: scale(1.01);
 }
 
@@ -30,21 +63,23 @@
 .lesson-main-info {
   display: flex;
   align-items: center;
+  padding: 1rem;
   gap: 15px;
+  width: 100%;
 }
 
 .lesson-number {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  color: #6366f1;
-  opacity: 0.6;
-  min-width: 20px;
+  color: var(--accent-blue);
+  opacity: 0.8;
+  min-width: 25px;
 }
 
 .lesson-name {
   flex: 1;
   font-weight: 700;
-  color: var(--text-primary, #1e293b);
+  color: var(--text-main);
   font-size: 1.05rem;
   letter-spacing: -0.3px;
 }
@@ -52,19 +87,22 @@
 .lesson-room {
   font-size: 0.8rem;
   font-weight: 700;
-  color: var(--text-secondary, #64748b);
-  background: rgba(125, 125, 125, 0.1);
-  padding: 4px 10px;
+  color: var(--accent-blue);
+  background: var(--light-blue);
+  padding: 6px 12px;
   border-radius: 10px;
+  white-space: nowrap;
 }
 
 /* Detallar paneli (Ochilganda) */
 .lesson-details-panel {
-  margin-top: 15px;
-  padding-top: 15px;
-  border-top: 1px solid var(--glass-border, rgba(0, 0, 0, 0.05));
-  display: grid;
+  margin-top: 10px;
+  padding: 15px;
+  border-top: 1px solid var(--bg-color);
+  display: flex;
+  flex-direction: column;
   gap: 10px;
+  width: 100%;
   animation: slideDown 0.3s ease-out;
 }
 
@@ -73,89 +111,53 @@
   align-items: center;
   gap: 12px;
   padding: 10px 14px;
-  background: rgba(125, 125, 125, 0.05);
+  background: var(--bg-color);
   border-radius: 14px;
-  transition: 0.2s;
-}
-
-.detail-item:hover {
-  background: rgba(99, 102, 241, 0.05);
-}
-
-.detail-item .icon {
-  font-size: 1.2rem;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
 
 .detail-item p {
   margin: 0;
+  color: var(--text-muted);
+  font-weight: 600;
   font-size: 0.9rem;
-  color: var(--text-secondary, #64748b);
-  font-weight: 500;
 }
 
 .detail-item p span {
-  color: var(--text-primary, #1e293b);
+  color: var(--text-main);
   font-weight: 700;
-  margin-left: 4px;
+  margin-left: 5px;
 }
 
 /* --- DARK MODE OPTIMIZATION --- */
+.dark .lesson-box {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
 .dark .lesson-box.expanded {
-  background: rgba(30, 30, 35, 0.9);
+  background: var(--card-bg);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
 }
 
-.dark .lesson-name {
-  color: #f8fafc;
-}
-
-.dark .detail-item p span {
-  color: #ffffff;
-}
-
 .dark .lesson-room {
-  background: rgba(255, 255, 255, 0.05);
-  color: #cbd5e1;
+  background: rgba(117, 81, 255, 0.15); /* Accent rangining xira varianti */
 }
 
 /* --- ANIMATIONS --- */
 @keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- RESPONSIVE (360px Mobile) --- */
+/* --- RESPONSIVE --- */
 @media (max-width: 380px) {
   .lesson-box {
-    padding: 0.9rem 1rem;
+    padding: 0.1rem 0.1rem;
     border-radius: 16px;
   }
-
-  .lesson-name {
-    font-size: 0.95rem;
-  }
-
-  .lesson-number {
-    font-size: 1rem;
-  }
-
-  .detail-item {
-    padding: 8px 12px;
-  }
-
   .detail-item p {
-    font-size: 0.85rem;
     display: flex;
-    flex-direction: column; /* Mobil qurilmada Ustoz: Ism ustma-ust tushadi */
+    flex-direction: column;
   }
-
   .detail-item p span {
     margin-left: 0;
     margin-top: 2px;
