@@ -128,9 +128,12 @@ export default function ClassPage() {
   if (!schedule) return (
     <div className="not-found-container">
       <div className="error-card">
-        <span>⚠️</span>
+        <span className="error-icon">⚠️</span>
         <h2>Ma'lumot topilmadi</h2>
-        <p>{className} sinf jadvali hali yuklanmagan.</p>
+        <p><b>{className.toUpperCase()}</b> sinf jadvali hali yuklanmagan.</p>
+        <Link to="/" className="error-home-btn">
+          <span>🏠</span> Bosh sahifaga qaytish
+        </Link>
       </div>
     </div>
   );
@@ -242,10 +245,10 @@ export default function ClassPage() {
         </button>
       </footer>
 
-      <UpdateModal 
-        isOpen={showUpdate} 
-        onClose={() => setShowUpdate(false)} 
-        betaVersion={beta} 
+      <UpdateModal
+        isOpen={showUpdate}
+        onClose={() => setShowUpdate(false)}
+        betaVersion={beta}
       />
     </div>
   );
