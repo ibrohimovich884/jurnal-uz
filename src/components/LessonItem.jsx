@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import { formatLessonTime } from "../data/lessonTimes";
 import "./LessonItem.css";
 
-export default function LessonItem({ lesson, index }) {
+export default function LessonItem({ lesson, index, isCurrent }) {
   const [isOpen, setIsOpen] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString("uz-UZ", { hour: '2-digit', minute: '2-digit' }));
 
@@ -14,17 +15,13 @@ export default function LessonItem({ lesson, index }) {
     return () => clearInterval(timer); // Komponent o'chganda taymerni to'xtatish
   }, []);
 
-  const lessonTimes = [
-    "08:00 - 08:45", "08:50 - 09:35", "09:40 - 10:25", 
-    "10:30 - 11:15", "11:20 - 12:05", "12:10 - 12:55"
-  ];
-
   return (
-    <div 
-      className={`lesson-box ${isOpen ? "expanded" : ""}`}
+    <div
+      className={`lesson-box ${isOpen ? "expanded" : ""} ${isCurrent ? "is-current" : ""}`}
       onClick={() => setIsOpen(!isOpen)}
     >
       <div className="lesson-main-info">
+        {isCurrent && <span className="current-pulse" aria-hidden="true"></span>}
         <span className="lesson-number">{index + 1}</span>
         <span className="lesson-name">{lesson.name}</span>
         <span className="lesson-room">№{lesson.room}</span>
@@ -38,7 +35,7 @@ export default function LessonItem({ lesson, index }) {
           </div>
           <div className="detail-item">
             <span className="icon">🕒</span> 
-            <p>Dars vaqti: <span>{lessonTimes[index] || "Noma'lum"}</span></p>
+            <p>Dars vaqti: <span>{formatLessonTime(index)}</span></p>
           </div>
           {/* Hozirgi soat qo'shildi */}
           <div className="detail-item current-time-item">
