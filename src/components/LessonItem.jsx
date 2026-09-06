@@ -34,7 +34,7 @@ export default function LessonItem({ lesson, index }) {
         <div className="lesson-details-panel">
           <div className="detail-item">
             <span className="icon">👤</span> 
-            <p>Ustoz: <span>{lesson.teacher || "Kimsanova G.T."}</span></p>
+            <p>Ustoz: <span>{lesson.teacher || "Belgilanmagan"}</span></p>
           </div>
           <div className="detail-item">
             <span className="icon">🕒</span> 

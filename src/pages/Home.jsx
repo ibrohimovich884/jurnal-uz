@@ -1,8 +1,7 @@
 import { Link } from "react-router";
 import { useState, useEffect } from "react";
+import { CLASSES } from "../data/classes";
 import "./Home.css";
-
-const CLASSES = ["6a", "6b", "7a", "7b", "8a", "8b", "9a", "9b", "9d"];
 
 export default function Home() {
   const [currentTime, setCurrentTime] = useState(new Date());

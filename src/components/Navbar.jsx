@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router";
+import { CLASSES } from "../data/classes";
 import "./Navbar.css";
-
-const CLASSES = [
-	"6a", "6b",
-	"7a", "7b",
-	"8a", "8b",
-	"9a", "9b", "9d"
-];
 
 export default function Navbar() {
 	const [menuOpen, setMenuOpen] = useState(false);

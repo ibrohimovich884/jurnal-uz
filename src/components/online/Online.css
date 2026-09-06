@@ -14,3 +14,8 @@
     z-index: 260;
     font-size: 14px;
 }
+
+.online-banner {
+    background: rgba(0, 180, 0, 0.35);
+    color: #043b04;
+}
