@@ -4,6 +4,7 @@ import schedules from "../data/schedules";
 import { CLASSES } from "../data/classes";
 import { LESSON_TIMES } from "../data/lessonTimes";
 import { secondsSinceMidnight, timeStrToSeconds, formatCountdown } from "../utils/time";
+import { formatUpdatedAt } from "../utils/formatDate";
 import UpdateModal from "../components/UpdateModal";
 import LessonItem from "../components/LessonItem";
 import "./ClassPage.css";
@@ -35,7 +36,9 @@ export default function ClassPage() {
     targetIndex = targetIndex === 6 ? 1 : targetIndex + 1;
   }
   const activeDayName = uzbekDays[targetIndex];
-  const beta = "2026.05.16 — 09:34";
+  // Bu sana endi qo'lda yozilmaydi — vite.config.js build paytida schedules.jsx
+  // faylining oxirgi git commit sanasini (yoki topilmasa build vaqtini) avtomatik yozadi.
+  const beta = formatUpdatedAt(__SCHEDULE_UPDATED_AT__);
 
   /* ----------------- SINFLAR ARO SWIPE / TUGMA BILAN O'TISH ----------------- */
   const classIndex = CLASSES.indexOf(className);
