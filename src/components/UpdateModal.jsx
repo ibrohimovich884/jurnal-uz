@@ -13,15 +13,15 @@ export default function UpdateModal({ isOpen, onClose, betaVersion }) {
 
         <div className="modal-body">
           <div className="update-status">
-            <span className="status-badge">v2026.0.4</span>
+            <span className="status-badge">v2026.1.0</span>
             <span className="update-date">{betaVersion}</span>
           </div>
           <ul className="update-features">
-            <li><span>✅</span> Real-time Clock & Live Interval Integration</li>
-            <li><span>✅</span> Dynamic Expandable Premium Card System</li>
-            <li><span>✅</span> Horizon UI Professional Color Palette</li>
-            <li><span>✅</span> Advanced PWA & Maskable Icon Optimization</li>
-            <li><span>✅</span> Deep Dark/Light Mode & Contrast Refinement</li>
+            <li><span>✅</span> 10-B va 10-A sinflari dars jadvali to‘liq yangilandi</li>
+            <li><span>✅</span> 9-A va 9-B sinflari jadvali yangi dars rejasiga moslashtirildi</li>
+            <li><span>✅</span> Xonalar va o‘qituvchilar taqsimoti to‘liq tekshirildi</li>
+            <li><span>✅</span> Jonli dars va tanaffus vaqti hisoblagichi</li>
+            <li><span>✅</span> Yangilangan dars ma’lumotlari va interaktiv kartalar</li>
           </ul>
         </div>
 
