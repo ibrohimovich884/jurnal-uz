@@ -13,14 +13,14 @@ export default function UpdateModal({ isOpen, onClose, betaVersion }) {
 
         <div className="modal-body">
           <div className="update-status">
-            <span className="status-badge">v2026.1.0</span>
+            <span className="status-badge">v2026.1.2</span>
             <span className="update-date">{betaVersion}</span>
           </div>
           <ul className="update-features">
-            <li><span>✅</span> 10-B va 10-A sinflari dars jadvali to‘liq yangilandi</li>
-            <li><span>✅</span> 9-A va 9-B sinflari jadvali yangi dars rejasiga moslashtirildi</li>
+            <li><span>✅</span> 11-A va 11-B sinflari dars jadvali to‘liq yangilandi</li>
+            <li><span>✅</span> 8-A, 8-B, 9-A, 9-B, 10-A, 10-B sinf jadvallari yangilandi</li>
             <li><span>✅</span> Xonalar va o‘qituvchilar taqsimoti to‘liq tekshirildi</li>
-            <li><span>✅</span> Jonli dars va tanaffus vaqti hisoblagichi</li>
+            <li><span>✅</span> Jonli dars va tanaffus vaqti hisoblagichi faol</li>
             <li><span>✅</span> Yangilangan dars ma’lumotlari va interaktiv kartalar</li>
           </ul>
         </div>
