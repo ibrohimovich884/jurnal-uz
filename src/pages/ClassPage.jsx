@@ -18,6 +18,7 @@ export default function ClassPage() {
   const schedule = schedules[className];
   const [showUpdate, setShowUpdate] = useState(false);
   const [now, setNow] = useState(new Date());
+  const [toastMessage, setToastMessage] = useState(null);
 
   const uzbekDays = ["Yakshanba", "Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba"];
 
@@ -30,14 +31,11 @@ export default function ClassPage() {
   const realTodayName = uzbekDays[now.getDay()];
 
   // 14:00 dan keyin ertangi kunni "Hozir" deb ko'rsatish mantiqi
-  // (bu — rejalashtirish uchun, jonli dars hisoblagichi esa haqiqiy bugungi kunga qarab ishlaydi)
   let targetIndex = now.getDay();
   if (now.getHours() >= 14) {
     targetIndex = targetIndex === 6 ? 1 : targetIndex + 1;
   }
   const activeDayName = uzbekDays[targetIndex];
-  // Bu sana endi qo'lda yozilmaydi — vite.config.js build paytida schedules.jsx
-  // faylining oxirgi git commit sanasini (yoki topilmasa build vaqtini) avtomatik yozadi.
   const beta = formatUpdatedAt(__SCHEDULE_UPDATED_AT__);
 
   /* ----------------- SINFLAR ARO SWIPE / TUGMA BILAN O'TISH ----------------- */
@@ -65,13 +63,13 @@ export default function ClassPage() {
     const deltaY = t.clientY - touchStartRef.current.y;
     touchStartRef.current = null;
 
-    if (Math.abs(deltaY) > SWIPE_MAX_VERTICAL) return; // vertikal scroll bo'lsa e'tibor bermaymiz
+    if (Math.abs(deltaY) > SWIPE_MAX_VERTICAL) return;
     if (Math.abs(deltaX) < SWIPE_THRESHOLD) return;
 
     if (deltaX < 0) {
-      goToClass(nextClass); // chapga surish -> keyingi sinf
+      goToClass(nextClass);
     } else {
-      goToClass(prevClass); // o'ngga surish -> oldingi sinf
+      goToClass(prevClass);
     }
   };
 
@@ -125,6 +123,58 @@ export default function ClassPage() {
     return { state: "done" };
   }, [schedule, realTodayName, now]);
 
+  // Bugungi kunda o'tib bo'lgan darslarni aniqlash
+  const isLessonPast = (dayName, lessonIndex) => {
+    if (dayName !== realTodayName || !liveStatus) return false;
+    if (liveStatus.state === "done") return true;
+    if (liveStatus.state === "lesson" && lessonIndex < liveStatus.index) return true;
+    if ((liveStatus.state === "break" || liveStatus.state === "before") && lessonIndex < liveStatus.index) return true;
+    return false;
+  };
+
+  // Kunlik jadvalni Telegram / Xotiraga ulashish
+  const handleShareDay = async (dayObj, e) => {
+    e.stopPropagation();
+    const classTitle = `${className.toUpperCase()}-sinf`;
+    const header = `📅 ${classTitle} | ${dayObj.day} dars jadvali:\n\n`;
+    const list = dayObj.subjects
+      .map((s, idx) => `${idx + 1}. ${s.name} (№${s.room}${s.teacher ? ` — ${s.teacher}` : ""})`)
+      .join("\n");
+    const footer = `\n\n📌 Jurnal.uz orqali yuborildi`;
+    const shareText = `${header}${list}${footer}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `${classTitle} — ${dayObj.day} jadvali`,
+          text: shareText,
+        });
+        return;
+      } catch (err) {
+        if (err.name === "AbortError") return;
+      }
+    }
+
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(shareText);
+      } else {
+        const textarea = document.createElement("textarea");
+        textarea.value = shareText;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+      }
+      if (navigator.vibrate) navigator.vibrate(15);
+      setToastMessage("📋 Jadval nusxalandi! Telegramga yuborishingiz mumkin.");
+      setTimeout(() => setToastMessage(null), 3000);
+    } catch {
+      setToastMessage("Nusxalab bo'lmadi");
+      setTimeout(() => setToastMessage(null), 2000);
+    }
+  };
+
   if (!schedule) return (
     <div className="not-found-container">
       <div className="error-card">
@@ -144,6 +194,13 @@ export default function ClassPage() {
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
+      {/* Toast xabarnomasi */}
+      {toastMessage && (
+        <div className="share-toast" role="status" aria-live="polite">
+          <span>{toastMessage}</span>
+        </div>
+      )}
+
       <header className="premium-header">
         <div className="header-content">
           <h1 className="main-title">Dars Jadvali</h1>
@@ -216,7 +273,31 @@ export default function ClassPage() {
                   <h2>{day.day}</h2>
                   <span className="lesson-count">{day.subjects.length} ta dars</span>
                 </div>
-                {day.day === activeDayName && <div className="status-label">Ayni vaqtda</div>}
+
+                <div className="day-header-actions">
+                  {day.day === activeDayName && (
+                    <div className="status-label">
+                      <span className="live-dot-icon" aria-hidden="true"></span>
+                      Live
+                    </div>
+                  )}
+                  <button
+                    type="button"
+                    className="day-share-btn"
+                    onClick={(e) => handleShareDay(day, e)}
+                    title={`${day.day} dars jadvalini ulashish`}
+                    aria-label={`${day.day} dars jadvalini ulashish`}
+                  >
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="18" cy="5" r="3" />
+                      <circle cx="6" cy="12" r="3" />
+                      <circle cx="18" cy="19" r="3" />
+                      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+                      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+                    </svg>
+                    <span>Ulashish</span>
+                  </button>
+                </div>
               </div>
 
               <div className="lessons-container">
@@ -230,6 +311,7 @@ export default function ClassPage() {
                       day.day === realTodayName &&
                       i === liveStatus.index
                     }
+                    isPast={isLessonPast(day.day, i)}
                   />
                 ))}
               </div>

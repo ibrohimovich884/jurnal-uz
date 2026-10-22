@@ -158,6 +158,31 @@ body.dark .lesson-room {
   animation: pulseDot 1.6s infinite;
 }
 
+/* --- TUGAGAN DARS (PAST) --- */
+.lesson-box.is-past {
+  opacity: 0.62;
+  transition: opacity 0.25s ease;
+}
+
+.lesson-box.is-past:hover {
+  opacity: 0.92;
+}
+
+.past-check {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #01b574;
+  min-width: 14px;
+}
+
+body.dark .lesson-box.is-past {
+  opacity: 0.55;
+}
+
+body.dark .lesson-box.is-past:hover {
+  opacity: 0.9;
+}
+
 @keyframes pulseDot {
   0% { box-shadow: 0 0 0 0 rgba(1, 181, 116, 0.55); }
   70% { box-shadow: 0 0 0 8px rgba(1, 181, 116, 0); }

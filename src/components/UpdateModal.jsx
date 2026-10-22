@@ -13,15 +13,15 @@ export default function UpdateModal({ isOpen, onClose, betaVersion }) {
 
         <div className="modal-body">
           <div className="update-status">
-            <span className="status-badge">v2026.1.6</span>
+            <span className="status-badge">v2026.1.7</span>
             <span className="update-date">{betaVersion}</span>
           </div>
           <ul className="update-features">
-            <li><span>✅</span> 8-A, 8-B va 9-B sinflari dars jadvallari to‘liq yangilandi</li>
-            <li><span>✅</span> O‘qituvchilar (Djumayev B.K., Alimova M.S., Jontayev A.A.) va xonalar yangilandi</li>
-            <li><span>✅</span> 9-A, 10-A, 10-B va 11-sinflar jadvallari ham dolzarb holatda</li>
-            <li><span>✅</span> Jonli dars va tanaffus vaqti hisoblagichi faol</li>
-            <li><span>✅</span> Yangilangan dars ma’lumotlari va interaktiv kartalar</li>
+            <li><span>⭐</span> <b>Mening sinfim:</b> Sinflar tartibini erkin surib, o'z sinfingizni birinchi o'ringa qo'yish imkoni</li>
+            <li><span>📤</span> <b>Telegramga ulashish:</b> Kunlik dars jadvalini bitta tugma bilan chiroyli nusxalash</li>
+            <li><span>✓</span> <b>O'tgan darslar:</b> Bugungi o'tib bo'lgan darslar avtomatik belgilanadi</li>
+            <li><span>⚡</span> <b>100% Oflayn:</b> To'liq internetga bog'lanmagan tezkor ish tartibi</li>
+            <li><span>🕒</span> Jonli dars va tanaffus hisoblagichi faol</li>
           </ul>
         </div>
 
