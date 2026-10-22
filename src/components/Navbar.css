@@ -117,6 +117,18 @@
     width: 100%;
 }
 
+.nav-link-calculator {
+    font-weight: 700;
+    color: #6366f1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.dark-nav .nav-link-calculator {
+    color: #818cf8 !important;
+}
+
 /* === HAMBURGER MENU (mobile) === */
 .menu-toggle {
     display: none;

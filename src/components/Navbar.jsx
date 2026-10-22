@@ -52,6 +52,7 @@ export default function Navbar() {
 	/* ----------- ROUTE O‘ZGARSA MENUNI YOPISH ----------- */
 	useEffect(() => setMenuOpen(false), [location]);
 
+	const isCalculator = location.pathname.startsWith("/hisoblovchi") || location.pathname.startsWith("/uchrashuvlar");
 	const currentClass = location.pathname.match(/\/class\/(\w+)/)?.[1]?.toUpperCase();
 
 	return (
@@ -62,6 +63,7 @@ export default function Navbar() {
 					<NavLink to="/" className="logo">Jurnal uz</NavLink>
 
 					{currentClass && <div className="current-class-mobile">{currentClass}-sinf</div>}
+					{isCalculator && <div className="current-class-mobile">🤝 Uchrashuvlar</div>}
 
 					<button
 						className={`menu-toggle ${menuOpen ? "active" : ""}`}
@@ -71,6 +73,14 @@ export default function Navbar() {
 					</button>
 
 					<nav className={`nav-links ${menuOpen ? "open" : ""}`}>
+						<NavLink
+							to="/hisoblovchi"
+							className={({ isActive }) =>
+								"nav-link nav-link-calculator" + (isActive ? " active" : "")
+							}
+						>
+							⚡ Hisoblovchi
+						</NavLink>
 						{CLASSES.map((cls) => (
 							<NavLink
 								key={cls}

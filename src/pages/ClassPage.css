@@ -139,6 +139,33 @@ body.dark {
   border-radius: 5px;
 }
 
+.class-meetup-shortcut-wrap {
+  display: flex;
+  justify-content: center;
+  margin: -10px auto 25px;
+}
+
+.class-meetup-shortcut-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.12));
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 999px;
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.class-meetup-shortcut-btn:hover {
+  transform: translateY(-1px);
+  background: rgba(99, 102, 241, 0.22);
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
 .premium-header {
   margin-bottom: 30px;
   text-align: center;

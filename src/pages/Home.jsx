@@ -153,6 +153,23 @@ export default function Home() {
             <span className="stat-label">Sinf jadvallari</span>
           </div>
         </div>
+
+        {/* Sinflar Uchrashuvi Hisoblagichi Promosi */}
+        <Link to="/hisoblovchi" className="calculator-promo-banner">
+          <div className="promo-badge">⚡ Yangi funksiya</div>
+          <div className="promo-content">
+            <h2 className="promo-title">Sinflar Uchrashuvi Hisoblagichi</h2>
+            <p className="promo-desc">
+              Masalan <b>10b</b> va <b>9a</b>: qaysi xonada va qaysi soatda ketma-ket dars o'tib, tanaffusda uchrashishini aniqlang!
+            </p>
+          </div>
+          <div className="promo-action">
+            <span>Ochish</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </div>
+        </Link>
       </header>
 
       <section className="selection-area">

@@ -260,6 +260,17 @@ export default function ClassPage() {
         </nav>
       )}
 
+      <div className="class-meetup-shortcut-wrap">
+        <Link
+          to={`/hisoblovchi?c1=${className}&c2=${className === "10b" ? "9a" : (className === "10a" ? "10b" : (className === "9a" ? "10b" : "9a"))}`}
+          className="class-meetup-shortcut-btn"
+          title={`${className.toUpperCase()} sinfining uchrashuvlarini hisoblash`}
+        >
+          <span>🤝</span>
+          <span>{className.toUpperCase()} uchrashuvlarini hisoblash</span>
+        </Link>
+      </div>
+
       <main className="schedule-container">
         <div className="bento-grid">
           {schedule.map((day, idx) => (

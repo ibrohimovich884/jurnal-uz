@@ -1,0 +1,858 @@
+/* ==========================================================================
+   UCHRASHUVLAR HISOBBLAGICHI — ORIGINAL HORIZON UI & JURNAL.UZ DIZAYNI
+   (Ko'k ranglar, ambient blur, 50/50 chap/o'ng ustunlar va yashil uchrashuv liniyasi)
+   ========================================================================== */
+
+.calc-page-wrapper {
+  background-color: var(--bg-color, #f4f7fe);
+  color: var(--text-main, #1b2559);
+  min-height: 100vh;
+  padding: 1.5rem 1rem 3.5rem;
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+body.dark .calc-page-wrapper {
+  background-color: var(--bg-color, #0b1437);
+  color: #ffffff;
+}
+
+/* --- AMBIENT BLUR EFFECT (Home & ClassPage uslubida) --- */
+.calc-blob-blur {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(140px);
+  opacity: 0.18;
+}
+
+.blob-left {
+  top: 5%;
+  left: 5%;
+  width: 380px;
+  height: 380px;
+  background: var(--accent-blue, #422afb);
+}
+
+.blob-right {
+  bottom: 15%;
+  right: 5%;
+  width: 320px;
+  height: 320px;
+  background: #0077ff;
+}
+
+body.dark .calc-blob-blur {
+  opacity: 0.22;
+}
+
+/* --- TOAST --- */
+.calc-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--card-bg, #ffffff);
+  color: var(--text-main, #1b2559);
+  border: 1.5px solid var(--accent-blue, #422afb);
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  z-index: 1000;
+  white-space: nowrap;
+  animation: toastFadeUp 0.25s ease-out;
+}
+
+body.dark .calc-toast {
+  background: #111c44;
+  color: #ffffff;
+  border-color: #7551ff;
+}
+
+@keyframes toastFadeUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 12px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+/* --- HEADER --- */
+.calc-header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 600px;
+  margin: 0.5rem auto 1.5rem;
+}
+
+.header-badge {
+  background: var(--light-blue, #e0e7ff);
+  color: var(--accent-blue, #422afb);
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+body.dark .header-badge {
+  background: rgba(117, 81, 255, 0.18);
+  color: #7551ff;
+}
+
+.main-title {
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  font-weight: 800;
+  margin: 0 0 0.6rem;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent-blue, #422afb) 0%, #0077ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.dark .text-gradient {
+  background: linear-gradient(135deg, #7551ff 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.live-status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(1, 181, 116, 0.1);
+  border: 1px solid rgba(1, 181, 116, 0.3);
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #01b574;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #01b574;
+  box-shadow: 0 0 0 0 rgba(1, 181, 116, 0.6);
+  animation: pulseDot 1.6s infinite;
+}
+
+@keyframes pulseDot {
+  0% { box-shadow: 0 0 0 0 rgba(1, 181, 116, 0.55); }
+  70% { box-shadow: 0 0 0 7px rgba(1, 181, 116, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(1, 181, 116, 0); }
+}
+
+/* --- SINF SOLISHTIRISH BAR (Horizon UI uslubida) --- */
+.class-compare-bar {
+  position: relative;
+  z-index: 1;
+  max-width: 580px;
+  margin: 0 auto 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.compare-class-box {
+  background: var(--card-bg, #ffffff);
+  border: 1.5px solid rgba(112, 144, 176, 0.2);
+  border-radius: 18px;
+  padding: 0.65rem 0.9rem;
+  box-shadow: var(--card-shadow, 0px 18px 40px rgba(112, 144, 176, 0.12));
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  transition: all 0.2s ease;
+}
+
+body.dark .compare-class-box {
+  background: var(--card-bg, #111c44);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.left-box {
+  border-left: 4px solid var(--accent-blue, #422afb);
+}
+
+body.dark .left-box {
+  border-left-color: #7551ff;
+}
+
+.right-box {
+  border-left: 4px solid #0077ff;
+}
+
+.box-role-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--text-muted, #a3aed0);
+  letter-spacing: 0.04em;
+}
+
+.class-native-select {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--text-main, #1b2559);
+  font-size: 1.15rem;
+  font-weight: 800;
+  outline: none;
+  cursor: pointer;
+  padding: 2px 0;
+}
+
+body.dark .class-native-select {
+  color: #ffffff;
+}
+
+.class-native-select option {
+  background: var(--card-bg, #ffffff);
+  color: var(--text-main, #1b2559);
+}
+
+body.dark .class-native-select option {
+  background: #111c44;
+  color: #ffffff;
+}
+
+.compare-swap-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent-blue, #422afb);
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(66, 42, 251, 0.35);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  flex-shrink: 0;
+}
+
+body.dark .compare-swap-btn {
+  background: #7551ff;
+  box-shadow: 0 4px 16px rgba(117, 81, 255, 0.45);
+}
+
+.compare-swap-btn:hover {
+  transform: scale(1.08) rotate(180deg);
+}
+
+.compare-swap-btn:active {
+  transform: scale(0.92);
+}
+
+/* --- TEZKOR PRESETLAR --- */
+.quick-presets-row {
+  position: relative;
+  z-index: 1;
+  max-width: 580px;
+  margin: 0 auto 1.25rem;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.quick-presets-row::-webkit-scrollbar {
+  display: none;
+}
+
+.preset-btn {
+  background: var(--card-bg, #ffffff);
+  border: 1px solid rgba(112, 144, 176, 0.2);
+  color: var(--text-main, #1b2559);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+body.dark .preset-btn {
+  background: var(--card-bg, #111c44);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.preset-btn.active {
+  background: var(--accent-blue, #422afb);
+  color: #ffffff;
+  border-color: var(--accent-blue, #422afb);
+  box-shadow: 0 4px 12px rgba(66, 42, 251, 0.25);
+}
+
+body.dark .preset-btn.active {
+  background: #7551ff;
+  border-color: #7551ff;
+}
+
+/* --- FILTERS STRIP --- */
+.filters-strip {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.day-chips-scroll {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.day-chips-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.day-chip {
+  background: var(--card-bg, #ffffff);
+  border: 1px solid rgba(112, 144, 176, 0.2);
+  color: var(--text-main, #1b2559);
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+body.dark .day-chip {
+  background: var(--card-bg, #111c44);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.day-chip.active {
+  background: var(--accent-blue, #422afb);
+  color: #ffffff;
+  border-color: var(--accent-blue, #422afb);
+  box-shadow: 0 4px 10px rgba(66, 42, 251, 0.2);
+}
+
+body.dark .day-chip.active {
+  background: #7551ff;
+  border-color: #7551ff;
+}
+
+.day-chip.is-empty {
+  opacity: 0.45;
+}
+
+.restore-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(1, 181, 116, 0.08);
+  border: 1px dashed rgba(1, 181, 116, 0.35);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  color: #01b574;
+  font-weight: 600;
+}
+
+.restore-btn {
+  background: transparent;
+  border: none;
+  color: #01b574;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.82rem;
+}
+
+/* --- MAIN FEED (Bitta birlashgan ro'yxat) --- */
+.meetups-feed {
+  position: relative;
+  z-index: 1;
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* --- SPLIT MEETUP CARD (50% Chapda 1-sinf, 50% O'ngda 2-sinf, Yashil chiziq) --- */
+.split-meetup-card {
+  background: var(--card-bg, #ffffff);
+  border-radius: 20px;
+  border: 1px solid rgba(112, 144, 176, 0.18);
+  box-shadow: var(--card-shadow, 0px 18px 40px rgba(112, 144, 176, 0.12));
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+body.dark .split-meetup-card {
+  background: var(--card-bg, #111c44);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0px 18px 40px rgba(0, 0, 0, 0.3);
+}
+
+.split-meetup-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Karta tepasi */
+.card-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem 0.5rem;
+  border-bottom: 1px solid rgba(112, 144, 176, 0.1);
+}
+
+body.dark .card-top-bar {
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+}
+
+.top-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.meta-day {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-main, #1b2559);
+}
+
+body.dark .meta-day {
+  color: #ffffff;
+}
+
+.meta-room-badge {
+  background: var(--light-blue, #e0e7ff);
+  color: var(--accent-blue, #422afb);
+  padding: 0.2rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+body.dark .meta-room-badge {
+  background: rgba(117, 81, 255, 0.2);
+  color: #7551ff;
+}
+
+.card-dismiss-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted, #a3aed0);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.card-dismiss-btn:hover {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+}
+
+.close-x {
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+/* --- IKKI USTUNLI QISM (50% Chap tomon / 50% O'ng tomon) --- */
+.split-columns-body {
+  display: flex;
+  align-items: stretch;
+  padding: 0.85rem 0.85rem 0.75rem;
+  gap: 6px;
+}
+
+.split-col {
+  flex: 1;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0.6rem 0.75rem;
+  border-radius: 14px;
+  background: var(--bg-color, #f4f7fe);
+  box-sizing: border-box;
+}
+
+body.dark .split-col {
+  background: #0b1437;
+}
+
+.col-left {
+  border-left: 3px solid var(--accent-blue, #422afb);
+}
+
+body.dark .col-left {
+  border-left-color: #7551ff;
+}
+
+.col-right {
+  border-left: 3px solid #0077ff;
+}
+
+.col-header-line {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  margin-bottom: 2px;
+}
+
+.class-tag-pill {
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.left-tag {
+  color: var(--accent-blue, #422afb);
+}
+
+body.dark .left-tag {
+  color: #7551ff;
+}
+
+.right-tag {
+  color: #0077ff;
+}
+
+body.dark .right-tag {
+  color: #38bdf8;
+}
+
+.hour-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--text-main, #1b2559);
+  padding: 1px 6px;
+  border-radius: 6px;
+}
+
+body.dark .hour-badge {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.col-subject {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--text-main, #1b2559);
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body.dark .col-subject {
+  color: #ffffff;
+}
+
+.col-time-info {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  color: var(--text-muted, #a3aed0);
+  font-weight: 600;
+}
+
+.time-clock {
+  font-size: 0.7rem;
+}
+
+.col-action-pill {
+  margin-top: 4px;
+  font-size: 0.68rem;
+  font-weight: 800;
+  padding: 3px 6px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-self: flex-start;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.action-out {
+  background: rgba(245, 158, 11, 0.14);
+  color: #d97706;
+}
+
+body.dark .action-out {
+  background: rgba(245, 158, 11, 0.22);
+  color: #fbbf24;
+}
+
+.action-in {
+  background: rgba(1, 181, 116, 0.14);
+  color: #01b574;
+}
+
+body.dark .action-in {
+  background: rgba(1, 181, 116, 0.22);
+  color: #34d399;
+}
+
+/* O'rta ajratgich */
+.split-center-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1px;
+  flex-shrink: 0;
+}
+
+.divider-line {
+  flex: 1;
+  width: 1px;
+  background: rgba(112, 144, 176, 0.2);
+}
+
+body.dark .divider-line {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.center-icon {
+  font-size: 0.95rem;
+  margin: 4px 0;
+}
+
+/* ==========================================================================
+   YASHIL LINE (UCHRASHADIGAN VAQTNI YASHIL LINE QILISh)
+   ========================================================================== */
+.green-meeting-line-bar {
+  position: relative;
+  background: linear-gradient(90deg, #01b574 0%, #10b981 100%);
+  padding: 7px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 -2px 10px rgba(1, 181, 116, 0.25);
+}
+
+.green-line-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ffffff;
+  opacity: 0.4;
+}
+
+.green-line-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: #ffffff;
+  font-size: 0.8rem;
+  gap: 6px;
+}
+
+.green-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+  flex-shrink: 0;
+}
+
+.green-time-text {
+  flex: 1;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.green-time-text b {
+  font-weight: 800;
+}
+
+.green-room-pill {
+  background: rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* --- EMPTY FEED --- */
+.empty-feed-card,
+.empty-warning-card {
+  background: var(--card-bg, #ffffff);
+  border: 1px solid rgba(112, 144, 176, 0.18);
+  border-radius: 20px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  box-shadow: var(--card-shadow);
+}
+
+body.dark .empty-feed-card,
+body.dark .empty-warning-card {
+  background: var(--card-bg, #111c44);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.empty-icon,
+.warning-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+}
+
+.empty-feed-card h3,
+.empty-warning-card h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+}
+
+.empty-feed-card p,
+.empty-warning-card p {
+  color: var(--text-muted, #a3aed0);
+  font-size: 0.9rem;
+  margin: 0 0 1.2rem;
+  line-height: 1.45;
+}
+
+.action-btn {
+  background: var(--accent-blue, #422afb);
+  color: #ffffff;
+  border: none;
+  padding: 0.65rem 1.4rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(66, 42, 251, 0.3);
+}
+
+body.dark .action-btn {
+  background: #7551ff;
+}
+
+/* --- FOOTER --- */
+.calc-footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.home-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--card-bg, #ffffff);
+  border: 1px solid rgba(112, 144, 176, 0.2);
+  color: var(--text-main, #1b2559);
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: var(--card-shadow);
+  transition: all 0.2s ease;
+}
+
+body.dark .home-back-btn {
+  background: #111c44;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.home-back-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-blue, #422afb);
+}
+
+/* ==========================================================================
+   375PX MOBIL EKRAN MOSLASHTIRISH
+   ========================================================================== */
+@media (max-width: 380px) {
+  .calc-page-wrapper {
+    padding: 1rem 0.6rem 3rem;
+  }
+
+  .main-title {
+    font-size: 1.55rem;
+  }
+
+  .split-columns-body {
+    padding: 0.65rem 0.5rem 0.6rem;
+    gap: 4px;
+  }
+
+  .split-col {
+    padding: 0.5rem 0.55rem;
+  }
+
+  .col-subject {
+    font-size: 0.85rem;
+  }
+
+  .col-action-pill {
+    font-size: 0.62rem;
+    padding: 2px 4px;
+  }
+
+  .green-meeting-line-bar {
+    padding: 6px 9px;
+  }
+
+  .green-time-text {
+    font-size: 0.72rem;
+  }
+
+  .green-room-pill {
+    font-size: 0.65rem;
+  }
+}
