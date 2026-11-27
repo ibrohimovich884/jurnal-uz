@@ -2,3 +2,7 @@
 // Yangi sinf qo'shish uchun shu yerga qo'shing va src/data/schedules.jsx ga
 // mos ma'lumotni kiriting — Home va Navbar avtomatik yangilanadi.
 export const CLASSES = ["7a", "7b", "8a", "8b", "9a", "9b", "10a", "10b", "11a", "11b"];
+
+// Joriy davr uchun jadvali yangilangan sinflar.
+// Yangilanmagan sinflar bosh sahifada kulrang ko'rinishda aks etadi.
+export const UPDATED_CLASSES = ["8a", "9a", "10a", "10b"];

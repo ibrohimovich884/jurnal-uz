@@ -1,21 +1,51 @@
-.offline-banner {
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
+/* ==========================================================================
+   ONLINE WATCHER — iPHONE DYNAMIC ISLAND NOTIFICATION PILL
+   ========================================================================== */
 
-    background: rgba(0, 0, 255, 0.382);
-    backdrop-filter: blur(5px);
-    color: #000;
-
-    text-align: center;
-    font-weight: 600;
-    padding: 8px 12px;
-    z-index: 260;
-    font-size: 14px;
+.ios-network-island {
+  position: fixed;
+  top: calc(64px + env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100vw - 24px);
+  background: var(--ios-glass-card);
+  backdrop-filter: var(--ios-blur-deep);
+  -webkit-backdrop-filter: var(--ios-blur-deep);
+  border: 1px solid var(--ios-glass-border-light);
+  padding: 8px 14px;
+  border-radius: var(--ios-radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  box-shadow: var(--ios-glass-shadow-lg);
+  animation: iosSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  white-space: nowrap;
 }
 
-.online-banner {
-    background: rgba(0, 180, 0, 0.35);
-    color: #043b04;
+.ios-network-island.offline {
+  border-color: rgba(255, 69, 58, 0.45);
+  background: rgba(45, 12, 18, 0.78);
+  color: #ff8e88;
+}
+
+body.light-mode .ios-network-island.offline {
+  border-color: rgba(220, 38, 38, 0.35);
+  background: rgba(254, 242, 242, 0.85);
+  color: var(--ios-red);
+}
+
+.ios-network-island.online {
+  border-color: rgba(48, 209, 88, 0.45);
+  background: rgba(8, 36, 18, 0.78);
+  color: #72ec91;
+}
+
+body.light-mode .ios-network-island.online {
+  border-color: rgba(22, 163, 74, 0.35);
+  background: rgba(240, 253, 244, 0.85);
+  color: var(--ios-green);
 }

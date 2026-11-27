@@ -7,10 +7,11 @@ import { secondsSinceMidnight, timeStrToSeconds, formatCountdown } from "../util
 import { formatUpdatedAt } from "../utils/formatDate";
 import UpdateModal from "../components/UpdateModal";
 import LessonItem from "../components/LessonItem";
+import { ChevronLeft, ChevronRight, Share2, Sparkles, Clock, CheckCircle2, AlertCircle } from "lucide-react";
 import "./ClassPage.css";
 
-const SWIPE_THRESHOLD = 60; // shu masofadan (px) ko'p surilsa - sinf almashadi
-const SWIPE_MAX_VERTICAL = 60; // vertikal scrollga xalaqit bermaslik uchun
+const SWIPE_THRESHOLD = 60;
+const SWIPE_MAX_VERTICAL = 60;
 
 export default function ClassPage() {
   const { className } = useParams();
@@ -22,7 +23,7 @@ export default function ClassPage() {
 
   const uzbekDays = ["Yakshanba", "Dushanba", "Seshanba", "Chorshanba", "Payshanba", "Juma", "Shanba"];
 
-  // Har soniyada vaqtni yangilab turamiz — jonli hisoblagich shu asosda ishlaydi
+  // Real-time second clock
   useEffect(() => {
     const timer = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(timer);
@@ -30,7 +31,7 @@ export default function ClassPage() {
 
   const realTodayName = uzbekDays[now.getDay()];
 
-  // 14:00 dan keyin ertangi kunni "Hozir" deb ko'rsatish mantiqi
+  // After 14:00, show tomorrow as default active day
   let targetIndex = now.getDay();
   if (now.getHours() >= 14) {
     targetIndex = targetIndex === 6 ? 1 : targetIndex + 1;
@@ -38,7 +39,7 @@ export default function ClassPage() {
   const activeDayName = uzbekDays[targetIndex];
   const beta = formatUpdatedAt(__SCHEDULE_UPDATED_AT__);
 
-  /* ----------------- SINFLAR ARO SWIPE / TUGMA BILAN O'TISH ----------------- */
+  /* ----------------- Class switcher (Swipe & Buttons) ----------------- */
   const classIndex = CLASSES.indexOf(className);
   const prevClass = classIndex > -1 ? CLASSES[(classIndex - 1 + CLASSES.length) % CLASSES.length] : null;
   const nextClass = classIndex > -1 ? CLASSES[(classIndex + 1) % CLASSES.length] : null;
@@ -73,7 +74,7 @@ export default function ClassPage() {
     }
   };
 
-  /* ----------------- BUGUNGI KUNGA AVTOMATIK SCROLL ----------------- */
+  /* ----------------- Auto-scroll & Day refs ----------------- */
   const dayRefs = useRef({});
   const hasScrolledRef = useRef(false);
 
@@ -88,12 +89,12 @@ export default function ClassPage() {
       hasScrolledRef.current = true;
       const timer = setTimeout(() => {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
-      }, 300);
+      }, 350);
       return () => clearTimeout(timer);
     }
   }, [schedule, activeDayName]);
 
-  /* ----------------- "HOZIRGI DARS" JONLI HOLATI ----------------- */
+  /* ----------------- Live Lesson State ----------------- */
   const liveStatus = useMemo(() => {
     if (!schedule) return null;
     const todaySchedule = schedule.find((d) => d.day === realTodayName);
@@ -109,7 +110,14 @@ export default function ClassPage() {
       const endSec = timeStrToSeconds(t.end);
 
       if (nowSec >= startSec && nowSec < endSec) {
-        return { state: "lesson", index: i, remaining: endSec - nowSec, lesson: subjects[i] };
+        return {
+          state: "lesson",
+          index: i,
+          remaining: endSec - nowSec,
+          lesson: subjects[i],
+          duration: endSec - startSec,
+          elapsed: nowSec - startSec,
+        };
       }
       if (nowSec < startSec) {
         return {
@@ -123,7 +131,6 @@ export default function ClassPage() {
     return { state: "done" };
   }, [schedule, realTodayName, now]);
 
-  // Bugungi kunda o'tib bo'lgan darslarni aniqlash
   const isLessonPast = (dayName, lessonIndex) => {
     if (dayName !== realTodayName || !liveStatus) return false;
     if (liveStatus.state === "done") return true;
@@ -132,7 +139,7 @@ export default function ClassPage() {
     return false;
   };
 
-  // Kunlik jadvalni Telegram / Xotiraga ulashish
+  // Telegram / Clipboard share
   const handleShareDay = async (dayObj, e) => {
     e.stopPropagation();
     const classTitle = `${className.toUpperCase()}-sinf`;
@@ -175,143 +182,194 @@ export default function ClassPage() {
     }
   };
 
-  if (!schedule) return (
-    <div className="not-found-container">
-      <div className="error-card">
-        <span className="error-icon">⚠️</span>
-        <h2>Ma'lumot topilmadi</h2>
-        <p><b>{className.toUpperCase()}</b> sinf jadvali hali yuklanmagan.</p>
-        <Link to="/" className="error-home-btn">
-          <span>🏠</span> Bosh sahifaga qaytish
-        </Link>
+  if (!schedule) {
+    return (
+      <div className="ios-not-found">
+        <div className="ios-not-found-card">
+          <AlertCircle size={44} className="error-icon" />
+          <h2>Ma'lumot topilmadi</h2>
+          <p><b>{className.toUpperCase()}</b> sinf jadvali hali yuklanmagan.</p>
+          <Link to="/" className="ios-return-btn">
+            Bosh sahifaga qaytish
+          </Link>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 
   return (
     <div
-      className="class-page-wrapper"
+      className="ios-class-page"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Toast xabarnomasi */}
+      {/* Toast */}
       {toastMessage && (
-        <div className="share-toast" role="status" aria-live="polite">
+        <div className="ios-share-toast" role="status">
+          <CheckCircle2 size={16} />
           <span>{toastMessage}</span>
         </div>
       )}
 
-      <header className="premium-header">
-        <div className="header-content">
-          <h1 className="main-title">Dars Jadvali</h1>
-          <div className="live-status">
-            <div className="pulse-dot"></div>
+      {/* Top Header Card */}
+      <header className="ios-class-header">
+        <div className="header-meta-row">
+          <div className="header-live-tag">
+            <span className="live-pulsar"></span>
             <span>Bugun: <b>{realTodayName}</b></span>
           </div>
         </div>
+
+        <div className="header-title-row">
+          <h1 className="class-main-title">
+            <span className="title-bold">{className.toUpperCase()}</span> Sinf Jadvali
+          </h1>
+        </div>
+
+        {/* Live Activity / Dynamic Island Bar */}
+        {liveStatus && liveStatus.state !== "done" && (
+          <div className={`ios-live-activity-bar activity-${liveStatus.state}`}>
+            {liveStatus.state === "lesson" && (
+              <>
+                <div className="activity-icon-wrap green">
+                  <span className="pulse-indicator"></span>
+                </div>
+                <div className="activity-content">
+                  <span className="activity-label">Hozirgi dars</span>
+                  <span className="activity-title">
+                    <b>{liveStatus.lesson.name}</b> (№{liveStatus.lesson.room})
+                  </span>
+                </div>
+                <div className="activity-timer">
+                  <span className="timer-label">Tanaffusgacha</span>
+                  <span className="timer-val tabular-nums">
+                    {formatCountdown(liveStatus.remaining)}
+                  </span>
+                </div>
+              </>
+            )}
+
+            {liveStatus.state === "break" && (
+              <>
+                <div className="activity-icon-wrap amber">
+                  <Clock size={16} />
+                </div>
+                <div className="activity-content">
+                  <span className="activity-label">Katta tanaffus</span>
+                  <span className="activity-title">
+                    Keyingi: <b>{liveStatus.lesson.name}</b>
+                  </span>
+                </div>
+                <div className="activity-timer">
+                  <span className="timer-label">Boshlanishiga</span>
+                  <span className="timer-val tabular-nums">
+                    {formatCountdown(liveStatus.remaining)}
+                  </span>
+                </div>
+              </>
+            )}
+
+            {liveStatus.state === "before" && (
+              <>
+                <div className="activity-icon-wrap blue">
+                  <Clock size={16} />
+                </div>
+                <div className="activity-content">
+                  <span className="activity-label">Darslar boshlanishi</span>
+                  <span className="activity-title">
+                    1-dars: <b>{liveStatus.lesson.name}</b>
+                  </span>
+                </div>
+                <div className="activity-timer">
+                  <span className="timer-label">Qolgan vaqt</span>
+                  <span className="timer-val tabular-nums">
+                    {formatCountdown(liveStatus.remaining)}
+                  </span>
+                </div>
+              </>
+            )}
+          </div>
+        )}
+
+        {/* Class Switcher Segmented Control */}
+        <div className="ios-class-switcher-bar">
+          <button
+            type="button"
+            className="switcher-nav-btn"
+            onClick={() => goToClass(prevClass)}
+            aria-label="Oldingi sinf"
+          >
+            <ChevronLeft size={18} />
+          </button>
+
+          <div className="switcher-pills-row">
+            {CLASSES.map((c) => (
+              <button
+                key={c}
+                type="button"
+                onClick={() => goToClass(c)}
+                className={`switcher-pill ${c === className ? "active" : ""}`}
+              >
+                {c.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            className="switcher-nav-btn"
+            onClick={() => goToClass(nextClass)}
+            aria-label="Keyingi sinf"
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
       </header>
 
-      {liveStatus && liveStatus.state !== "done" && (
-        <div className={`live-lesson-bar live-${liveStatus.state}`}>
-          {liveStatus.state === "lesson" && (
-            <>
-              <span className="live-bar-dot"></span>
-              <span className="live-bar-text">
-                Hozir: <b>{liveStatus.lesson.name}</b> — tanaffusgacha{" "}
-                <b>{formatCountdown(liveStatus.remaining)}</b> qoldi
-              </span>
-            </>
-          )}
-          {liveStatus.state === "break" && (
-            <span className="live-bar-text">
-              ☕ Tanaffus — <b>{liveStatus.lesson.name}</b> darsi{" "}
-              <b>{formatCountdown(liveStatus.remaining)}</b> dan keyin boshlanadi
-            </span>
-          )}
-          {liveStatus.state === "before" && (
-            <span className="live-bar-text">
-              ⏳ Darslar boshlanishiga <b>{formatCountdown(liveStatus.remaining)}</b> qoldi
-            </span>
-          )}
-        </div>
-      )}
 
-      {classIndex > -1 && (
-        <nav className="class-switcher" aria-label="Sinflar orasida almashish">
-          <button className="switcher-arrow" onClick={() => goToClass(prevClass)} aria-label="Oldingi sinf">
-            <span>‹</span>
-          </button>
-          <div className="switcher-current">
-            <span className="switcher-current-label">{className.toUpperCase()}</span>
-            <div className="switcher-dots">
-              {CLASSES.map((c) => (
-                <Link
-                  key={c}
-                  to={`/class/${c}`}
-                  className={`switcher-dot ${c === className ? "active" : ""}`}
-                  aria-label={`${c.toUpperCase()} sinfga o'tish`}
-                />
-              ))}
-            </div>
-          </div>
-          <button className="switcher-arrow" onClick={() => goToClass(nextClass)} aria-label="Keyingi sinf">
-            <span>›</span>
-          </button>
-        </nav>
-      )}
+      {/* Days Schedule List */}
+      <main className="ios-schedule-feed">
+        {schedule.map((day, idx) => {
+          const isToday = day.day === realTodayName;
+          const isActiveFocus = day.day === activeDayName;
 
-      <div className="class-meetup-shortcut-wrap">
-        <Link
-          to={`/hisoblovchi?c1=${className}&c2=${className === "10b" ? "9a" : (className === "10a" ? "10b" : (className === "9a" ? "10b" : "9a"))}`}
-          className="class-meetup-shortcut-btn"
-          title={`${className.toUpperCase()} sinfining uchrashuvlarini hisoblash`}
-        >
-          <span>🤝</span>
-          <span>{className.toUpperCase()} uchrashuvlarini hisoblash</span>
-        </Link>
-      </div>
-
-      <main className="schedule-container">
-        <div className="bento-grid">
-          {schedule.map((day, idx) => (
+          return (
             <section
               key={idx}
               ref={(el) => (dayRefs.current[day.day] = el)}
-              className={`day-section ${day.day === activeDayName ? "is-active" : ""}`}
+              className={`ios-day-card ${isActiveFocus ? "is-focused" : ""}`}
             >
-              <div className="day-header">
-                <div className="day-info">
-                  <h2>{day.day}</h2>
-                  <span className="lesson-count">{day.subjects.length} ta dars</span>
+              {/* Card specular shine */}
+              <div className="card-top-shine"></div>
+
+              <div className="day-card-header">
+                <div className="day-heading-group">
+                  <h2 className="day-name">{day.day}</h2>
+                  <span className="day-lesson-count">{day.subjects.length} ta dars</span>
                 </div>
 
-                <div className="day-header-actions">
-                  {day.day === activeDayName && (
-                    <div className="status-label">
-                      <span className="live-dot-icon" aria-hidden="true"></span>
-                      Live
+                <div className="day-actions-group">
+                  {isToday && (
+                    <div className="day-live-tag">
+                      <span className="live-dot"></span>
+                      <span>Hozir</span>
                     </div>
                   )}
+
                   <button
                     type="button"
-                    className="day-share-btn"
+                    className="day-share-button"
                     onClick={(e) => handleShareDay(day, e)}
-                    title={`${day.day} dars jadvalini ulashish`}
-                    aria-label={`${day.day} dars jadvalini ulashish`}
+                    title={`${day.day} jadvalini ulashish`}
                   >
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="18" cy="5" r="3" />
-                      <circle cx="6" cy="12" r="3" />
-                      <circle cx="18" cy="19" r="3" />
-                      <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
-                      <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
-                    </svg>
+                    <Share2 size={13} />
                     <span>Ulashish</span>
                   </button>
                 </div>
               </div>
 
-              <div className="lessons-container">
+              {/* List of lessons */}
+              <div className="day-lessons-list">
                 {day.subjects.map((lesson, i) => (
                   <LessonItem
                     key={i}
@@ -327,14 +385,19 @@ export default function ClassPage() {
                 ))}
               </div>
             </section>
-          ))}
-        </div>
+          );
+        })}
       </main>
 
-      <footer className="page-footer">
-        <button className="glass-update-btn" onClick={() => setShowUpdate(true)}>
-          <span className="btn-icon">🚀</span>
-          <span className="btn-text">v{beta.split(' — ')[0]}</span>
+      {/* Footer Update info trigger */}
+      <footer className="ios-class-footer">
+        <button
+          type="button"
+          className="ios-version-pill"
+          onClick={() => setShowUpdate(true)}
+        >
+          <Sparkles size={13} />
+          <span>Yangilanish: v{beta.split(" — ")[0]}</span>
         </button>
       </footer>
 

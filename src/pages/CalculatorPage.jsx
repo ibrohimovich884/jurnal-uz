@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router";
 import { CLASSES } from "../data/classes";
 import schedules from "../data/schedules";
 import { calculateMeetups, WEEK_DAYS } from "../utils/meetupCalculator";
+import { ArrowLeftRight, ChevronRight, X, RotateCcw, Clock, CheckCircle2, Home, Users } from "lucide-react";
 import "./CalculatorPage.css";
 
 const STORAGE_DISMISSED_KEY = "dars_jadval_dismissed_meetups";
@@ -51,6 +52,7 @@ export default function CalculatorPage() {
   const handleSwap = () => {
     updateClasses(class2, class1);
     showToast(`${class2.toUpperCase()} ⇄ ${class1.toUpperCase()} o'rni almashtirildi`);
+    if (navigator.vibrate) navigator.vibrate(15);
   };
 
   const showToast = (msg) => {
@@ -77,15 +79,15 @@ export default function CalculatorPage() {
     } catch {
       // ignore
     }
-    showToast("Barcha yopilgan uchrashuvlar ochildi");
+    showToast("Barcha yopilgan uchrashuvlar qayta ko'rsatildi");
   };
 
-  // Hisoblash: barcha uchrashuvlar bitta ro'yxatda
+  // Calculate meetups
   const { allMeetups } = useMemo(() => {
     return calculateMeetups(class1, class2, schedules);
   }, [class1, class2]);
 
-  // Filtrlash (kun va yopilganlik bo'yicha)
+  // Filtered by day and dismissed list
   const visibleMeetups = useMemo(() => {
     return allMeetups.filter((m) => {
       if (dismissedIds.includes(m.id)) return false;
@@ -101,45 +103,48 @@ export default function CalculatorPage() {
   const isSame = class1 === class2;
 
   return (
-    <div className="calc-page-wrapper">
-      {/* Dynamic Background Blur Blobs (Avvalgi sahifadagi uslub) */}
-      <div className="calc-blob-blur blob-left"></div>
-      <div className="calc-blob-blur blob-right"></div>
-
+    <div className="ios-calc-page">
       {/* Toast */}
       {toast && (
-        <div className="calc-toast" role="status" aria-live="polite">
+        <div className="ios-calc-toast" role="status">
+          <CheckCircle2 size={16} />
           <span>{toast}</span>
         </div>
       )}
 
-      {/* Sarlavha (Klassik Horizon UI uslubida) */}
-      <header className="calc-header">
-        <div className="header-badge">2025-2026 O'quv yili</div>
-        <h1 className="main-title">
-          Uchrashuvlar <span className="text-gradient">Hisoblagichi</span>
-        </h1>
-        <div className="live-status-tag">
-          <div className="pulse-dot"></div>
-          <span>
-            <b>{class1.toUpperCase()}</b> va <b>{class2.toUpperCase()}</b> sinflari
-          </span>
+      {/* Header */}
+      <header className="ios-calc-header">
+        <div className="calc-eyebrow-row">
+          <div className="calc-status-badge">
+            <span className="status-dot"></span>
+            <span>
+              <b>{class1.toUpperCase()}</b> va <b>{class2.toUpperCase()}</b>
+            </span>
+          </div>
         </div>
+
+
+        <h1 className="calc-main-title">
+          Uchrashuvlar <span className="blue-gradient-text">Hisoblagichi</span>
+        </h1>
+        <p className="calc-subtitle">
+          Bir xonada ketma-ket dars o'tib, tanaffusda ko'rishadigan vaqtlarni aniqlang.
+        </p>
       </header>
 
-      {/* Sinf tanlash paneli (Avvalgi sahifaga o'xshash, ko'k blur elementlar bilan) */}
-      <section className="class-compare-bar">
-        <div className="compare-class-box left-box">
-          <span className="box-role-tag">Chap tomon</span>
+      {/* Dual Glass Comparison Selector Bar */}
+      <section className="ios-compare-box-grid">
+        <div className="compare-glass-slot left">
+          <span className="slot-label">1-Sinf (Chap)</span>
           <select
             value={class1}
             onChange={(e) => updateClasses(e.target.value, class2)}
-            className="class-native-select"
+            className="ios-native-select"
             aria-label="Birinchi sinf"
           >
             {CLASSES.map((c) => (
               <option key={c} value={c}>
-                {c.toUpperCase()}-sinf
+                {c.toUpperCase()}-Sinf
               </option>
             ))}
           </select>
@@ -147,33 +152,33 @@ export default function CalculatorPage() {
 
         <button
           type="button"
-          className="compare-swap-btn"
+          className="ios-swap-button"
           onClick={handleSwap}
           title="Sinflar o'rnini almashtirish"
           aria-label="Almashtirish"
         >
-          ⇄
+          <ArrowLeftRight size={18} strokeWidth={2.5} />
         </button>
 
-        <div className="compare-class-box right-box">
-          <span className="box-role-tag">O'ng tomon</span>
+        <div className="compare-glass-slot right">
+          <span className="slot-label">2-Sinf (O'ng)</span>
           <select
             value={class2}
             onChange={(e) => updateClasses(class1, e.target.value)}
-            className="class-native-select"
+            className="ios-native-select"
             aria-label="Ikkinchi sinf"
           >
             {CLASSES.map((c) => (
               <option key={c} value={c}>
-                {c.toUpperCase()}-sinf
+                {c.toUpperCase()}-Sinf
               </option>
             ))}
           </select>
         </div>
       </section>
 
-      {/* Tezkor sinf juftliklari */}
-      <div className="quick-presets-row">
+      {/* Quick preset pills */}
+      <div className="ios-presets-strip">
         {PRESET_PAIRS.map((p) => {
           const isActive =
             (class1 === p.c1 && class2 === p.c2) ||
@@ -182,7 +187,7 @@ export default function CalculatorPage() {
             <button
               key={p.label}
               type="button"
-              className={`preset-btn ${isActive ? "active" : ""}`}
+              className={`preset-pill ${isActive ? "active" : ""}`}
               onClick={() => updateClasses(p.c1, p.c2)}
             >
               {p.label}
@@ -192,19 +197,19 @@ export default function CalculatorPage() {
       </div>
 
       {isSame ? (
-        <div className="empty-warning-card">
-          <span className="warning-icon">⚠️</span>
+        <div className="ios-same-class-card">
+          <span className="warning-emoji">⚠️</span>
           <h3>Ikkita bir xil sinf tanlandi</h3>
           <p>Uchrashuvlarni solishtirish uchun ikkita turli sinfni tanlang.</p>
         </div>
       ) : (
         <>
-          {/* Kunlar filtri va Statistika */}
-          <div className="filters-strip">
-            <div className="day-chips-scroll">
+          {/* Day Filters Strip */}
+          <div className="ios-calc-filter-strip">
+            <div className="calc-days-scroller">
               <button
                 type="button"
-                className={`day-chip ${selectedDay === "all" ? "active" : ""}`}
+                className={`filter-day-pill ${selectedDay === "all" ? "active" : ""}`}
                 onClick={() => setSelectedDay("all")}
               >
                 Barchasi ({visibleMeetups.length})
@@ -217,7 +222,7 @@ export default function CalculatorPage() {
                   <button
                     key={d}
                     type="button"
-                    className={`day-chip ${selectedDay === d ? "active" : ""} ${count === 0 ? "is-empty" : ""}`}
+                    className={`filter-day-pill ${selectedDay === d ? "active" : ""} ${count === 0 ? "empty" : ""}`}
                     onClick={() => setSelectedDay(d)}
                   >
                     {d} {count > 0 ? `(${count})` : ""}
@@ -227,24 +232,25 @@ export default function CalculatorPage() {
             </div>
 
             {dismissedCount > 0 && (
-              <div className="restore-bar">
+              <div className="restore-strip">
                 <span>{dismissedCount} ta uchrashuv yopildi</span>
                 <button
                   type="button"
-                  className="restore-btn"
+                  className="restore-trigger-btn"
                   onClick={handleRestoreAll}
                 >
-                  ↺ Qayta ko'rsatish
+                  <RotateCcw size={13} />
+                  <span>Qayta ochish</span>
                 </button>
               </div>
             )}
           </div>
 
-          {/* ASOSIY BITTA RO'YXAT (50% Chapda 10b, 50% O'ngda 9a, Yashil chiziq) */}
-          <main className="meetups-feed">
+          {/* Dual Column Meetups Feed */}
+          <main className="ios-meetups-feed">
             {visibleMeetups.length === 0 ? (
-              <div className="empty-feed-card">
-                <span className="empty-icon">🗓️</span>
+              <div className="ios-empty-meetups-card">
+                <Users size={40} className="empty-icon" />
                 <h3>Uchrashuv topilmadi</h3>
                 <p>
                   {selectedDay === "all"
@@ -254,7 +260,7 @@ export default function CalculatorPage() {
                 {dismissedCount > 0 && (
                   <button
                     type="button"
-                    className="action-btn"
+                    className="restore-all-primary-btn"
                     onClick={handleRestoreAll}
                   >
                     Yopilgan {dismissedCount} ta uchrashuvni ochish
@@ -274,10 +280,11 @@ export default function CalculatorPage() {
         </>
       )}
 
-      {/* Sahifa pasti */}
-      <footer className="calc-footer">
-        <Link to="/" className="home-back-btn">
-          <span>🏠</span> Bosh sahifaga qaytish
+      {/* Footer Return Button */}
+      <footer className="ios-calc-footer">
+        <Link to="/" className="ios-back-home-pill">
+          <Home size={15} />
+          <span>Bosh sahifaga qaytish</span>
         </Link>
       </footer>
     </div>
@@ -285,117 +292,100 @@ export default function CalculatorPage() {
 }
 
 /**
- * 2 USTUNLI UCHRASHUV KARTASI:
- * - Chap yarmi (50%): 1-sinf (masalan 10B)
- * - O'ng yarmi (50%): 2-sinf (masalan 9A)
- * - Yashil chiziq (Green Line): Uchrashuv vaqti va holati
+ * 2 COLUMN SPLIT MEETUP CARD:
+ * - 50% Left side: Class 1
+ * - 50% Right side: Class 2
+ * - Center separator
+ * - Glowing green meeting status line
  */
 function TwoColumnMeetupCard({ meetup, onDismiss }) {
-  const { id, day, room, meetTimeFormatted, leftSide, rightSide } =
-    meetup;
+  const { id, day, room, meetTimeFormatted, leftSide, rightSide } = meetup;
 
   return (
-    <article className="split-meetup-card" id={id}>
-      {/* Karta tepasi: Kuni, Xonasi va Yopish tugmasi */}
-      <div className="card-top-bar">
-        <div className="top-meta-left">
-          <span className="meta-day">{day}</span>
-          <span className="meta-room-badge">№{room} xona</span>
+    <article className="ios-split-card" id={id}>
+      {/* Specular shine */}
+      <div className="card-top-shine"></div>
+
+      {/* Top Bar: Day, Room, Dismiss button */}
+      <div className="split-card-header">
+        <div className="header-meta-group">
+          <span className="card-day-name">{day}</span>
+          <span className="card-room-badge">№{room} xona</span>
         </div>
 
         <button
           type="button"
-          className="card-dismiss-btn"
+          className="card-close-btn"
           onClick={() => onDismiss(id)}
           title="Ushbu uchrashuvni yopish"
           aria-label="Uchrashuvni yopish"
         >
           <span>Yopish</span>
-          <span className="close-x">✕</span>
+          <X size={14} />
         </button>
       </div>
 
-      {/* Ikki ustunli kontent (Ekranning 50% chapda, 50% o'ngda) */}
-      <div className="split-columns-body">
-        {/* CHAP TOMON: 1-sinf (masalan 10B) */}
-        <div
-          className={`split-col col-left ${
-            leftSide.action === "out" ? "is-leaving" : "is-entering"
-          }`}
-        >
-          <div className="col-header-line">
-            <span className="class-tag-pill left-tag">
-              {leftSide.className.toUpperCase()}
-            </span>
-            <span className="hour-badge">{leftSide.period}-soat</span>
+      {/* 50/50 Columns Body */}
+      <div className="split-card-body">
+        {/* Left Column (50%) */}
+        <div className={`col-half left-col ${leftSide.action === "out" ? "leaving" : "entering"}`}>
+          <div className="col-top-row">
+            <span className="col-class-tag left">{leftSide.className.toUpperCase()}</span>
+            <span className="col-hour-tag">{leftSide.period}-soat</span>
           </div>
 
-          <div className="col-subject" title={leftSide.subject}>
+          <div className="col-subject-name" title={leftSide.subject}>
             {leftSide.subject}
           </div>
 
-          <div className="col-time-info">
-            <span className="time-clock">🕒</span>
-            <span>{leftSide.time}</span>
+          <div className="col-time-row">
+            <Clock size={12} />
+            <span className="tabular-nums">{leftSide.time}</span>
           </div>
 
-          <div
-            className={`col-action-pill ${
-              leftSide.action === "out" ? "action-out" : "action-in"
-            }`}
-          >
+          <span className={`col-status-pill ${leftSide.action === "out" ? "out" : "in"}`}>
             {leftSide.actionText}
-          </div>
+          </span>
         </div>
 
-        {/* O'rta ajratgich ustun */}
-        <div className="split-center-divider">
-          <div className="divider-line"></div>
-          <span className="center-icon">🤝</span>
-          <div className="divider-line"></div>
+        {/* Center Divider */}
+        <div className="col-center-separator">
+          <div className="separator-line"></div>
+          <span className="separator-badge">🤝</span>
+          <div className="separator-line"></div>
         </div>
 
-        {/* O'NG TOMON: 2-sinf (masalan 9A) */}
-        <div
-          className={`split-col col-right ${
-            rightSide.action === "out" ? "is-leaving" : "is-entering"
-          }`}
-        >
-          <div className="col-header-line">
-            <span className="class-tag-pill right-tag">
-              {rightSide.className.toUpperCase()}
-            </span>
-            <span className="hour-badge">{rightSide.period}-soat</span>
+        {/* Right Column (50%) */}
+        <div className={`col-half right-col ${rightSide.action === "out" ? "leaving" : "entering"}`}>
+          <div className="col-top-row">
+            <span className="col-class-tag right">{rightSide.className.toUpperCase()}</span>
+            <span className="col-hour-tag">{rightSide.period}-soat</span>
           </div>
 
-          <div className="col-subject" title={rightSide.subject}>
+          <div className="col-subject-name" title={rightSide.subject}>
             {rightSide.subject}
           </div>
 
-          <div className="col-time-info">
-            <span className="time-clock">🕒</span>
-            <span>{rightSide.time}</span>
+          <div className="col-time-row">
+            <Clock size={12} />
+            <span className="tabular-nums">{rightSide.time}</span>
           </div>
 
-          <div
-            className={`col-action-pill ${
-              rightSide.action === "out" ? "action-out" : "action-in"
-            }`}
-          >
+          <span className={`col-status-pill ${rightSide.action === "out" ? "out" : "in"}`}>
             {rightSide.actionText}
-          </div>
+          </span>
         </div>
       </div>
 
-      {/* YASHIL LINE (Green line uchrashadigan vaqt bilan) */}
-      <div className="green-meeting-line-bar">
-        <div className="green-line-glow"></div>
-        <div className="green-line-content">
-          <span className="green-dot"></span>
-          <span className="green-time-text">
+      {/* Glowing Green Meeting Line Bar */}
+      <div className="ios-green-meeting-line">
+        <div className="meeting-line-glow"></div>
+        <div className="meeting-line-content">
+          <span className="meeting-dot"></span>
+          <span className="meeting-time-text">
             Uchrashuv vaqti: <b>{meetTimeFormatted}</b>
           </span>
-          <span className="green-room-pill">№{room} oldida</span>
+          <span className="meeting-location-tag">№{room} oldida</span>
         </div>
       </div>
     </article>

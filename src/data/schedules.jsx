@@ -144,8 +144,8 @@ export default {
 				{ "name": "Fizika", "room": "2/16", "teacher": "Halimova S.R." },
 				{ "name": "Ingliz tili", "room": "3/15 - 3/9", "teacher": "Tursinbekova S. / Elmurodova G.S." },
 				{ "name": "Ona tili", "room": "3/1", "teacher": "Adayeva N.B." },
-				{ "name": "Jismoniy tarbiya", "room": "2/25", "teacher": "Jontayev A.A. / Alimova M.S." },
-				{ "name": "Biologiya", "room": "3/7", "teacher": "Muzafarova N.Y." }
+				{ "name": "Jismoniy tarbiya", "room": "2/25", "teacher": "Alimova M.S. / Jontayev A.A." },
+				{ "name": "Informatika", "room": "3/3 - 2/25", "teacher": "Turakulov B.A. / Turanova A.B." }
 			]
 		},
 		{
@@ -156,48 +156,48 @@ export default {
 				{ "name": "Algebra", "room": "3/10", "teacher": "Abdukarimov B.T." },
 				{ "name": "Kimyo", "room": "1/11", "teacher": "Amanova M.N." },
 				{ "name": "Geometriya", "room": "3/10", "teacher": "Abdukarimov B.T." },
-				{ "name": "Geografiya", "room": "2/1", "teacher": "Jo'rayeva F.M." }
+				{ "name": "Biologiya", "room": "3/7", "teacher": "Muzafarova N.Y." }
 			]
 		},
 		{
 			"day": "Chorshanba",
 			"subjects": [
 				{ "name": "Rus tili", "room": "3/4 - 2/18", "teacher": "Valiyeva G.V. / Kimsanova G.T." },
-				{ "name": "Davlat va huquq", "room": "3/8", "teacher": "Qarshiyeva S.A." },
+				{ "name": "Adabiyot", "room": "3/1", "teacher": "Adayeva N.B." },
 				{ "name": "Ona tili", "room": "3/1", "teacher": "Adayeva N.B." },
-				{ "name": "Jismoniy tarbiya", "room": "1/25 - 2/25", "teacher": "Alimova M.S." },
-				{ "name": "Ingliz tili", "room": "3/15 - 3/9", "teacher": "Tursinbekova S. / Elmurodova G.S." },
-				{ "name": "Algebra", "room": "3/10", "teacher": "Abdukarimov B.T." }
+				{ "name": "Geometriya", "room": "2/12", "teacher": "Abdukarimov B.T." },
+				{ "name": "Ingliz tili", "room": "3/9 - 3/15", "teacher": "Elmurodova G.S. / Tursinbekova S." },
+				{ "name": "Jismoniy tarbiya", "room": "2/25 - 1/25", "teacher": "Alimova M.S. / Jontayev A.A." }
 			]
 		},
 		{
 			"day": "Payshanba",
 			"subjects": [
-				{ "name": "Adabiyot", "room": "3/1", "teacher": "Adayeva N.B." },
+				{ "name": "Kimyo", "room": "1/11", "teacher": "Amanova M.N." },
 				{ "name": "Chizmachilik", "room": "3/14", "teacher": "Kuliyeva X.A." },
 				{ "name": "Jahon tarixi", "room": "3/13", "teacher": "Babayev D.M." },
-				{ "name": "Ingliz tili", "room": "3/9 - 3/15", "teacher": "Elmurodova G.S. / Tursinbekova S." },
-				{ "name": "Kimyo", "room": "1/11", "teacher": "Amanova M.N." }
+				{ "name": "Ingliz tili", "room": "3/15 - 3/9", "teacher": "Tursinbekova S. / Elmurodova G.S." },
+				{ "name": "Geografiya", "room": "2/1", "teacher": "Jo'rayeva F.M." },
+				{ "name": "Rus tili", "room": "2/18 - 3/4", "teacher": "Kimsanova G.T. / Valiyeva G.V." }
 			]
 		},
 		{
 			"day": "Juma",
 			"subjects": [
-				{ "name": "Ona tili", "room": "3/1", "teacher": "Adayeva N.B." },
-				{ "name": "Rus tili", "room": "2/18 - 3/4", "teacher": "Kimsanova G.T. / Valiyeva G.V." },
-				{ "name": "Tarbiya", "room": "3/8", "teacher": "Qarshiyeva S.A." },
+				{ "name": "Davlat va huquq", "room": "3/8", "teacher": "Qarshiyeva S.A." },
+				{ "name": "Algebra", "room": "3/10", "teacher": "Abdukarimov B.T." },
+				{ "name": "Geografiya", "room": "2/1", "teacher": "Jo'rayeva F.M." },
 				{ "name": "Fizika", "room": "2/16", "teacher": "Halimova S.R." },
-				{ "name": "Biologiya", "room": "3/7", "teacher": "Muzafarova N.Y." },
-				{ "name": "Iqtisod", "room": "2/1", "teacher": "Jo'rayeva F.M." }
+				{ "name": "Tarbiya", "room": "3/8", "teacher": "Qarshiyeva S.A." },
+				{ "name": "Adabiyot", "room": "3/1", "teacher": "Adayeva N.B." }
 			]
 		},
 		{
 			"day": "Shanba",
 			"subjects": [
 				{ "name": "Algebra", "room": "3/10", "teacher": "Abdukarimov B.T." },
-				{ "name": "Informatika", "room": "2/25", "teacher": "Turakulov B.A. / Turanova A.B." },
-				{ "name": "Adabiyot", "room": "3/1", "teacher": "Adayeva N.B." },
-				{ "name": "Geometriya", "room": "2/12", "teacher": "Abdukarimov B.T." },
+				{ "name": "Ona tili", "room": "3/1", "teacher": "Adayeva N.B." },
+				{ "name": "Biologiya", "room": "3/7", "teacher": "Muzafarova N.Y." },
 				{ "name": "O'zbekiston tarixi", "room": "3/13", "teacher": "Babayev D.M." }
 			]
 		}
@@ -340,9 +340,9 @@ export default {
 			"day": "Dushanba",
 			"subjects": [
 				{ "name": "Kelajak soati", "room": "1/11", "teacher": "Amanova M.N." },
-				{ "name": "Algebra", "room": "3/8", "teacher": "Abdukarimov B.T." },
 				{ "name": "Jismoniy tarbiya", "room": "1/25", "teacher": "Jontayev A.A. / Alimova M.S." },
-				{ "name": "Biologiya", "room": "3/7", "teacher": "Muzafarova N.Y." },
+				{ "name": "Algebra", "room": "3/8", "teacher": "Abdukarimov B.T." },
+				{ "name": "Informatika", "room": "2/18 - 2/25", "teacher": "Turakulov B.A. / Turanova A.B." },
 				{ "name": "Ingliz tili", "room": "3/9", "teacher": "Elmurodova G.S." },
 				{ "name": "Geografiya", "room": "2/1", "teacher": "Jo'rayeva F.M." }
 			]
@@ -363,20 +363,20 @@ export default {
 			"subjects": [
 				{ "name": "Ona tili", "room": "3/10", "teacher": "Qarshiboyeva M." },
 				{ "name": "Algebra", "room": "1/11", "teacher": "Abdukarimov B.T." },
-				{ "name": "Jismoniy tarbiya", "room": "1/25", "teacher": "Alimova M.S. / Jontayev A.A." },
+				{ "name": "O'zbekiston tarixi", "room": "3/13", "teacher": "Babayev D.M." },
+				{ "name": "Adabiyot", "room": "3/10", "teacher": "Qarshiboyeva M." },
 				{ "name": "Geometriya", "room": "1/11", "teacher": "Abdukarimov B.T." },
-				{ "name": "Adabiyot", "room": "3/10", "teacher": "Qarshiboyeva M." }
+				{ "name": "Rus tili", "room": "2/18 - 3/4", "teacher": "Kimsanova G.T. / Valiyeva G.V." }
 			]
 		},
 		{
 			"day": "Payshanba",
 			"subjects": [
-				{ "name": "Kimyo", "room": "1/11", "teacher": "Amanova M.N." },
-				{ "name": "Ingliz tili", "room": "3/9", "teacher": "Elmurodova G.S." },
 				{ "name": "Ona tili", "room": "3/10", "teacher": "Qarshiboyeva M." },
+				{ "name": "Ingliz tili", "room": "3/9", "teacher": "Elmurodova G.S." },
+				{ "name": "Jismoniy tarbiya", "room": "1/25", "teacher": "Jontayev A.A. / Alimova M.S." },
 				{ "name": "Chizmachilik", "room": "3/14", "teacher": "Kuliyeva X.A." },
-				{ "name": "O'zbekiston tarixi", "room": "3/13", "teacher": "Babayev D.M." },
-				{ "name": "Rus tili", "room": "3/4 - 2/18", "teacher": "Valiyeva G.V. / Kimsanova G.T." }
+				{ "name": "Jahon tarixi", "room": "3/13", "teacher": "Babayev D.M." }
 			]
 		},
 		{
@@ -386,19 +386,19 @@ export default {
 				{ "name": "Biologiya", "room": "3/7", "teacher": "Muzafarova N.Y." },
 				{ "name": "Rus tili", "room": "2/18 - 3/4", "teacher": "Kimsanova G.T. / Valiyeva G.V." },
 				{ "name": "Tarbiya", "room": "3/8", "teacher": "Tairova O.R." },
-				{ "name": "Ona tili", "room": "3/10", "teacher": "Qarshiboyeva M." },
-				{ "name": "Jahon tarixi", "room": "3/13", "teacher": "Babayev D.M." }
+				{ "name": "Geometriya", "room": "1/11", "teacher": "Abdukarimov B.T." },
+				{ "name": "O'zbekiston tarixi", "room": "3/13", "teacher": "Babayev D.M." }
 			]
 		},
 		{
 			"day": "Shanba",
 			"subjects": [
-				{ "name": "Informatika", "room": "2/25 - 2/18", "teacher": "Turanova A.B. / Turakulov B.A." },
+				{ "name": "Biologiya", "room": "3/7", "teacher": "Muzafarova N.Y." },
 				{ "name": "Davlat va huquq", "room": "3/8", "teacher": "Qarshiyeva S.A." },
 				{ "name": "Adabiyot", "room": "3/10", "teacher": "Qarshiboyeva M." },
-				{ "name": "O'zbekiston tarixi", "room": "3/13", "teacher": "Babayev D.M." },
-				{ "name": "Geometriya", "room": "1/11", "teacher": "Abdukarimov B.T." },
-				{ "name": "Iqtisod", "room": "2/1", "teacher": "Jo'rayeva F.M." }
+				{ "name": "Kimyo", "room": "1/11", "teacher": "Amanova M.N." },
+				{ "name": "Ona tili", "room": "3/10", "teacher": "Qarshiboyeva M." },
+				{ "name": "Geografiya", "room": "2/1", "teacher": "Jo'rayeva F.M." }
 			]
 		}
 	],
@@ -407,22 +407,21 @@ export default {
 			"day": "Dushanba",
 			"subjects": [
 				{ "name": "Kelajak soati", "room": "1/29", "teacher": "Yakubova Y.T." },
-				{ "name": "Kimyo", "room": "1/11", "teacher": "Amanova M.N." },
 				{ "name": "Ona tili", "room": "3/13", "teacher": "Eraliyeva A.V." },
+				{ "name": "Kimyo", "room": "1/11", "teacher": "Amanova M.N." },
 				{ "name": "Algebra", "room": "1/9", "teacher": "Abdukarimov B.T." },
-				{ "name": "Rus tili", "room": "3/4 - 2/18", "teacher": "Valiyeva G.V. / Kimsanova G.T." },
-				{ "name": "Fizika", "room": "2/16", "teacher": "Halimova S.R." }
+				{ "name": "CHQBT", "room": "3/10", "teacher": "Islomov X.X." },
+				{ "name": "Adabiyot", "room": "3/13", "teacher": "Eraliyeva A.V." }
 			]
 		},
 		{
 			"day": "Seshanba",
 			"subjects": [
-				{ "name": "Ingliz tili", "room": "3/3 - 3/9", "teacher": "Xashimova S.K. / Elmurodova G.S." },
-				{ "name": "Davlat va huquq", "room": "3/8", "teacher": "Qarshiyeva S.A." },
+				{ "name": "Ingliz tili", "room": "3/9", "teacher": "Elmurodova G.S." },
+				{ "name": "Fizika", "room": "2/16", "teacher": "Halimova S.R." },
 				{ "name": "Jismoniy tarbiya", "room": "1/25", "teacher": "Alimova M.S. / Jontayev A.A." },
 				{ "name": "Algebra", "room": "2/12", "teacher": "Abdukarimov B.T." },
-				{ "name": "CHQBT", "room": "3/10", "teacher": "Islomov X.X." },
-				{ "name": "Kasbiy ta'lim", "room": "2/25", "teacher": "Razzakov N.D." }
+				{ "name": "Davlat va huquq", "room": "3/8", "teacher": "Qarshiyeva S.A." }
 			]
 		},
 		{
@@ -431,38 +430,39 @@ export default {
 				{ "name": "Adabiyot", "room": "3/7", "teacher": "Eraliyeva A.V." },
 				{ "name": "Informatika", "room": "2/25 - 2/16", "teacher": "Djumayev B.K. / Turakulov B.A." },
 				{ "name": "Ona tili", "room": "3/7", "teacher": "Eraliyeva A.V." },
-				{ "name": "Ingliz tili", "room": "3/3 - 3/9", "teacher": "Xashimova S.K. / Elmurodova G.S." },
-				{ "name": "Tarbiya", "room": "3/8", "teacher": "Qarshiyeva S.A." }
+				{ "name": "Ingliz tili", "room": "3/9", "teacher": "Elmurodova G.S." },
+				{ "name": "Rus tili", "room": "3/4 - 2/18", "teacher": "Valiyeva G.V. / Kimsanova G.T." }
 			]
 		},
 		{
 			"day": "Payshanba",
 			"subjects": [
-				{ "name": "CHQBT", "room": "3/10", "teacher": "Islomov X.X." },
+				{ "name": "O'zbekiston tarixi", "room": "3/13", "teacher": "Tairova O.R." },
 				{ "name": "Iqtisod va huquq", "room": "2/1", "teacher": "To'laganov S.S." },
 				{ "name": "Biologiya", "room": "3/7", "teacher": "Muzafarova N.Y." },
 				{ "name": "Kimyo", "room": "1/11", "teacher": "Amanova M.N." },
-				{ "name": "Fizika", "room": "2/16", "teacher": "Halimova S.R." },
-				{ "name": "O'zbekiston tarixi", "room": "3/13", "teacher": "Tairova O.R." }
+				{ "name": "CHQBT", "room": "3/10", "teacher": "Islomov X.X." },
+				{ "name": "Fizika", "room": "2/16", "teacher": "Halimova S.R." }
 			]
 		},
 		{
 			"day": "Juma",
 			"subjects": [
-				{ "name": "Algebra", "room": "2/12", "teacher": "Abdukarimov B.T." },
+				{ "name": "Kasbiy ta'lim", "room": "2/25", "teacher": "Razzakov N.D." },
 				{ "name": "Jahon tarixi", "room": "3/13", "teacher": "Tairova O.R." },
 				{ "name": "Geometriya", "room": "1/11", "teacher": "Abdukarimov B.T." },
 				{ "name": "Informatika", "room": "2/25 - 2/16", "teacher": "Djumayev B.K. / Turakulov B.A." },
-				{ "name": "Iqtisod va huquq", "room": "2/1", "teacher": "To'laganov S.S." }
+				{ "name": "Kasbiy ta'lim", "room": "2/25", "teacher": "Razzakov N.D." }
 			]
 		},
 		{
 			"day": "Shanba",
 			"subjects": [
-				{ "name": "Rus tili", "room": "3/4 - 2/18", "teacher": "Valiyeva G.V. / Kimsanova G.T." },
+				{ "name": "Rus tili", "room": "2/18 - 3/4", "teacher": "Kimsanova G.T. / Valiyeva G.V." },
+				{ "name": "Iqtisod va huquq", "room": "2/1", "teacher": "To'laganov S.S." },
 				{ "name": "Kasbiy ta'lim", "room": "2/25", "teacher": "Razzakov N.D." },
-				{ "name": "Adabiyot", "room": "3/13", "teacher": "Eraliyeva A.V." },
-				{ "name": "Kasbiy ta'lim", "room": "2/25", "teacher": "Razzakov N.D." }
+				{ "name": "Tarbiya", "room": "3/8", "teacher": "Qarshiyeva S.A." },
+				{ "name": "Algebra", "room": "2/12", "teacher": "Abdukarimov B.T." }
 			]
 		}
 	],
@@ -471,62 +471,62 @@ export default {
 			"day": "Dushanba",
 			"subjects": [
 				{ "name": "Kelajak soati", "room": "3/10", "teacher": "Qarshiboyeva M." },
-				{ "name": "Ona tili", "room": "3/10", "teacher": "Qarshiboyeva M." },
+				{ "name": "Algebra", "room": "3/8", "teacher": "Abdukarimov B.T." },
 				{ "name": "Ingliz tili", "room": "3/3", "teacher": "Qarsiboyeva A.M." },
 				{ "name": "CHQBT", "room": "Kabinet yo'q", "teacher": "Islomov X.X." },
-				{ "name": "Algebra", "room": "3/8", "teacher": "Abdukarimov B.T." },
+				{ "name": "Ona tili", "room": "3/10", "teacher": "Qarshiboyeva M." },
 				{ "name": "Geometriya", "room": "1/9", "teacher": "Abdukarimov B.T." }
 			]
 		},
 		{
 			"day": "Seshanba",
 			"subjects": [
-				{ "name": "Iqtisod va huquq", "room": "2/1", "teacher": "To'laganov S.S." },
-				{ "name": "Kasbiy ta'lim", "room": "2/25", "teacher": "Razzakov N.D." },
+				{ "name": "Jismoniy tarbiya", "room": "1/25", "teacher": "Jontayev A.A. / Alimova M.S." },
+				{ "name": "Tarbiya", "room": "3/8", "teacher": "Qarshiyeva S.A." },
 				{ "name": "Kimyo", "room": "1/11", "teacher": "Amanova M.N." },
-				{ "name": "CHQBT", "room": "3/10", "teacher": "Islomov X.X." },
-				{ "name": "Kasbiy ta'lim", "room": "2/25", "teacher": "Razzakov N.D." }
+				{ "name": "CHQBT", "room": "3/10", "teacher": "Islomov X.X." }
 			]
 		},
 		{
 			"day": "Chorshanba",
 			"subjects": [
-				{ "name": "Jismoniy tarbiya", "room": "1/25", "teacher": "Jontayev A.A. / Alimova M.S." },
-				{ "name": "Ona tili", "room": "3/10", "teacher": "Qarshiboyeva M." },
-				{ "name": "Informatika", "room": "2/25 - 2/18", "teacher": "Turakulov B.A. / Djumayev B.K." },
-				{ "name": "Ingliz tili", "room": "3/3", "teacher": "Qarsiboyeva A.M." },
-				{ "name": "Rus tili", "room": "3/4 - 2/18", "teacher": "Valiyeva G.V. / Kimsanova G.T." }
+				{ "name": "Iqtisod va huquq", "room": "2/1", "teacher": "To'laganov S.S." },
+				{ "name": "Adabiyot", "room": "3/10", "teacher": "Qarshiboyeva M." },
+				{ "name": "Informatika", "room": "2/25 - Kabinet yo'q", "teacher": "Turakulov B.A. / Djumayev B.K." },
+				{ "name": "Ingliz tili", "room": "3/3", "teacher": "Qarsiboyeva A.M." }
 			]
 		},
 		{
 			"day": "Payshanba",
 			"subjects": [
 				{ "name": "Biologiya", "room": "3/7", "teacher": "Muzafarova N.Y." },
-				{ "name": "Adabiyot", "room": "3/10", "teacher": "Qarshiboyeva M." },
+				{ "name": "Ona tili", "room": "3/10", "teacher": "Qarshiboyeva M." },
 				{ "name": "Kimyo", "room": "1/11", "teacher": "Amanova M.N." },
 				{ "name": "Fizika", "room": "2/16", "teacher": "Halimova S.R." },
 				{ "name": "Rus tili", "room": "3/4 - 2/18", "teacher": "Valiyeva G.V. / Kimsanova G.T." },
-				{ "name": "O'zbekiston tarixi", "room": "3/15", "teacher": "YESENBAYEVA J.T." }
+				{ "name": "O'zbekiston tarixi", "room": "3/15", "teacher": "Utegenova Y.P." }
 			]
 		},
 		{
 			"day": "Juma",
 			"subjects": [
-				{ "name": "Informatika", "room": "3/15 - 2/25", "teacher": "Djumayev B.K. / Turanova A.B." },
-				{ "name": "Tarbiya", "room": "3/8", "teacher": "Qarshiyeva S.A." },
+				{ "name": "Jahon tarixi", "room": "3/15", "teacher": "Utegenova Y.P." },
+				{ "name": "Informatika", "room": "2/25 - 3/15", "teacher": "Turakulov B.A. / Djumayev B.K." },
+				{ "name": "Kasbiy ta'lim", "room": "2/25", "teacher": "Razzakov N.D." },
+				{ "name": "Davlat va huquq", "room": "3/8", "teacher": "Qarshiyeva S.A." },
 				{ "name": "Fizika", "room": "2/16", "teacher": "Halimova S.R." },
-				{ "name": "Jahon tarixi", "room": "3/15", "teacher": "YESENBAYEVA J.T." },
-				{ "name": "Algebra", "room": "3/8", "teacher": "Abdukarimov B.T." }
+				{ "name": "Kasbiy ta'lim", "room": "2/25", "teacher": "Razzakov N.D." }
 			]
 		},
 		{
 			"day": "Shanba",
 			"subjects": [
 				{ "name": "Adabiyot", "room": "3/10", "teacher": "Qarshiboyeva M." },
-				{ "name": "Geometriya", "room": "3/8", "teacher": "Abdukarimov B.T." },
+				{ "name": "Rus tili", "room": "3/4 - 2/18", "teacher": "Valiyeva G.V. / Kimsanova G.T." },
 				{ "name": "Iqtisod va huquq", "room": "2/1", "teacher": "To'laganov S.S." },
-				{ "name": "Davlat va huquq", "room": "3/8", "teacher": "Qarshiyeva S.A." },
-				{ "name": "Kasbiy ta'lim", "room": "2/25", "teacher": "Razzakov N.D." }
+				{ "name": "Algebra", "room": "3/8", "teacher": "Abdukarimov B.T." },
+				{ "name": "Kasbiy ta'lim", "room": "2/25", "teacher": "Razzakov N.D." },
+				{ "name": "Geometriya", "room": "3/8", "teacher": "Abdukarimov B.T." }
 			]
 		}
 	],

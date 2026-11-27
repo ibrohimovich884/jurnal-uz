@@ -1,442 +1,555 @@
-:root {
-  --bg-color: #f4f7fe;
-  --card-bg: #ffffff;
-  --text-main: #1b2559;
-  --text-muted: #a3aed0;
-  --accent-blue: #422afb; 
-  --light-blue: #e0e7ff;
-  --border-radius: 20px;
-  --card-shadow: 0px 18px 40px rgba(112, 144, 176, 0.12);
+/* ==========================================================================
+   CLASS PAGE — iPHONE TRANSLUCENT BLUE GLASS STYLES
+   ========================================================================== */
+
+.ios-class-page {
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 4px;
 }
 
-body.dark {
-  --bg-color: #0b1437;
-  --card-bg: #111c44;
-  --text-main: #ffffff;
-  --text-muted: #a3aed0;
-  --accent-blue: #7551ff;
-  --card-shadow: 0px 18px 40px rgba(0, 0, 0, 0.3);
-}
-
-.class-page-wrapper {
-  background-color: var(--bg-color);
-  min-height: 100vh;
-  padding: 20px 15px calc(20px + env(safe-area-inset-bottom));
-  font-family: 'DM Sans', sans-serif;
-  touch-action: pan-y; /* gorizontal swipe'ni o'zimiz ushlaymiz, vertikal scroll erkin */
-}
-
-/* ----------------- HOZIRGI DARS / JONLI HOLAT PANELI ----------------- */
-.live-lesson-bar {
-  display: flex;
+/* Toast */
+.ios-share-toast {
+  position: fixed;
+  top: calc(66px + env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  max-width: calc(100vw - 24px);
+  background: var(--ios-glass-dock);
+  backdrop-filter: var(--ios-blur-deep);
+  -webkit-backdrop-filter: var(--ios-blur-deep);
+  border: 1px solid var(--ios-glass-border-light);
+  color: var(--ios-text-primary);
+  padding: 9px 15px;
+  border-radius: var(--ios-radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
-  text-align: center;
-  padding: 12px 16px;
-  border-radius: 16px;
+  box-shadow: var(--ios-glass-shadow-lg);
+  animation: iosSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Header */
+.ios-class-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   margin-bottom: 18px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-main);
-  box-shadow: var(--card-shadow);
 }
 
-.live-lesson-bar.live-lesson {
-  background: rgba(1, 181, 116, 0.12);
-  border: 1.5px solid rgba(1, 181, 116, 0.4);
+@media (min-width: 480px) {
+  .ios-class-page {
+    padding-top: 10px;
+  }
+  .ios-class-header {
+    gap: 14px;
+    margin-bottom: 24px;
+  }
 }
 
-.live-lesson-bar.live-break {
-  background: rgba(255, 178, 36, 0.14);
-  border: 1.5px solid rgba(255, 178, 36, 0.4);
-}
-
-.live-lesson-bar.live-before {
-  background: var(--light-blue);
-  border: 1.5px solid rgba(66, 42, 241, 0.25);
-}
-
-.live-bar-dot {
-  width: 8px;
-  height: 8px;
-  min-width: 8px;
-  border-radius: 50%;
-  background: #01b574;
-  box-shadow: 0 0 0 0 rgba(1, 181, 116, 0.6);
-  animation: pulseDot 1.6s infinite;
-}
-
-@keyframes pulseDot {
-  0% { box-shadow: 0 0 0 0 rgba(1, 181, 116, 0.55); }
-  70% { box-shadow: 0 0 0 8px rgba(1, 181, 116, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(1, 181, 116, 0); }
-}
-
-/* ----------------- SINF ALMASHTIRGICH (SWIPE / TUGMA) ----------------- */
-.class-switcher {
+.header-meta-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin-bottom: 22px;
 }
 
-.switcher-arrow {
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  border-radius: 50%;
-  border: none;
-  background: var(--card-bg);
-  box-shadow: var(--card-shadow);
-  color: var(--accent-blue);
-  font-size: 1.4rem;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.switcher-arrow:active {
-  transform: scale(0.92);
-}
-
-.switcher-current {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
-.switcher-current-label {
-  font-weight: 800;
-  font-size: 1rem;
-  color: var(--text-main);
-  letter-spacing: 0.5px;
-}
-
-.switcher-dots {
-  display: flex;
-  gap: 6px;
-}
-
-.switcher-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--text-muted);
-  opacity: 0.4;
-  transition: all 0.25s ease;
-}
-
-.switcher-dot.active {
-  opacity: 1;
-  background: var(--accent-blue);
-  width: 18px;
-  border-radius: 5px;
-}
-
-.class-meetup-shortcut-wrap {
-  display: flex;
-  justify-content: center;
-  margin: -10px auto 25px;
-}
-
-.class-meetup-shortcut-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 18px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(6, 182, 212, 0.12));
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  border-radius: 999px;
-  color: var(--accent-blue);
-  text-decoration: none;
-  font-size: 0.85rem;
+.header-eyebrow {
+  font-size: 0.75rem;
   font-weight: 700;
-  transition: all 0.2s ease;
-}
-
-.class-meetup-shortcut-btn:hover {
-  transform: translateY(-1px);
-  background: rgba(99, 102, 241, 0.22);
-  border-color: rgba(99, 102, 241, 0.5);
-}
-
-.premium-header {
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-.sinf-badge {
-  background: var(--light-blue);
-  color: var(--accent-blue);
-  padding: 6px 20px;
-  border-radius: 12px;
-  font-weight: 700;
-  font-size: 0.85rem;
-}
-
-.main-title {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--text-main);
-  margin: 15px 0 5px;
-}
-
-.live-status {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-}
-
-.pulse-dot {
-  width: 8px; 
-  height: 8px;
-  background: #01b574;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(1, 181, 116, 0.5);
-}
-
-.bento-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.day-section {
-  background: var(--card-bg);
-  border-radius: var(--border-radius);
-  padding: 20px;
-  box-shadow: var(--card-shadow);
-  border: 2px solid transparent;
-  transition: 0.3s ease;
-  scroll-margin-top: 80px;
-}
-
-/* Bugungi kun uchun active holat */
-.day-section.is-active {
-  border-color: var(--accent-blue);
-  transform: translateY(-5px);
-}
-
-.day-header {
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.day-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.day-info h2 {
-  color: var(--accent-blue);
-  font-weight: 800;
-  font-size: 1.4rem;
-  margin: 0;
-  line-height: 1.2;
-}
-
-.lesson-count {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  font-weight: 600;
-}
-
-.day-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.status-label {
-  background: rgba(1, 181, 116, 0.14);
-  color: #01b574;
-  border: 1px solid rgba(1, 181, 116, 0.35);
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.5px;
   text-transform: uppercase;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
+  letter-spacing: 0.5px;
+  color: var(--ios-text-tertiary);
 }
 
-.live-dot-icon {
+.header-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ios-green-surface);
+  border: 1px solid var(--ios-green-border);
+  color: var(--ios-green);
+  padding: 3px 10px;
+  border-radius: var(--ios-radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.live-pulsar {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #01b574;
-  animation: pulseDot 1.4s infinite;
+  background: var(--ios-green);
+  box-shadow: 0 0 6px var(--ios-green);
+  animation: iosPulse 1.6s infinite;
 }
 
-.day-share-btn {
-  background: var(--light-blue);
-  color: var(--accent-blue);
-  border: 1px solid rgba(66, 42, 241, 0.15);
-  padding: 5px 12px;
-  border-radius: 999px;
-  font-size: 0.78rem;
+.header-title-row {
+  margin: 2px 0;
+}
+
+.class-main-title {
+  font-size: clamp(1.65rem, 6.2vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ios-text-primary);
+  line-height: 1.18;
+}
+
+.title-bold {
+  color: var(--ios-accent-light);
+}
+
+body.light-mode .title-bold {
+  color: var(--ios-accent);
+}
+
+/* Live Activity / Dynamic Island Bar */
+.ios-live-activity-bar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  background: var(--ios-glass-card);
+  backdrop-filter: var(--ios-blur-deep);
+  -webkit-backdrop-filter: var(--ios-blur-deep);
+  border: 1px solid var(--ios-glass-border-light);
+  border-radius: 18px;
+  padding: 10px 12px;
+  box-shadow: var(--ios-glass-shadow);
+  transition: all 0.25s ease;
+}
+
+@media (min-width: 480px) {
+  .ios-live-activity-bar {
+    gap: 12px;
+    border-radius: var(--ios-radius-md);
+    padding: 12px 16px;
+  }
+}
+
+.activity-lesson {
+  border-color: var(--ios-green-border);
+}
+
+.activity-break {
+  border-color: rgba(255, 159, 10, 0.38);
+}
+
+body.light-mode .activity-break {
+  border-color: rgba(217, 119, 6, 0.34);
+}
+
+.activity-icon-wrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activity-icon-wrap.green {
+  background: var(--ios-green-surface);
+  color: var(--ios-green);
+}
+
+.activity-icon-wrap.amber {
+  background: var(--ios-amber-surface);
+  color: var(--ios-amber);
+}
+
+.activity-icon-wrap.blue {
+  background: var(--ios-accent-surface);
+  color: var(--ios-accent-light);
+}
+
+body.light-mode .activity-icon-wrap.blue {
+  color: var(--ios-accent);
+}
+
+.pulse-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ios-green);
+  box-shadow: 0 0 10px var(--ios-green);
+  animation: iosPulse 1.4s infinite;
+}
+
+.activity-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.activity-label {
+  font-size: 0.65rem;
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--ios-text-tertiary);
+}
+
+.activity-title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: var(--ios-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.activity-timer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.timer-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ios-text-tertiary);
+}
+
+.timer-val {
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--ios-accent-light);
+  letter-spacing: -0.3px;
+}
+
+@media (min-width: 480px) {
+  .activity-title {
+    font-size: 0.92rem;
+  }
+  .timer-val {
+    font-size: 1.15rem;
+  }
+}
+
+body.light-mode .timer-val {
+  color: var(--ios-accent);
+}
+
+/* Class Switcher Segmented Bar */
+.ios-class-switcher-bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--ios-glass-bg);
+  backdrop-filter: var(--ios-blur-deep);
+  -webkit-backdrop-filter: var(--ios-blur-deep);
+  border: 1px solid var(--ios-glass-border-light);
+  border-radius: var(--ios-radius-full);
+  padding: 3px;
+  box-shadow: var(--ios-glass-shadow-sm);
+}
+
+.switcher-nav-btn {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  border-radius: 50%;
+  background: transparent;
+  border: none;
+  color: var(--ios-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+@media (min-width: 480px) {
+  .ios-class-switcher-bar {
+    gap: 8px;
+    padding: 4px;
+  }
+  .switcher-nav-btn {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+  }
+}
+
+.switcher-nav-btn:hover {
+  background: var(--ios-accent-surface);
+  color: var(--ios-accent-light);
+}
+
+body.light-mode .switcher-nav-btn:hover {
+  color: var(--ios-accent);
+}
+
+.switcher-pills-row {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.switcher-pills-row::-webkit-scrollbar {
+  display: none;
+}
+
+.switcher-pill {
+  flex: 1;
+  min-width: 38px;
+  background: transparent;
+  border: none;
+  color: var(--ios-text-secondary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 6px 3px;
+  border-radius: var(--ios-radius-full);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+  text-align: center;
+}
+
+@media (min-width: 480px) {
+  .switcher-pills-row {
+    gap: 4px;
+  }
+  .switcher-pill {
+    min-width: 44px;
+    font-size: 0.82rem;
+    padding: 6px 4px;
+  }
+}
+
+.switcher-pill:hover {
+  color: var(--ios-text-primary);
+}
+
+.switcher-pill.active {
+  background: var(--ios-accent);
+  color: #ffffff;
+  box-shadow: 0 2px 8px var(--ios-accent-glow);
+}
+
+/* Schedule Feed */
+
+.ios-schedule-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ios-day-card {
+  position: relative;
+  background: var(--ios-glass-card);
+  backdrop-filter: var(--ios-blur-deep);
+  -webkit-backdrop-filter: var(--ios-blur-deep);
+  border: 1px solid var(--ios-glass-border-light);
+  border-radius: 20px;
+  padding: 14px 12px;
+  box-shadow: var(--ios-glass-shadow);
+  transition: all 0.25s ease;
+  scroll-margin-top: calc(70px + env(safe-area-inset-top));
+  overflow: hidden;
+}
+
+@media (min-width: 480px) {
+  .ios-schedule-feed {
+    gap: 20px;
+  }
+  .ios-day-card {
+    border-radius: var(--ios-radius-lg);
+    padding: 18px;
+    scroll-margin-top: calc(78px + env(safe-area-inset-top));
+  }
+}
+
+.card-top-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ios-glass-sheen), transparent);
+}
+
+.ios-day-card.is-focused {
+  border-color: var(--ios-accent-border);
+  box-shadow: 0 12px 36px -6px var(--ios-accent-glow), var(--ios-glass-shadow);
+}
+
+.day-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--ios-glass-hairline);
+}
+
+.day-heading-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.day-name {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: var(--ios-text-primary);
+  letter-spacing: -0.2px;
+}
+
+@media (min-width: 480px) {
+  .day-card-header {
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+  }
+  .day-name {
+    font-size: 1.25rem;
+  }
+}
+
+.day-lesson-count {
+  font-size: 0.78rem;
+  color: var(--ios-text-tertiary);
+  font-weight: 600;
+}
+
+.day-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.day-live-tag {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  background: var(--ios-green-surface);
+  border: 1px solid var(--ios-green-border);
+  color: var(--ios-green);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--ios-radius-full);
+  text-transform: uppercase;
+}
+
+.live-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ios-green);
+  animation: iosPulse 1.4s infinite;
+}
+
+.day-share-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--ios-glass-inner);
+  backdrop-filter: var(--ios-blur-subtle);
+  -webkit-backdrop-filter: var(--ios-blur-subtle);
+  border: 1px solid var(--ios-glass-border);
+  color: var(--ios-text-secondary);
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 5px 11px;
+  border-radius: var(--ios-radius-full);
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 6px rgba(66, 42, 241, 0.08);
+  transition: all 0.15s ease;
 }
 
-.day-share-btn:hover {
-  background: var(--accent-blue);
+.day-share-button:hover {
+  background: var(--ios-accent);
   color: #ffffff;
-  border-color: var(--accent-blue);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(66, 42, 241, 0.25);
+  border-color: var(--ios-accent);
 }
 
-.day-share-btn:active {
+.day-share-button:active {
   transform: scale(0.95);
 }
 
-body.dark .day-share-btn {
-  background: rgba(117, 81, 255, 0.15);
-  color: #c7d2fe;
-  border-color: rgba(117, 81, 255, 0.3);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-body.dark .day-share-btn:hover {
-  background: var(--accent-blue);
-  color: #ffffff;
-  box-shadow: 0 4px 14px rgba(117, 81, 255, 0.4);
-}
-
-/* Toast xabarnoma */
-.share-toast {
-  position: fixed;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--text-main);
-  color: var(--bg-color);
-  padding: 12px 22px;
-  border-radius: 999px;
-  font-size: 0.88rem;
-  font-weight: 700;
-  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  animation: popIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  pointer-events: none;
-}
-
-@keyframes popIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, 15px) scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, 0) scale(1);
-  }
-}
-
-.lessons-container {
+.day-lessons-list {
   display: flex;
   flex-direction: column;
+  gap: 8px;
+}
+
+/* Footer info */
+.ios-class-footer {
+  text-align: center;
+  margin-top: 30px;
+  padding-bottom: 20px;
+}
+
+.ios-version-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ios-glass-bg);
+  border: 1px solid var(--ios-glass-border);
+  color: var(--ios-text-tertiary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--ios-radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ios-version-pill:hover {
+  color: var(--ios-text-primary);
+  border-color: var(--ios-accent-light);
+}
+
+/* Not found */
+.ios-not-found {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.ios-not-found-card {
+  background: var(--ios-glass-card);
+  backdrop-filter: var(--ios-blur-deep);
+  -webkit-backdrop-filter: var(--ios-blur-deep);
+  border: 1px solid var(--ios-glass-border);
+  border-radius: var(--ios-radius-xl);
+  padding: 36px 24px;
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+  box-shadow: var(--ios-glass-shadow-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 12px;
 }
 
-.glass-update-btn {
-  margin-top: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: var(--text-main);
-  padding: 8px 16px;
-  border-radius: 12px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  backdrop-filter: blur(10px);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-}
-
-/* ----------------- MA'LUMOT TOPILMADI (404-holat) ----------------- */
-.not-found-container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px calc(20px + env(safe-area-inset-bottom));
-  background-color: var(--bg-color);
-  font-family: 'DM Sans', sans-serif;
-}
-
-.error-card {
-  background: var(--card-bg);
-  border-radius: var(--border-radius);
-  box-shadow: var(--card-shadow);
-  padding: 40px 28px;
-  max-width: 340px;
-  width: 100%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
 .error-icon {
-  font-size: 2.8rem;
-  margin-bottom: 6px;
+  color: var(--ios-amber);
 }
 
-.error-card h2 {
-  color: var(--text-main);
-  font-weight: 800;
-  font-size: 1.3rem;
-  margin: 0;
-}
-
-.error-card p {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  margin: 0 0 10px;
-  line-height: 1.4;
-}
-
-.error-home-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: var(--accent-blue);
-  color: #fff;
+.ios-return-btn {
+  margin-top: 10px;
+  background: var(--ios-accent);
+  color: #ffffff;
   text-decoration: none;
+  padding: 10px 20px;
+  border-radius: var(--ios-radius-full);
   font-weight: 700;
-  font-size: 0.95rem;
-  padding: 12px 24px;
-  border-radius: 14px;
-  width: 100%;
-  transition: transform 0.15s ease, opacity 0.15s ease;
-}
-
-.error-home-btn:active {
-  transform: scale(0.96);
-  opacity: 0.9;
+  font-size: 0.9rem;
 }

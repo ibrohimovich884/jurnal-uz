@@ -1,134 +1,205 @@
-:root {
-  /* Light Mode */
-  --modal-bg: rgba(255, 255, 255, 0.85);
-  --modal-border: rgba(0, 0, 0, 0.1);
-  --modal-text: #1a1a1b;
-  --modal-desc: #4b5563;
-  --accent-color: #4f46e5;
-  --badge-bg: rgba(79, 70, 229, 0.1);
-}
+/* ==========================================================================
+   UPDATE MODAL — iPHONE TRANSLUCENT BLUE GLASS DIALOG
+   ========================================================================== */
 
-.dark {
-  /* Dark Mode */
-  --modal-bg: rgba(24, 24, 27, 0.85);
-  --modal-border: rgba(255, 255, 255, 0.1);
-  --modal-text: #f8fafc;
-  --modal-desc: #94a3b8;
-  --accent-color: #818cf8;
-  --badge-bg: rgba(129, 140, 248, 0.15);
-}
-
-.update-overlay {
+.ios-modal-overlay {
   position: fixed;
   inset: 0;
   z-index: 1000;
-  background: rgba(0, 0, 0, 0.2); /* Juda to'q bo'lmagan soya */
-  backdrop-filter: blur(15px) saturate(180%); /* Premium loyqalash */
-  -webkit-backdrop-filter: blur(15px) saturate(180%);
+  background: var(--ios-overlay-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
-  animation: modalFadeIn 0.3s ease;
+  padding: 16px;
+  animation: iosFadeIn 0.25s ease;
 }
 
-.update-modal-card {
-  background: var(--modal-bg);
-  border: 1px solid var(--modal-border);
-  color: var(--modal-text);
-  width: 100%;
-  max-width: 400px;
-  border-radius: 32px;
-  padding: 30px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+.ios-modal-card {
   position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: var(--ios-glass-dock);
+  backdrop-filter: var(--ios-blur-deep);
+  -webkit-backdrop-filter: var(--ios-blur-deep);
+  border: 1px solid var(--ios-glass-border-light);
+  border-radius: 26px;
+  padding: 22px 16px 18px;
+  box-shadow: var(--ios-glass-shadow-lg);
+  color: var(--ios-text-primary);
+  animation: iosSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
 }
 
-.modal-header {
-  text-align: center;
-  margin-bottom: 24px;
+@media (min-width: 480px) {
+  .ios-modal-card {
+    border-radius: var(--ios-radius-xl);
+    padding: 26px 22px 22px;
+  }
 }
 
-.pulse-icon {
-  font-size: 2.5rem;
-  margin-bottom: 12px;
-  animation: pulse 2s infinite;
+.modal-top-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ios-glass-sheen), transparent);
 }
 
-.update-status {
+.modal-x-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--ios-glass-bg);
+  border: 1px solid var(--ios-glass-border);
+  color: var(--ios-text-secondary);
   display: flex;
-  flex-direction: column; /* Mobil uchun ustun shakli */
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.modal-x-btn:hover {
+  background: var(--ios-glass-card-hover);
+  color: var(--ios-text-primary);
+}
+
+.ios-modal-header {
+  text-align: center;
   margin-bottom: 20px;
-}
-
-.status-badge {
-  background: var(--badge-bg);
-  color: var(--accent-color);
-  padding: 4px 12px;
-  border-radius: 100px;
-  font-weight: 700;
-  font-size: 0.85rem;
-}
-
-.update-features {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 24px;
-}
-
-.update-features li {
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-icon-bubble {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--ios-accent-surface);
+  border: 1px solid var(--ios-glass-border);
+  color: var(--ios-accent-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-bottom: 12px;
-  font-size: 0.95rem; /* 360px ekran uchun qulay o'lcham */
-  color: var(--modal-desc);
+  box-shadow: 0 4px 16px var(--ios-accent-glow);
+}
+
+body.light-mode .modal-icon-bubble {
+  color: var(--ios-accent);
+}
+
+.modal-headline {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: var(--ios-text-primary);
+  margin-bottom: 6px;
+}
+
+.modal-version-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ios-glass-bg);
+  border: 1px solid var(--ios-glass-border);
+  padding: 3px 10px;
+  border-radius: var(--ios-radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ios-text-secondary);
+}
+
+.dot-sep {
+  opacity: 0.4;
+}
+
+.ios-modal-body {
+  margin-bottom: 22px;
+}
+
+.modal-features-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-features-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.88rem;
+  color: var(--ios-text-secondary);
   line-height: 1.4;
 }
 
-.modal-close-btn {
+.feature-icon {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+.feature-icon.star {
+  background: rgba(255, 179, 0, 0.18);
+  color: #ffb300;
+}
+
+.feature-icon.share {
+  background: var(--ios-accent-surface);
+  color: var(--ios-accent-light);
+}
+
+body.light-mode .feature-icon.share {
+  color: var(--ios-accent);
+}
+
+.feature-icon.check {
+  background: var(--ios-green-surface);
+  color: var(--ios-green);
+}
+
+.feature-icon.zap {
+  background: rgba(234, 179, 8, 0.18);
+  color: #eab308;
+}
+
+.feature-icon.clock {
+  background: rgba(168, 85, 247, 0.18);
+  color: #c084fc;
+}
+
+.feature-desc b {
+  color: var(--ios-text-primary);
+}
+
+.modal-primary-action-btn {
   width: 100%;
-  background: var(--accent-color);
-  color: white;
+  background: var(--ios-accent);
+  color: #ffffff;
   border: none;
-  padding: 16px;
-  border-radius: 18px;
-  font-size: 1rem;
+  padding: 13px;
+  border-radius: var(--ios-radius-md);
+  font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  transition: transform 0.2s active;
+  box-shadow: 0 4px 16px var(--ios-accent-glow);
+  transition: transform 0.15s ease, opacity 0.15s ease;
 }
 
-.modal-close-btn:active {
-  transform: scale(0.96); /* Bosilganda sezilarli bo'ladi */
-}
-
-/* Animatsiyalar */
-@keyframes modalFadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-
-@media (max-width: 360px) {
-  .update-modal-card {
-    padding: 20px;
-    border-radius: 24px;
-  }
-  
-  .update-features li {
-    font-size: 0.85rem;
-    gap: 8px;
-  }
-  
-  .pulse-icon {
-    font-size: 2rem;
-  }
+.modal-primary-action-btn:active {
+  transform: scale(0.97);
+  opacity: 0.9;
 }

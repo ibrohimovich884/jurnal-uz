@@ -1,50 +1,50 @@
 import { useEffect, useState } from "react";
+import { WifiOff, Wifi } from "lucide-react";
 import "./Online.css";
 
 export default function OnlineWatcher() {
-    const [isOnline, setIsOnline] = useState(navigator.onLine);
-    const [showReconnected, setShowReconnected] = useState(false);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const [showReconnected, setShowReconnected] = useState(false);
 
-    useEffect(() => {
-        const handleOnline = () => {
-            setIsOnline(true);
-            // Sahifani majburan qayta yuklamaymiz — ma'lumotlar offline holatda
-            // ham to'liq ishlaydi, shuning uchun reload foydalanuvchi holatini
-            // (ochiq modal, scroll pozitsiyasi va h.k.) bekorga yo'qotadi.
-            setShowReconnected(true);
-            const timer = setTimeout(() => setShowReconnected(false), 3000);
-            return () => clearTimeout(timer);
-        };
+  useEffect(() => {
+    const handleOnline = () => {
+      setIsOnline(true);
+      setShowReconnected(true);
+      const timer = setTimeout(() => setShowReconnected(false), 3000);
+      return () => clearTimeout(timer);
+    };
 
-        const handleOffline = () => {
-            setIsOnline(false);
-            setShowReconnected(false);
-        };
+    const handleOffline = () => {
+      setIsOnline(false);
+      setShowReconnected(false);
+    };
 
-        window.addEventListener("online", handleOnline);
-        window.addEventListener("offline", handleOffline);
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
 
-        return () => {
-            window.removeEventListener("online", handleOnline);
-            window.removeEventListener("offline", handleOffline);
-        };
-    }, []);
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  }, []);
 
-    if (!isOnline) {
-        return (
-            <div className="offline-banner">
-                📡 Internet yo‘q — offline rejimda ishlayapti
-            </div>
-        );
-    }
+  if (!isOnline) {
+    return (
+      <div className="ios-network-island offline">
+        <WifiOff size={14} />
+        <span>Internet yo‘q · Oflayn rejimda ishlamoqda</span>
+      </div>
+    );
+  }
 
-    if (showReconnected) {
-        return (
-            <div className="offline-banner online-banner">
-                ✅ Internet tiklandi
-            </div>
-        );
-    }
+  if (showReconnected) {
+    return (
+      <div className="ios-network-island online">
+        <Wifi size={14} />
+        <span>Internet aloqasi tiklandi</span>
+      </div>
+    );
+  }
 
-    return null;
+  return null;
 }

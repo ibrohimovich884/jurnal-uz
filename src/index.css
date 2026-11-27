@@ -1,6 +1,210 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+/* ==========================================================================
+   JURNAL.UZ — AUTHENTIC APPLE iOS LIQUID GLASS DESIGN SYSTEM
+   True Dark OLED Midnight Sapphire & True Light Luminous Ice-Glass
+   ========================================================================== */
+
+:root {
+  /* ---------------- DARK MODE (DEFAULT — iOS Midnight OLED Glass) ---------------- */
+  --ios-bg-base: #030610;
+  --ios-bg-gradient: radial-gradient(circle at 18% 12%, rgba(10, 132, 255, 0.22) 0%, transparent 48%),
+                     radial-gradient(circle at 84% 28%, rgba(56, 189, 248, 0.14) 0%, transparent 45%),
+                     radial-gradient(circle at 50% 88%, rgba(30, 64, 175, 0.24) 0%, transparent 52%);
+
+  /* Apple System Blue & Cyan (Dark) */
+  --ios-accent: #0a84ff;
+  --ios-accent-hover: #2d96ff;
+  --ios-accent-light: #64d2ff;
+  --ios-accent-glow: rgba(10, 132, 255, 0.42);
+  --ios-accent-surface: rgba(10, 132, 255, 0.20);
+  --ios-accent-border: rgba(100, 210, 255, 0.35);
+
+  /* Smoky Translucent Frosted Glass Layers */
+  --ios-glass-bg: rgba(16, 22, 38, 0.56);
+  --ios-glass-bg-subtle: rgba(24, 34, 58, 0.42);
+  --ios-glass-card: rgba(18, 25, 46, 0.54);
+  --ios-glass-card-hover: rgba(28, 39, 68, 0.70);
+  --ios-glass-inner: rgba(255, 255, 255, 0.05);
+  --ios-glass-dock: rgba(16, 23, 42, 0.68);
+  --ios-glass-select-bg: #0c1428;
+
+  /* Crisp Specular Borders & Hairlines */
+  --ios-glass-border: rgba(255, 255, 255, 0.13);
+  --ios-glass-border-light: rgba(255, 255, 255, 0.20);
+  --ios-glass-sheen: rgba(255, 255, 255, 0.28);
+  --ios-glass-hairline: rgba(255, 255, 255, 0.08);
+
+  /* Text Hierarchy (High Contrast on Dark) */
+  --ios-text-primary: #ffffff;
+  --ios-text-secondary: rgba(235, 242, 255, 0.80);
+  --ios-text-tertiary: rgba(190, 208, 238, 0.58);
+  --ios-text-quaternary: rgba(160, 185, 225, 0.38);
+
+  /* Shadows & Specular Rim */
+  --ios-glass-shadow: 0 16px 38px -10px rgba(0, 0, 0, 0.65), 0 1px 0 0 rgba(255, 255, 255, 0.10) inset;
+  --ios-glass-shadow-sm: 0 8px 20px -6px rgba(0, 0, 0, 0.50), 0 1px 0 0 rgba(255, 255, 255, 0.08) inset;
+  --ios-glass-shadow-lg: 0 24px 54px -12px rgba(0, 0, 0, 0.80), 0 1px 0 0 rgba(255, 255, 255, 0.16) inset;
+
+  /* Apple Blur Filters */
+  --ios-blur-deep: blur(32px) saturate(185%);
+  --ios-blur-subtle: blur(20px) saturate(175%);
+
+  /* Continuous Squircle Radii */
+  --ios-radius-xs: 10px;
+  --ios-radius-sm: 14px;
+  --ios-radius-md: 20px;
+  --ios-radius-lg: 24px;
+  --ios-radius-xl: 30px;
+  --ios-radius-full: 9999px;
+
+  /* Apple Semantic Status Colors (Dark) */
+  --ios-green: #30d158;
+  --ios-green-surface: rgba(48, 209, 88, 0.18);
+  --ios-green-border: rgba(48, 209, 88, 0.36);
+  --ios-amber: #ff9f0a;
+  --ios-amber-surface: rgba(255, 159, 10, 0.18);
+  --ios-red: #ff453a;
+  --ios-red-surface: rgba(255, 69, 58, 0.18);
+
+  /* Modal Overlay */
+  --ios-overlay-bg: rgba(2, 5, 15, 0.65);
+}
+
+/* ---------------- LIGHT MODE (iOS Crisp Frosted White / Luminous Sky) ---------------- */
+body.light-mode {
+  --ios-bg-base: #eef4ff;
+  --ios-bg-gradient: radial-gradient(circle at 14% 12%, rgba(56, 189, 248, 0.34) 0%, transparent 46%),
+                     radial-gradient(circle at 86% 22%, rgba(0, 122, 255, 0.24) 0%, transparent 45%),
+                     radial-gradient(circle at 48% 85%, rgba(99, 102, 241, 0.18) 0%, transparent 50%);
+
+  /* Apple System Blue (Light) */
+  --ios-accent: #007aff;
+  --ios-accent-hover: #0062d6;
+  --ios-accent-light: #0066eb;
+  --ios-accent-glow: rgba(0, 122, 255, 0.28);
+  --ios-accent-surface: rgba(0, 122, 255, 0.12);
+  --ios-accent-border: rgba(0, 122, 255, 0.28);
+
+  /* Luminous Translucent Frosted White Glass */
+  --ios-glass-bg: rgba(255, 255, 255, 0.62);
+  --ios-glass-bg-subtle: rgba(255, 255, 255, 0.46);
+  --ios-glass-card: rgba(255, 255, 255, 0.58);
+  --ios-glass-card-hover: rgba(255, 255, 255, 0.78);
+  --ios-glass-inner: rgba(255, 255, 255, 0.55);
+  --ios-glass-dock: rgba(255, 255, 255, 0.72);
+  --ios-glass-select-bg: #ffffff;
+
+  /* Crisp Frosted Specular Borders */
+  --ios-glass-border: rgba(255, 255, 255, 0.72);
+  --ios-glass-border-light: rgba(255, 255, 255, 0.92);
+  --ios-glass-sheen: rgba(255, 255, 255, 0.95);
+  --ios-glass-hairline: rgba(15, 45, 110, 0.08);
+
+  /* Text Hierarchy (Crisp Apple Ink on Light) */
+  --ios-text-primary: #0b1528;
+  --ios-text-secondary: #374a6d;
+  --ios-text-tertiary: #607496;
+  --ios-text-quaternary: #8ca0bf;
+
+  /* Airy Light Mode Elevations */
+  --ios-glass-shadow: 0 14px 34px -10px rgba(15, 48, 115, 0.12), 0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  --ios-glass-shadow-sm: 0 6px 18px -6px rgba(15, 48, 115, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.75) inset;
+  --ios-glass-shadow-lg: 0 22px 48px -12px rgba(15, 48, 115, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.95) inset;
+
+  /* Apple Semantic Status Colors (Light) */
+  --ios-green: #16a34a;
+  --ios-green-surface: rgba(22, 163, 74, 0.14);
+  --ios-green-border: rgba(22, 163, 74, 0.32);
+  --ios-amber: #d97706;
+  --ios-amber-surface: rgba(217, 119, 6, 0.14);
+  --ios-red: #dc2626;
+  --ios-red-surface: rgba(220, 38, 38, 0.12);
+
+  /* Modal Overlay */
+  --ios-overlay-bg: rgba(15, 30, 65, 0.30);
+}
+
+/* Base Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Plus Jakarta Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--ios-bg-base);
+  color: var(--ios-text-primary);
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body.light-mode {
+  color-scheme: light;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--ios-bg-base);
+  background-image: var(--ios-bg-gradient);
+  background-attachment: fixed;
+  color: var(--ios-text-primary);
+  overflow-x: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: background-color 0.35s ease, color 0.25s ease;
+}
+
+/* Selection */
+::selection {
+  background: rgba(10, 132, 255, 0.35);
+  color: #ffffff;
+}
+
+/* Custom Slim iOS Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(120, 160, 220, 0.32);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(120, 160, 220, 0.52);
+}
+
+/* Tabular Numbers */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Animations */
+@keyframes iosPulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.12); opacity: 0.72; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes iosFloatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(22px, -18px) scale(1.06); }
+  100% { transform: translate(-12px, 14px) scale(0.98); }
+}
+
+@keyframes iosSlideUp {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes iosFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

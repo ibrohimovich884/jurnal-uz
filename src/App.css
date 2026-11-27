@@ -1,0 +1,272 @@
+/* ==========================================================================
+   UNIFIED iOS APP ROOT & FLOATING GLASS SHELL
+   ========================================================================== */
+
+.ios-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  position: relative;
+  color: var(--ios-text-primary);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  transition: color 0.25s ease;
+}
+
+/* Ambient Wallpaper Orbs behind Frosted Glass */
+.ios-ambient-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.ambient-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: iosFloatOrb 18s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Dark Mode Orbs: Focused sapphire & electric cyan depth on deep obsidian */
+.ambient-blob-1 {
+  top: -120px;
+  left: -80px;
+  width: 520px;
+  height: 520px;
+  opacity: 0.45;
+  background: radial-gradient(circle, rgba(10, 132, 255, 0.55) 0%, rgba(29, 78, 216, 0.28) 50%, transparent 72%);
+}
+
+.ambient-blob-2 {
+  top: 28%;
+  right: -120px;
+  width: 480px;
+  height: 480px;
+  opacity: 0.38;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.42) 0%, rgba(3, 105, 161, 0.22) 52%, transparent 74%);
+  animation-duration: 22s;
+  animation-delay: -5s;
+}
+
+.ambient-blob-3 {
+  bottom: -140px;
+  left: 22%;
+  width: 560px;
+  height: 560px;
+  opacity: 0.40;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.48) 0%, rgba(79, 70, 229, 0.22) 52%, transparent 74%);
+  animation-duration: 20s;
+  animation-delay: -9s;
+}
+
+/* Light Mode Orbs: Luminous sky-blue, aqua & periwinkle behind white frosted glass */
+body.light-mode .ambient-blob {
+  filter: blur(72px);
+}
+
+body.light-mode .ambient-blob-1 {
+  opacity: 0.72;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.65) 0%, rgba(96, 165, 250, 0.35) 55%, transparent 76%);
+}
+
+body.light-mode .ambient-blob-2 {
+  opacity: 0.65;
+  background: radial-gradient(circle, rgba(0, 122, 255, 0.50) 0%, rgba(125, 211, 252, 0.35) 55%, transparent 76%);
+}
+
+body.light-mode .ambient-blob-3 {
+  opacity: 0.60;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.42) 0%, rgba(147, 197, 253, 0.38) 58%, transparent 78%);
+}
+
+/* Main Viewport Container */
+.ios-viewport {
+  position: relative;
+  z-index: 10;
+  flex: 1;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: calc(70px + env(safe-area-inset-top)) 12px calc(98px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 480px) {
+  .ios-viewport {
+    padding: calc(74px + env(safe-area-inset-top)) 16px calc(108px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (min-width: 768px) {
+  .ios-viewport {
+    padding: calc(80px + env(safe-area-inset-top)) 24px 116px;
+  }
+}
+
+/* ==========================================================================
+   iPhone Bottom Floating Frosted Glass Dock (Tab Bar)
+   ========================================================================== */
+.ios-floating-dock-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  padding: 0 10px calc(10px + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 480px) {
+  .ios-floating-dock-wrap {
+    padding: 0 16px calc(14px + env(safe-area-inset-bottom));
+  }
+}
+
+.ios-floating-dock {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 430px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 3px;
+  background: var(--ios-glass-dock);
+  backdrop-filter: blur(36px) saturate(210%);
+  -webkit-backdrop-filter: blur(36px) saturate(210%);
+  border: 1px solid var(--ios-glass-border-light);
+  border-radius: 26px;
+  padding: 5px;
+  box-shadow: var(--ios-glass-shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 480px) {
+  .ios-floating-dock {
+    gap: 4px;
+    border-radius: 30px;
+    padding: 6px;
+  }
+}
+
+.ios-floating-dock::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ios-glass-sheen), transparent);
+}
+
+.dock-tab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 5px 2px;
+  border-radius: 20px;
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--ios-text-tertiary);
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+  min-height: 44px;
+  min-width: 0;
+}
+
+@media (min-width: 480px) {
+  .dock-tab-btn {
+    gap: 3px;
+    padding: 6px 4px;
+    border-radius: 22px;
+    min-height: 48px;
+  }
+}
+
+.dock-tab-btn:hover {
+  color: var(--ios-text-primary);
+}
+
+.dock-tab-btn:active {
+  transform: scale(0.92);
+}
+
+.dock-tab-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.dock-tab-label {
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: -0.15px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  transition: color 0.2s ease;
+}
+
+@media (min-width: 480px) {
+  .dock-tab-label {
+    font-size: 0.68rem;
+    letter-spacing: -0.1px;
+  }
+}
+
+.dock-tab-btn.active {
+  color: var(--ios-accent-light);
+  background: var(--ios-accent-surface);
+  border-color: var(--ios-accent-border);
+}
+
+body.light-mode .dock-tab-btn.active {
+  color: var(--ios-accent);
+  background: rgba(0, 122, 255, 0.14);
+  border-color: rgba(0, 122, 255, 0.22);
+}
+
+.dock-tab-btn.active .dock-tab-icon {
+  transform: translateY(-1px);
+  color: var(--ios-accent-light);
+}
+
+body.light-mode .dock-tab-btn.active .dock-tab-icon {
+  color: var(--ios-accent);
+}
+
+.dock-tab-btn.active .dock-tab-label {
+  color: var(--ios-text-primary);
+  font-weight: 700;
+}
+
+body.light-mode .dock-tab-btn.active .dock-tab-label {
+  color: var(--ios-accent);
+}
+
+.dock-active-dot {
+  position: absolute;
+  bottom: -4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ios-accent-light);
+  box-shadow: 0 0 8px var(--ios-accent-light);
+}
+
+body.light-mode .dock-active-dot {
+  background: var(--ios-accent);
+  box-shadow: 0 0 6px rgba(0, 122, 255, 0.45);
+}

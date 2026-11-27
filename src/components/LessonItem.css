@@ -1,212 +1,263 @@
-/* --- HORIZON UI PREMIUM CONFIGURATION --- */
+/* ==========================================================================
+   LESSON ITEM — iPHONE TRANSLUCENT BLUE GLASS ROW
+   ========================================================================== */
 
-:root {
-  --bg-color: #f4f7fe;
-  --card-bg: #ffffff;
-  --text-main: #1b2559;
-  --text-muted: #a3aed0;
-  --accent-blue: #422afb; 
-  --light-blue: #e0e7ff;
-  --border-radius: 20px;
-  --card-shadow: 0px 18px 40px rgba(112, 144, 176, 0.12);
-}
-
-.dark {
-  --bg-color: #0b1437;
-  --card-bg: #111c44;
-  --text-main: #ffffff;
-  --text-muted: #a3aed0;
-  --accent-blue: #7551ff;
-  --card-shadow: 0px 18px 40px rgba(0, 0, 0, 0.3);
-}
-
-/* --- LESSON ITEM PREMIUM STYLES --- */
-
-.lessons-container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 10px 0;
-}
-
-.lesson-box {
-  background: var(--card-bg);
-  border: 1px solid transparent;
-  margin-bottom: 0.5rem;
-  border-radius: var(--border-radius);
-  padding: 8px 10px;
+.ios-lesson-item {
+  background: var(--ios-glass-inner);
+  backdrop-filter: var(--ios-blur-subtle);
+  -webkit-backdrop-filter: var(--ios-blur-subtle);
+  border: 1px solid var(--ios-glass-hairline);
+  border-radius: 14px;
+  padding: 9px 10px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--card-shadow);
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 
-/* Hover effekti */
-/* .lesson-box:hover { */
-  /* background: var(--card-bg); */
-  /* box-shadow: 0px 20px 45px rgba(112, 144, 176, 0.2); */
-  /* transform: translateY(-4px) translateX(4px); */
-/* } */
-
-/* Yoyilgan holati (Expanded) */
-.lesson-box.expanded {
-  background: var(--card-bg);
-  border-color: var(--accent-blue);
-  box-shadow: 0 10px 25px -5px rgba(66, 42, 241, 0.15);
-  transform: scale(1.01);
+@media (min-width: 480px) {
+  .ios-lesson-item {
+    border-radius: var(--ios-radius-md);
+    padding: 10px 14px;
+  }
 }
 
-/* Asosiy qator (Raqam, Nom, Xona) */
-.lesson-main-info {
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  gap: 15px;
-  width: 100%;
+.ios-lesson-item:hover {
+  background: var(--ios-glass-card-hover);
+  border-color: var(--ios-glass-border-light);
+  transform: translateY(-1px);
 }
 
-.lesson-number {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--accent-blue);
-  opacity: 0.8;
-  min-width: 25px;
+.ios-lesson-item:active {
+  transform: scale(0.98);
 }
 
-.lesson-name {
-  flex: 1;
-  font-weight: 700;
-  color: var(--text-main);
-  font-size: 1.05rem;
-  letter-spacing: -0.3px;
+.ios-lesson-item.is-expanded {
+  background: var(--ios-glass-card-hover);
+  border-color: var(--ios-accent-border);
+  box-shadow: 0 8px 24px -6px var(--ios-accent-glow);
 }
 
-.lesson-room {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--accent-blue);
-  background: var(--light-blue);
-  padding: 6px 12px;
-  border-radius: 10px;
-  white-space: nowrap;
+/* Current lesson status */
+.ios-lesson-item.is-current {
+  border-color: var(--ios-green-border);
+  background: var(--ios-green-surface);
+  box-shadow: 0 0 20px rgba(48, 209, 88, 0.16);
 }
 
-/* Detallar paneli (Ochilganda) */
-.lesson-details-panel {
-  margin-top: 10px;
-  padding: 15px;
-  border-top: 1px solid var(--bg-color);
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  animation: slideDown 0.3s ease-out;
+/* Past lesson status */
+.ios-lesson-item.is-past {
+  opacity: 0.6;
 }
 
-.detail-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 14px;
-  background: var(--bg-color);
-  border-radius: 14px;
-}
-
-.detail-item p {
-  margin: 0;
-  color: var(--text-muted);
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.detail-item p span {
-  color: var(--text-main);
-  font-weight: 700;
-  margin-left: 5px;
-}
-
-/* --- DARK MODE OPTIMIZATION --- */
-body.dark .lesson-box {
-  border-color: rgba(255, 255, 255, 0.05);
-}
-
-body.dark .lesson-box.expanded {
-  background: var(--card-bg);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-}
-
-body.dark .lesson-room {
-  background: rgba(117, 81, 255, 0.15); /* Accent rangining xira varianti */
-}
-
-/* --- HOZIRGI DARS (LIVE) --- */
-.lesson-box.is-current {
-  border-color: #01b574;
-  box-shadow: 0 10px 25px -5px rgba(1, 181, 116, 0.25);
-}
-
-.current-pulse {
-  width: 9px;
-  height: 9px;
-  min-width: 9px;
-  border-radius: 50%;
-  background: #01b574;
-  box-shadow: 0 0 0 0 rgba(1, 181, 116, 0.6);
-  animation: pulseDot 1.6s infinite;
-}
-
-/* --- TUGAGAN DARS (PAST) --- */
-.lesson-box.is-past {
-  opacity: 0.62;
-  transition: opacity 0.25s ease;
-}
-
-.lesson-box.is-past:hover {
-  opacity: 0.92;
-}
-
-.past-check {
-  font-size: 0.85rem;
-  font-weight: 800;
-  color: #01b574;
-  min-width: 14px;
-}
-
-body.dark .lesson-box.is-past {
-  opacity: 0.55;
-}
-
-body.dark .lesson-box.is-past:hover {
+.ios-lesson-item.is-past:hover {
   opacity: 0.9;
 }
 
-@keyframes pulseDot {
-  0% { box-shadow: 0 0 0 0 rgba(1, 181, 116, 0.55); }
-  70% { box-shadow: 0 0 0 8px rgba(1, 181, 116, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(1, 181, 116, 0); }
+.lesson-main-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
 }
 
-/* --- ANIMATIONS --- */
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+@media (min-width: 480px) {
+  .lesson-main-row {
+    gap: 12px;
+  }
 }
 
-/* --- RESPONSIVE --- */
-@media (max-width: 380px) {
-  .lesson-box {
-    padding: 0.1rem 0.1rem;
-    border-radius: 16px;
+.lesson-left-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.lesson-live-pulsar {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ios-green);
+  box-shadow: 0 0 8px var(--ios-green);
+  animation: iosPulse 1.4s infinite;
+}
+
+.lesson-past-check {
+  color: var(--ios-green);
+  display: flex;
+  align-items: center;
+}
+
+.lesson-period-num {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--ios-accent-light);
+  width: 16px;
+  text-align: center;
+}
+
+body.light-mode .lesson-period-num {
+  color: var(--ios-accent);
+}
+
+.lesson-info-group {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.lesson-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ios-text-primary);
+  line-height: 1.28;
+  word-break: break-word;
+}
+
+.lesson-teacher-subtext {
+  font-size: 0.72rem;
+  color: var(--ios-text-tertiary);
+  margin-top: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lesson-right-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.lesson-room-pill {
+  background: var(--ios-accent-surface);
+  border: 1px solid var(--ios-glass-border);
+  color: var(--ios-accent-light);
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 9px;
+  white-space: nowrap;
+}
+
+@media (min-width: 480px) {
+  .lesson-period-num {
+    font-size: 0.9rem;
+    width: 18px;
   }
-  .detail-item p {
-    display: flex;
-    flex-direction: column;
+  .lesson-title {
+    font-size: 0.95rem;
   }
-  .detail-item p span {
-    margin-left: 0;
-    margin-top: 2px;
+  .lesson-teacher-subtext {
+    font-size: 0.75rem;
   }
+  .lesson-right-group {
+    gap: 8px;
+  }
+  .lesson-room-pill {
+    font-size: 0.76rem;
+    padding: 4px 10px;
+    border-radius: var(--ios-radius-sm);
+  }
+}
+
+body.light-mode .lesson-room-pill {
+  color: var(--ios-accent);
+}
+
+.lesson-chevron {
+  color: var(--ios-text-tertiary);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.lesson-chevron.rotated {
+  transform: rotate(180deg);
+  color: var(--ios-accent-light);
+}
+
+body.light-mode .lesson-chevron.rotated {
+  color: var(--ios-accent);
+}
+
+/* Expanded Drawer Panel */
+.lesson-drawer-panel {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--ios-glass-hairline);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  animation: iosSlideUp 0.2s ease;
+}
+
+@media (min-width: 600px) {
+  .lesson-drawer-panel {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.drawer-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--ios-glass-bg-subtle);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--ios-glass-hairline);
+  border-radius: var(--ios-radius-sm);
+  padding: 8px 12px;
+}
+
+body.light-mode .drawer-item {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+
+.drawer-icon-bubble {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--ios-glass-bg);
+  color: var(--ios-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.drawer-icon-bubble.blue {
+  background: var(--ios-accent-surface);
+  color: var(--ios-accent-light);
+}
+
+body.light-mode .drawer-icon-bubble.blue {
+  color: var(--ios-accent);
+}
+
+.drawer-item-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.drawer-item-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ios-text-tertiary);
+  letter-spacing: 0.3px;
+}
+
+.drawer-item-val {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--ios-text-primary);
 }
